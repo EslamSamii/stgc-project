@@ -1,0 +1,132 @@
+<section class="header">
+  <div class="content">
+    <h1>Accelerating & Driving<br>Positive Change</h1>
+    <p>A major new hub to support Travel & Tourism's<br>critical journey towards a sustainable future</p>
+  </div>
+  <div class="content-2">
+    <p>Founded in 2021, the Sustainable Tourism Global Center (STGC) is the world’s first multi-country, multi-stakeholder global coalition that will lead, accelerate and track Travel & Tourism industry’s journey to a sustainable future.</p>
+  </div>
+</section>
+
+<section class="images-section" [style.height.vh]="isSmallScreenView ? 100 : 200">
+  <div [ngClass]="{'fade-in-title': displaySecondSection}" class="title">
+    <h6>Why now?</h6>
+    <p>A global climate<br>and biodiversity crisis</p>
+  </div>
+  <div class="captions">
+    <p>
+      Climate change is a global crisis, described as "a code red for humanity" by the UN Secretary General. No place or community is immune, with disadvantaged communities, including Travel & Tourism destinations, being particularly vulnerable.
+    </p>
+    <p>
+      Rising temperatures drive environmental degradation, natural disasters, and food and water insecurity. Sea levels are rising, coral reefs are dying, and biodiversity is declining. Despite global commitments, progress is too slow.
+    </p>
+  </div>
+</section>
+
+<img *ngFor="let image of bgImages" [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
+
+<section #stakeholderGroupsRef class="stakeholder-groups" (scroll)="onCardsScroll($event)">
+  <p class="title">Our Stakeholder Groups</p>
+  <div class="gallery-cards">
+    <div
+      *ngFor="let card of cards;let index = index"
+      class="card-container"
+      [style.left.px]="expandCards ? index * 334 : index * 120"
+      [style.zIndex]="cards.length - index">
+      <div class="card">
+        <div class="card-front">
+          <img [src]="card.image"/>
+        </div>
+        <div class="card-back">
+          <p class="card-name">{{card.name}}</p>
+          <p class="card-desc">{{card.desc}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="areas">
+  <p class="title">Our strategic pillars<br>and Intervention areas</p>
+  <div class="cards">
+    <div *ngFor="let card of areasCards;let cardIndex = index" class="card" [style.top.px]="cardIndex * 513">
+      <div class="image">
+        <img [src]="card.image">
+        <span>{{card.label}}</span>
+      </div>
+      <div class="desc">
+        <div *ngFor="let desc of card.desc; let index = index" class="desc-content-{{card.desc.length - index}}">
+          <h3 style="color: black;">[{{desc.count}}]</h3>
+            <h3>{{desc.title}}</h3>
+            <p>{{desc.content}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer">
+  <div class="contact-us">
+    <video autoplay loop muted playsinline>
+      <source src="assets/videos/home-contact-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="content">
+      <h1>Sustainable Tourism Global Center</h1>
+      <form [formGroup]="contactForm">
+        <label class="input-container" for="address-input">
+          <div class="input-title">
+            <span>1</span>
+            <span>Address</span>
+          </div>
+          <input id="address-input" [formControl]="getFormControl('address')" type="text">
+        </label>
+        <hr>
+        <label class="input-container" for="address-input">
+          <div class="input-title">
+            <span>2</span>
+            <span>Email</span>
+          </div>
+          <input id="address-input" [formControl]="getFormControl('email')" type="email">
+        </label>
+        <button [disabled]="contactForm.invalid" type="button" (click)="submit()">
+          <div class="borders title">
+            Contact us
+            <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0V16" stroke="white" stroke-width="2"/>
+              <path d="M0 48V64" stroke="white" stroke-width="2"/>
+            </svg>
+            <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0V16" stroke="white" stroke-width="2"/>
+              <path d="M0 48V64" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="borders icon">
+            <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0V16" stroke="white" stroke-width="2"/>
+              <path d="M0 48V64" stroke="white" stroke-width="2"/>
+            </svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
+            </svg>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-content">
+    <div class="nav">
+      <img src="assets/images/STGC-black.svg">
+      <div class="links">
+        <a [routerLink]="['/home']">Home</a>
+        <a [routerLink]="['/about']">About</a>
+        <a [routerLink]="['/partnership']">Partnership</a>
+        <a [routerLink]="['/contact-us']">Contact us</a>
+      </div>
+    </div>
+    <div class="copy-write">
+      <p>Sustainable Tourism Global Center.© All rights reserved</p>
+      <a>Privacy Policy</a>
+    </div>
+  </div>
+</section>
