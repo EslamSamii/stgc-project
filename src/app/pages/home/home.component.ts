@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, expand, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { debounceTime, Subject, takeUntil, tap } from 'rxjs';
 import { AppService } from 'src/app/shared/sevices/app.service';
 
 @Component({
