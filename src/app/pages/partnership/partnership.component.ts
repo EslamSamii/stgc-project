@@ -174,6 +174,7 @@ export class PartnershipComponent {
     const maxScale = 1.6;
     const scale = maxScale - ((videoPercentage) * (maxScale - minScale));
     this.videoContainer.nativeElement.firstElementChild.style.transform = `scale(${scale})`;
+    this._AppService.cursorChange$.next('circle')
   }
 
   private _handleFillingText(elementContainer: HTMLElement, num1: number, num2: number):void{
