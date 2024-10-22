@@ -123,6 +123,10 @@ export class AboutUsComponent implements AfterViewInit {
     return (this.containerRef?.nativeElement?.getBoundingClientRect()?.width) || 0;
   }
 
+  ngOnInit(): void {
+    scrollTo({left:0, top:0})
+  }
+
   ngAfterViewInit(): void {
     document.querySelector('nav')?.classList.add('custom-nav')
     setTimeout(() => this._handleScroll(true));

@@ -105,6 +105,7 @@ export class PartnershipComponent {
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
     })
+    scrollTo({left:0, top:0})
   }
 
   ngAfterViewInit(): void {

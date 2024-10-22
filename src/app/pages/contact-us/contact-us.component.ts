@@ -18,11 +18,15 @@ export class ContactUsComponent {
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
 
   constructor(private _AppService: AppService){}
+
+  ngOnInit(): void {
+    scrollTo({left:0, top:0})
+  }
+
   public getFromControl(controlName: string): FormControl{
     return this.contactForm.get(controlName) as FormControl
   }
 
-  // TODO
   public submit(): void{
     if(this.contactForm.invalid){
       this.contactForm.markAllAsTouched();
