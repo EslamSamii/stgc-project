@@ -1,0 +1,219 @@
+
+
+<section #header class="header">
+  <img src="assets/images/partners-bg.jpg">
+  <div class="floating-images">
+    <h1>Global<br>Research Center</h1>
+    <img #picOne class="pic-1" src="assets/images/pic1.jpg">
+    <img #picTwo class="pic-2" src="assets/images/pic2.jpg">
+    <img #picThree class="pic-3" src="assets/images/pic3.jpg">
+    <p>To drive sustainable tourism, STGC is launching a Global Research Center for Climate, Nature & Communities. The Center will hire top researchers and collaborate with leading universities and organizations to provide actionable insights, tools, and solutions.</p>
+  </div>
+</section>
+
+<section class="desc-section">
+  <div #descOne class="desc">
+    <p>
+      <span>
+        The strategy for the Center has been developed
+      </span>
+      <span>
+        through a collaborative approach and a robust
+      </span>
+      <span>
+        validation process, with over 300 leaders with
+      </span>
+      <span>
+        expertise in sustainability and/or Travel & Tourism
+      </span>
+      <span>
+        from across the world, including governments and
+      </span>
+      <span>
+        leadings international organizations.
+      </span>
+    </p>
+  </div>
+  <div #descTwo class="desc">
+    <p>
+      <span>
+        The Center aims to partner with 100 universities
+      </span>
+      <span>
+        from diverse regions around the world by 2030 -
+      </span>
+      <span>
+        North America, Europe, Asia-Pacific, Latin America,
+      </span>
+      <span>
+        Africa and MENA - and to engage with international
+      </span>
+      <span>
+        organizations and industry associations.
+      </span>
+    </p>
+  </div>
+</section>
+
+<section appHorizontalScroll class="sponsors" >
+  <h2>We collaborate with</h2>
+  <div class="logos-container">
+    <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
+  </div>
+</section>
+
+<section appHorizontalScroll #publications class="publications">
+  <div class="publications-container">
+    <h2>Publications</h2>
+    <div class="scroll-wrapper">
+      <div class="cards">
+        <div
+          *ngFor="let card of cards;let index = index;let odd = odd"
+          class="card-container"
+          [style]="odd ? 'align-items: start;' : 'align-items: end;'"
+        >
+        <div class="wrapper">
+          <div class="card">
+            <div class="card-front">
+              <img [src]="card.image"/>
+            </div>
+            <div class="card-back">
+              <div class="titles">
+                <p class="card-name">{{card.name}}</p>
+                <p class="card-desc">{{card.desc}}</p>
+              </div>
+              <button (click)="toggleDownloadModal(card)">
+                Read more
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 8L22 12L18 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 12H22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-modal *ngIf="isDownloadModalOpened" (closeModal)="toggleDownloadModal()">
+  <div class="contact-form">
+    <h2>Fill in the form to download publication</h2>
+    <form class="publication-form" [formGroup]="downloadFormGroup" #downloadFormGroupRef>
+      <div class="input-container">
+        <input required [formControl]="getFromControl('name')" type="text" placeholder="Name">
+        <input required email [formControl]="getFromControl('email')" type="email" placeholder="Email">
+        <input required [formControl]="getFromControl('organization')" type="text" placeholder="Organization">
+        <input required [formControl]="getFromControl('position')" type="text" placeholder="Position">
+      </div>
+      <button class="confirm-button" type="button" (click)="submit()">
+        <div class="borders title">
+          <div class="animate">
+            <span class="animate-slide">Download</span>
+          </div>
+          <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0V16" stroke="white" stroke-width="2"/>
+            <path d="M0 48V64" stroke="white" stroke-width="2"/>
+          </svg>
+          <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0V16" stroke="white" stroke-width="2"/>
+            <path d="M0 48V64" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="borders icon">
+          <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0V16" stroke="white" stroke-width="2"/>
+            <path d="M0 48V64" stroke="white" stroke-width="2"/>
+          </svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
+          </svg>
+        </div>
+      </button>
+    </form>
+  </div>
+</app-modal>
+
+<section #videoContainer class="video-container">
+  <video #videoPlayer autoplay loop muted playsinline preload="auto" (mouseover)="onMouseOver()" (click)="toggleSound(videoPlayer)"  (mouseleave)="onMouseLeave()">
+    <source src="assets/videos/bg-video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+<section>
+  <div class="container">
+    <div class="contact-us">
+      <h2 class="main-title">Interested<br>in partnering?</h2>
+      <div class="line-1"></div>
+      <div class="contact-us-container">
+        <div class="social">
+        </div>
+        <div class="contact-form">
+          <form [formGroup]="contactForm" #contactFormRef>
+            <div class="input-container">
+              <input required [formControl]="getFromControlContactForm('name')" type="text" placeholder="Your Name">
+              <input required [formControl]="getFromControlContactForm('address')" type="text" placeholder="Your Address">
+              <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
+            </div>
+            <button class="confirm-button" type="button" (click)="submitContactForm()">
+              <div class="borders title">
+                <div class="animate">
+                  <span class="animate-slide">Contact us</span>
+                </div>
+                <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0V16" stroke="white" stroke-width="2"/>
+                  <path d="M0 48V64" stroke="white" stroke-width="2"/>
+                </svg>
+                <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0V16" stroke="white" stroke-width="2"/>
+                  <path d="M0 48V64" stroke="white" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="borders icon">
+                <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0V16" stroke="white" stroke-width="2"/>
+                  <path d="M0 48V64" stroke="white" stroke-width="2"/>
+                </svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
+                </svg>
+              </div>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-content">
+      <div class="nav">
+        <img src="assets/images/STGC-black.svg">
+        <div class="links">
+          <a [routerLink]="['/home']">Home</a>
+          <a [routerLink]="['/about']">About</a>
+          <a [routerLink]="['/partnership']">Partnership</a>
+          <a [routerLink]="['/contact-us']">Contact us</a>
+        </div>
+      </div>
+      <div class="copy-write">
+        <p>Sustainable Tourism Global Center.© All rights reserved</p>
+        <a>Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-modal *ngIf="isMessageModalOpen" (closeModal)="isMessageModalOpen= false">
+  <div class="message">
+    <p>Thank you {{getFromControlContactForm('name').value}} for showing your interest,<br><br>Our team will be in contact with you</p>
+  </div>
+</app-modal>
+
+<app-modal *ngIf="isSuccessMessageModalOpen" (closeModal)="isSuccessMessageModalOpen= false">
+  <div class="message">
+    <p>Thank you {{getFromControl('name').value}} for showing your interest.</p>
+  </div>
+</app-modal>

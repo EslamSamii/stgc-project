@@ -22,6 +22,19 @@
     -o-transition: transform 0.05s;
   }
 }
+.video-cursor{
+  display: block;
+  position: fixed;
+  z-index: 99999;
+  top: -75px;
+  left: -75px;
+  pointer-events: none;
+  transition: transform 0.05s;
+  -webkit-transition: transform 0.05s;
+  -moz-transition: transform 0.05s;
+  -ms-transition: transform 0.05s;
+  -o-transition: transform 0.05s;
+}
 .app{
   display: flex;
   flex-direction: column;

@@ -1,11 +1,19 @@
 nav{
+  &.custom-nav{
+    .menu-btn{
+      display: none;
+    }
+    img.logo{
+      filter: brightness(0);
+      -webkit-filter: brightness(0);
+  }
+  }
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
   background-color: transparent;
-  z-index: 1;
+  z-index: 999;
   padding: 21px 48px;
   @media (max-width: 992px) {
     padding: 21px 15px;
@@ -16,6 +24,7 @@ nav{
   justify-content: space-between;
 }
 .menu-btn{
+
   display: flex;
   align-items: center;
   font-size: 16;
@@ -23,8 +32,8 @@ nav{
   cursor: pointer;
   color: white;
   gap: 18px;
-
-    .menu-icon {
+  .menu-icon {
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease;
     line{
@@ -33,7 +42,7 @@ nav{
       -moz-transition: all 0.3s ease;
       -ms-transition: all 0.3s ease;
       -o-transition: all 0.3s ease;
-}
+    }
     &.active{
       .line1 {
         transform-origin: 50% 50%;
@@ -69,28 +78,13 @@ nav{
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  transform: translateY(100%);
-  -webkit-transform: translateY(100%);
-  -moz-transform: translateY(100%);
-  -ms-transform: translateY(100%);
-  -o-transform: translateY(100%);
   transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1) ;
   -webkit-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1) ;
   -moz-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1) ;
   -ms-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1) ;
   -o-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1) ;
-  &.menu-opened{
-  transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
-  -webkit-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
-  -moz-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
-  -ms-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
-  -o-transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
-  transform: translateY(0%);
-  -webkit-transform: translateY(0%);
-  -moz-transform: translateY(0%);
-  -ms-transform: translateY(0%);
-  -o-transform: translateY(0%);
-}
+  animation: slide-in 0.5s 0s ease-in-out;
+  -webkit-animation: slide-in 0.5s 0s ease-in-out;
   img{
     width: 100%;
     height: 100%;
@@ -142,11 +136,6 @@ nav{
     }
   }
 }
-@keyframes slide-up{
-100%{
-
-}
-}
 
 @keyframes text-fill {
   0% {
@@ -155,4 +144,42 @@ nav{
   100% {
     background-position: -100%;
   }
+}
+
+@keyframes slide-in {
+  0%{
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+}
+  100%{
+    transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+}
+}
+.slide-out{
+  animation: slide-out forwards 0.5s 0s ease-in-out;
+  -webkit-animation: slide-out forwards 0.5s 0s ease-in-out;
+}
+
+@keyframes slide-out {
+  0%{
+    transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+}
+  100%{
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+}
 }

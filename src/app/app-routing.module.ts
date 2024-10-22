@@ -6,6 +6,27 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
+    data: { animation: 'home' }
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./pages/about-us/about-us.module').then((m) => m.AboutUsModule),
+    data: { animation: 'about' }
+
+  },
+  {
+    path: 'partnership',
+    loadChildren: () =>
+      import('./pages/partnership/partnership.module').then((m) => m.PartnershipModule),
+    data: { animation: 'partnership' }
+
+  },
+  {
+    path: 'contact-us',
+    loadChildren: () =>
+      import('./pages/contact-us/contact-us.module').then((m) => m.ContactUsModule),
+    data: { animation: 'contact' }
   },
   { path: '**', redirectTo: 'home' },
 ];

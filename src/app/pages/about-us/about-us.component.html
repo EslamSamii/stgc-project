@@ -1,0 +1,93 @@
+<section class="horizon-section" [style.minHeight.px]="containerWidth">
+  <div #scrollHorizontallyRef class="scroll-horizontally" [ngClass]="{'scroll-away': !isSectionsFixed}">
+    <div #container class="sections-container">
+      <div class="section section-1">
+        <div class="desc">
+          <div class="title">
+            <div class="line"></div>
+            <h3>Our Mandate</h3>
+          </div>
+          <p class="caption">Lead, accelerate, and track the travel and tourism industry's transition to sustainable practices, while driving action to protect nature and support communities</p>
+        </div>
+        <div class="image-container">
+          <img #scaledImageOne src="assets/images/section1.jpg">
+        </div>
+      </div>
+      <div class="section section-2">
+        <div class="desc">
+          <div class="title">
+            <div class="line"></div>
+            <h3>Our Vision</h3>
+          </div>
+          <p class="caption">To lead the tourism sector in becoming a force for sustainable development and effective in reducing environmental impact, while remaining profitable and sustainable as an industry</p>
+        </div>
+        <div class="image-container">
+          <img #scaledImageTwo src="assets/images/section2.jpg">
+        </div>
+      </div>
+      <div class="section section-3">
+        <div class="desc">
+          <div class="title">
+            <div class="line"></div>
+            <h3>Our Mission</h3>
+          </div>
+          <p class="caption">Deliver applied & impact driven research, stakeholder centric services and end-to-end solutions, to enable the industry’s stakeholders to accelerate their transition achieve the global and the industry sustainability goals</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="info-section">
+  <h1>Leading for the<br>Positive Impact</h1>
+  <div class="desc">
+    <p>
+      <span [ngClass]="{'slide-up-animation delay-1': !isSectionsFixed}">
+        The STGC is uniting the travel sector to protect nature and support communities. Our mission is to be the leading global center for sustainable Travel & Tourism, offering impact-driven research, stakeholder services, and solutions.
+      </span>
+      <br><br>
+      <span [ngClass]="{'slide-up-animation delay-2': !isSectionsFixed}">
+        We bring together public and private sector leaders—countries, businesses, NGOs, and academia— to provide tools for micro, small, and medium businesses, travelers, and destinations to drive lasting change.
+      </span>
+      <br><br>
+      <span [ngClass]="{'slide-up-animation delay-3': !isSectionsFixed}">
+        To drive sustainable tourism, STGC is launching a Global Research Center for Climate, Nature & Communities. The Center will hire top researchers and collaborate with leading universities and organizations to provide actionable insights, tools, and solutions.
+      </span>
+    </p>
+  </div>
+</section>
+
+<section class="cards-section">
+  <div class="cards-container" [ngClass]="{'small-view' : isSmallScreenView}">
+    <div *ngFor="let card of cardsList; let index= index" class="card"  [style.order]="isMediumScreenView && card.type==='' && cardsList[index-1]?.type === '' ? index+4 : index" [ngClass]="{'hide': isSmallScreenView && card.type==='', 'small-card' :isSmallScreenView}">
+      <div [ngSwitch]="card.type">
+        <div class="card-desc" *ngSwitchCase="'card'">
+          <h3>{{card.title}}</h3>
+          <p>{{card.caption}}</p>
+        </div>
+        <div class="card-img" *ngSwitchCase="'img'">
+          <img [src]="card.img">
+        </div>
+        <div class="card-empty" *ngSwitchDefault></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer">
+  <h2>Supporting a just transition<br>to sustainable tourism, a healthier planet and thriving communities</h2>
+  <div class="footer-content">
+    <div class="nav">
+      <img src="assets/images/STGC-black.svg">
+      <div class="links">
+        <a [routerLink]="['/home']">Home</a>
+        <a [routerLink]="['/about']">About</a>
+        <a [routerLink]="['/partnership']">Partnership</a>
+        <a [routerLink]="['/contact-us']">Contact us</a>
+      </div>
+    </div>
+    <div class="copy-write">
+      <p>Sustainable Tourism Global Center.© All rights reserved</p>
+      <a>Privacy Policy</a>
+    </div>
+  </div>
+</section>

@@ -2,6 +2,8 @@
   <div class="nav-content">
     <div>
       <img
+      [routerLink]="['/home']"
+      class="logo"
       style="transition: transform 0.3s ease;"
         (mousemove)="onMouseMove($event)"
         (mouseleave)="onMouseLeave()"
@@ -9,9 +11,9 @@
         width="65" height="30" src="assets/images/STGC.svg">
     </div>
     <div (click)="toggleMenu()" class="menu-btn">
-      <span>{{isMenuOpened ? 'Close' : 'Menu'}}</span>
+      <span>{{toggleClicked ? 'Close' : 'Menu'}}</span>
       <svg
-        [ngClass]="{'active': isMenuOpened}"
+        [ngClass]="{'active': toggleClicked}"
         class="menu-icon"
         width="40"
         height="30"
@@ -19,27 +21,27 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <line class="line1" x1="5" y1="5" x2="35" y2="5" stroke="#fff" stroke-width="2"/>
-        <line class="line2" x1="5" y1="13" x2="35" y2="13" stroke="#fff" stroke-width="2"/>
-        <line class="line3" x1="5" y1="21" x2="35" y2="21" stroke="#fff" stroke-width="2"/>
+        <line class="line1" x1="5" y1="5" x2="35" y2="5" stroke="currentColor" stroke-width="2"/>
+        <line class="line2" x1="5" y1="13" x2="35" y2="13" stroke="currentColor" stroke-width="2"/>
+        <line class="line3" x1="5" y1="21" x2="35" y2="21" stroke="currentColor" stroke-width="2"/>
       </svg>
     </div>
-    <div class="menu" [ngClass]="{'menu-opened': isMenuOpened}">
+    <div *ngIf="isMenuOpened" class="menu" [ngClass]="{'slide-out': hideFlag}">
       <img src="assets/images/Menu.jpg">
       <div class="links">
-        <a [routerLink]="['/home']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu($event)" [routerLink]="['/home']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Home
         </a>
-        <a [routerLink]="['/home']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu($event)" [routerLink]="['/about']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           About
         </a>
-        <a [routerLink]="['/home']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu($event)" [routerLink]="['/partnership']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Partnership
         </a>
-        <a [routerLink]="['/home']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu($event)" [routerLink]="['/contact-us']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Contact us
         </a>

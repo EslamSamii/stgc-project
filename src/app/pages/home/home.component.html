@@ -73,13 +73,14 @@
     </video>
     <div class="content">
       <h1>Sustainable Tourism Global Center</h1>
-      <form [formGroup]="contactForm">
+      <form >
         <label class="input-container" for="address-input">
           <div class="input-title">
             <span>1</span>
             <span>Address</span>
           </div>
-          <input id="address-input" [formControl]="getFormControl('address')" type="text">
+          <input id="address-input" type="text" disabled readonly value="PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia">
+          <div></div>
         </label>
         <hr>
         <label class="input-container" for="address-input">
@@ -87,11 +88,14 @@
             <span>2</span>
             <span>Email</span>
           </div>
-          <input id="address-input" [formControl]="getFormControl('email')" type="email">
+          <input required email id="email-input" type="email">
+          <input id="address-input" type="text" disabled readonly value="info@stgc.global">
         </label>
-        <button [disabled]="contactForm.invalid" type="button" (click)="submit()">
+        <button type="button" [routerLink]="['/contact-us']">
           <div class="borders title">
-            Contact us
+            <div class="animate">
+              <span class="animate-slide">Contact us</span>
+            </div>
             <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0V16" stroke="white" stroke-width="2"/>
               <path d="M0 48V64" stroke="white" stroke-width="2"/>

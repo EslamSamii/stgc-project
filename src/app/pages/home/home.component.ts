@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, Subject, takeUntil, tap } from 'rxjs';
-import { AppService } from 'src/app/shared/sevices/app.service';
+import { AppService } from 'src/app/shared/services/app.service';
 
 @Component({
   selector: 'app-home',
@@ -39,22 +39,22 @@ export class HomeComponent implements OnInit {
     {
       image: 'assets/images/group2.jpg',
       name:'Large Companies',
-      desc:'Empowering Small Businesses for Sustainable Growth – Micro, Small, and Medium Enterprises are vital for innovation and local economic development in sustainable tourism'
+      desc:'Driving Corporate Responsibility in Tourism – Encouraging large corporations to lead by example through sustainable operations and supply chains.'
     },
     {
       image: 'assets/images/group3.jpg',
       name:'Destinations',
-      desc:'Empowering Small Businesses for Sustainable Growth – Micro, Small, and Medium Enterprises are vital for innovation and local economic development in sustainable tourism'
+      desc:'Promoting Eco-friendly Tourism Hotspots – Destinations play a key role in implementing sustainable practices to minimize environmental impacts.'
     },
     {
       image: 'assets/images/group4.jpg',
       name:'Travelers & Youth',
-      desc:'Empowering Small Businesses for Sustainable Growth – Micro, Small, and Medium Enterprises are vital for innovation and local economic development in sustainable tourism'
+      desc:'Engaging the Future of Tourism – Involving travelers, especially younger generations, in shaping eco-conscious behaviors and preferences.'
     },
     {
       image: 'assets/images/group5.jpg',
       name:'Mobility',
-      desc:'Empowering Small Businesses for Sustainable Growth – Micro, Small, and Medium Enterprises are vital for innovation and local economic development in sustainable tourism'
+      desc:'Advancing Sustainable Transportation Solutions – Ensuring that transportation options reduce carbon footprints and enhance travel efficiency.'
     },
   ]
 
@@ -134,6 +134,7 @@ export class HomeComponent implements OnInit {
   private _destroy$: Subject<void> = new Subject<void>();
 
   @ViewChild('stakeholderGroupsRef') stakeholderGroupsRef!: ElementRef;
+  @ViewChild('contactFormRef') contactFormRef!: ElementRef;
 
   constructor( private _AppService: AppService) {}
 
@@ -192,5 +193,11 @@ export class HomeComponent implements OnInit {
   }
 
   // TODO
-  public submit(): void{}
+  public submit(): void{
+    if(this.contactForm.invalid){
+      this.contactForm.markAllAsTouched();
+      this.contactFormRef.nativeElement.reportValidity();
+      return;
+    }
+  }
 }
