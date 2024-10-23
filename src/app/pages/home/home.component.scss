@@ -56,6 +56,12 @@
       left: 15px;
       width: 361px;
     }
+    span{
+      background: linear-gradient(to right,  #fff 45%, #c6c6c6 55%);
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 225% 100%;
+    }
   }
 }
 
@@ -76,15 +82,15 @@
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    transition: all 0.1s 0s ease-in-out;
-    -webkit-transition: all 0.1s 0s ease-in-out;
-    -moz-transition: all 0.1s 0s ease-in-out;
-    -ms-transition: all 0.1s 0s ease-in-out;
-    -o-transition: all 0.1s 0s ease-in-out;
+    transition: all 1s 0s cubic-bezier(0.7, 0, 0.3, 1) ease-in-out;
+    -webkit-transition: all 1s 0s cubic-bezier(0.7, 0, 0.3, 1) ease-in-out;
+    -moz-transition: all 1s 0s cubic-bezier(0.7, 0, 0.3, 1) ease-in-out;
+    -ms-transition: all 1s 0s cubic-bezier(0.7, 0, 0.3, 1) ease-in-out;
+    -o-transition: all 1s 0s cubic-bezier(0.7, 0, 0.3, 1) ease-in-out;
     &.fade-in-title{
       opacity: 1;
       z-index: 1;
-}
+    }
     h6{
       font-weight: bold;
       font-size: 16px;
@@ -148,10 +154,13 @@
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: safe center;
-  gap: 16px;
+
+  .stakeholder-container{
+    display: flex;
+    align-items: center;
+    justify-content: safe center;
+    gap: 16px;
+  }
   &::-webkit-scrollbar {
     display: none;
   }
@@ -323,6 +332,7 @@
         overflow: hidden;
         @media (max-width: 992px) {
           flex-direction: column-reverse;
+          gap: 80px;
         }
         .desc-content-1, .desc-content-2, .desc-content-3{
           width: 634px;
@@ -343,7 +353,7 @@
             position: static;
             width: auto;
             padding: 0 16px;
-            height: 434px;
+            height: 250px;
             justify-content: end;
           }
           h3{
@@ -510,7 +520,7 @@
             }
           }
 
-          input{
+          span.value{
             background-color: transparent;
             border: unset;
             outline: unset;

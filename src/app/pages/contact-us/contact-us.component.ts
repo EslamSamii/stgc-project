@@ -12,7 +12,7 @@ export class ContactUsComponent {
   public isMessageModalOpen: boolean = false;
   public contactForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     message: new FormControl('', Validators.required),
   });
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;

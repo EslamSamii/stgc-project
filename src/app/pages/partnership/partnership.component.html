@@ -155,7 +155,7 @@
           <form [formGroup]="contactForm" #contactFormRef>
             <div class="input-container">
               <input required [formControl]="getFromControlContactForm('name')" type="text" placeholder="Your Name">
-              <input required [formControl]="getFromControlContactForm('address')" type="text" placeholder="Your Address">
+              <input required [formControl]="getFromControlContactForm('email')" type="email" placeholder="Your Email Address">
               <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
             </div>
             <button class="confirm-button" type="button" (click)="submitContactForm()">

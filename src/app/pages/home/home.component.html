@@ -3,8 +3,21 @@
     <h1>Accelerating & Driving<br>Positive Change</h1>
     <p>A major new hub to support Travel & Tourism's<br>critical journey towards a sustainable future</p>
   </div>
-  <div class="content-2">
-    <p>Founded in 2021, the Sustainable Tourism Global Center (STGC) is the world’s first multi-country, multi-stakeholder global coalition that will lead, accelerate and track Travel & Tourism industry’s journey to a sustainable future.</p>
+  <div #descOne class="content-2">
+    <p>
+      <span>
+        Founded in 2021, the Sustainable Tourism Global Center (STGC) is
+      </span>
+      <span>
+        the world’s first multi-country, multi-stakeholder global coalition
+      </span>
+      <span>
+        that will lead, accelerate and track Travel & Tourism industry’s
+      </span>
+      <span>
+        journey to a sustainable future.
+      </span>
+    </p>
   </div>
 </section>
 
@@ -25,21 +38,23 @@
 
 <img *ngFor="let image of bgImages" [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
 
-<section #stakeholderGroupsRef class="stakeholder-groups" (scroll)="onCardsScroll($event)">
-  <p class="title">Our Stakeholder Groups</p>
-  <div class="gallery-cards">
-    <div
-      *ngFor="let card of cards;let index = index"
-      class="card-container"
-      [style.left.px]="expandCards ? index * 334 : index * 120"
-      [style.zIndex]="cards.length - index">
-      <div class="card">
-        <div class="card-front">
-          <img [src]="card.image"/>
-        </div>
-        <div class="card-back">
-          <p class="card-name">{{card.name}}</p>
-          <p class="card-desc">{{card.desc}}</p>
+<section appHorizontalScroll #stakeholderGroupsRef class="stakeholder-groups" >
+  <div class="stakeholder-container">
+    <p class="title">Our Stakeholder Groups</p>
+    <div class="gallery-cards">
+      <div
+        *ngFor="let card of cards;let index = index"
+        class="card-container"
+        [style.left.px]="expandCards ? index * 334 : index * 120"
+        [style.zIndex]="cards.length - index">
+        <div class="card">
+          <div class="card-front">
+            <img [src]="card.image"/>
+          </div>
+          <div class="card-back">
+            <p class="card-name">{{card.name}}</p>
+            <p class="card-desc">{{card.desc}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -79,7 +94,8 @@
             <span>1</span>
             <span>Address</span>
           </div>
-          <input id="address-input" type="text" disabled readonly value="PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia">
+          <span class="value">
+            PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia          </span>
           <div></div>
         </label>
         <hr>
@@ -88,8 +104,9 @@
             <span>2</span>
             <span>Email</span>
           </div>
-          <input required email id="email-input" type="email">
-          <input id="address-input" type="text" disabled readonly value="info@stgc.global">
+          <span class="value">
+            info@stgc.global
+          </span>
         </label>
         <button type="button" [routerLink]="['/contact-us']">
           <div class="borders title">

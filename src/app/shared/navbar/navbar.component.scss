@@ -1,7 +1,10 @@
 nav{
   &.custom-nav{
     .menu-btn{
-      display: none;
+      @media (max-width: 992px) {
+        filter: brightness(0);
+        -webkit-filter: brightness(0);
+      }
     }
     img.logo{
       filter: brightness(0);
@@ -100,6 +103,9 @@ nav{
     position: absolute;
     bottom: 48px;
     left: 48px;
+    @media (max-width: 992px) {
+      bottom: 110px;
+    }
     a{
       display: flex;
       gap: 28px;

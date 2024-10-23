@@ -135,6 +135,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('stakeholderGroupsRef') stakeholderGroupsRef!: ElementRef;
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
+  @ViewChild('descOne')descOne!: ElementRef;
 
   constructor( private _AppService: AppService) {}
 
@@ -153,6 +154,11 @@ export class HomeComponent implements OnInit {
     if(this.isSmallScreenView) this.bgImages.pop();
     this._AppService.onScrollChange$.pipe(
       tap(()=>{
+        this.expandCards = this.stakeholderGroupsRef.nativeElement.getBoundingClientRect().top <0
+        this._AppService.handleFillingText(
+          this.descOne.nativeElement,
+          120,100
+        );
         this.displaySecondSection =  this.isSmallScreenView ? this.currentSection >= 2 && this.currentSection < 3 : this.currentSection >= 2 && this.currentSection <= 3
       }
       ),
@@ -160,12 +166,6 @@ export class HomeComponent implements OnInit {
       debounceTime(50)
     ).subscribe({
       next: ()=>{
-        if(this.currentSection === 3 && this.isSmallScreenView){
-          setTimeout(() => {
-            if(this.isExpanding) return;
-            this.stakeholderGroupsRef.nativeElement?.scrollTo({left: 550, behavior: 'smooth'});
-          }, 500);
-        }
         for(let [index, image] of Object.entries(this.bgImages)){
           image.isSelected = this.currentSection > 2 ? true : this.currentSection === +index;
         }
@@ -178,27 +178,8 @@ export class HomeComponent implements OnInit {
     this._destroy$.complete();
   }
 
-  public onCardsScroll(event: Event): void{
-    this.isExpanding = true;
-    const flag = (event.target as HTMLElement)?.scrollLeft > 20;
-    const expand = !this.expandCards && flag;
-    this.expandCards = flag;
-    if(expand) (event.target as HTMLElement)?.scrollTo({left: 550, behavior: 'smooth'});
-    setTimeout(() => {
-      this.isExpanding = false;
-    }, 1000);
-  }
-
   public getFormControl(controlName: string): FormControl{
     return this.contactForm.get(controlName) as FormControl;
   }
 
-  // TODO
-  public submit(): void{
-    if(this.contactForm.invalid){
-      this.contactForm.markAllAsTouched();
-      this.contactFormRef.nativeElement.reportValidity();
-      return;
-    }
-  }
 }

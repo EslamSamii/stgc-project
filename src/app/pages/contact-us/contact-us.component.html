@@ -22,7 +22,7 @@
         <form [formGroup]="contactForm" #contactFormRef>
           <div class="input-container">
             <input required [formControl]="getFromControl('name')" type="text" placeholder="Your Name">
-            <input required [formControl]="getFromControl('address')" type="text" placeholder="Your Address">
+            <input required [formControl]="getFromControl('email')" type="email" placeholder="Your Email Address">
             <textarea required rows="10" [formControl]="getFromControl('message')" name="message" placeholder="Message"></textarea>
           </div>
           <button class="confirm-button" type="button" (click)="submit()">
