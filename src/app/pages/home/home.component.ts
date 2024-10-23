@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
       }
       ),
       takeUntil(this._destroy$),
-      debounceTime(50)
+      debounceTime(5)
     ).subscribe({
       next: ()=>{
         for(let [index, image] of Object.entries(this.bgImages)){
