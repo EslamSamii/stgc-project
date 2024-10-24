@@ -333,6 +333,7 @@
         @media (max-width: 992px) {
           flex-direction: column-reverse;
           gap: 80px;
+          overflow: initial;
         }
         .desc-content-1, .desc-content-2, .desc-content-3{
           width: 634px;
@@ -353,8 +354,9 @@
             position: static;
             width: auto;
             padding: 0 16px;
-            height: 315px;
-            justify-content: end;
+            height: 360px;
+            justify-content: start;
+            overflow: initial;
           }
           h3{
               transition: color 0.6s 0s ease-in-out;
