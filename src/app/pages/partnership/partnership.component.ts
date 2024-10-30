@@ -80,6 +80,7 @@ export class PartnershipComponent {
   public isDownloadModalOpened: boolean = false;
   public isSuccessMessageModalOpen: boolean = false;
   public isScrolledToConfirmationButton: boolean = false;
+  public hideFloatingIcon: boolean = false;
   public isScrolledToConfirmationButton1: boolean = false;
   public isScrolledToConfirmationButtonGroup: boolean = false;
   @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
@@ -149,6 +150,7 @@ export class PartnershipComponent {
   }
 
   private _handleScroll(): void {
+    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0;
     if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
@@ -212,7 +214,7 @@ export class PartnershipComponent {
   }
 
   public navigateToFormSection(){
-    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top + window.scrollY;
+    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top + innerHeight +scrollY;
     window.scrollTo({
       top: yPosition,
       behavior: 'smooth'

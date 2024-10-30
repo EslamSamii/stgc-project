@@ -1019,3 +1019,37 @@ input, textarea {
     }
   }
 }
+.floating-button{
+  position: fixed;
+  bottom: 48px;
+  right: 48px;
+  width: 100px;
+  height: 100px;
+  background-color: #2EA47F;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999999;
+  gap: 8px;
+  opacity: 1;
+  transition: all 0.5s 0s ease;
+  -webkit-transition: all 0.5s 0s ease;
+  -moz-transition: all 0.5s 0s ease;
+  -ms-transition: all 0.5s 0s ease;
+  -o-transition: all 0.5s 0s ease;
+  span
+{
+    color: white;
+    text-align: center;
+  }
+  &.hide-floating{
+    opacity: 0;
+  }
+  cursor: pointer;
+}
