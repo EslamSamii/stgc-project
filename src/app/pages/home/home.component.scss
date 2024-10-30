@@ -903,6 +903,10 @@
   gap: 24px;
   z-index: 9999;
   margin-top: 48px;
+  @media (max-width: 992px) {
+    padding-right: 16px;
+    flex-wrap: wrap;
+  }
 }
 .confirm-button{
   overflow: hidden;
