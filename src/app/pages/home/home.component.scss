@@ -41,6 +41,7 @@
     font-weight: bold;
     padding: 12px;
     backdrop-filter: blur(70px);
+    background-color: rgb(255, 255, 255, 20%);
     width: 293px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -59,7 +60,7 @@
   .content, .content-2{
     margin-top: 8vh;
     position: fixed;
-    top: 295px;
+    top: 220px;
     left: 48px;
     display: flex;
     flex-direction: column;
@@ -286,7 +287,7 @@
   background-color: white;
   width: 100vw;
   height: auto;
-  min-height: 2200px;
+  min-height: 280vh;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -295,6 +296,7 @@
     min-height: auto;
   }
   .area-container{
+    max-width: 1440px;
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -325,6 +327,7 @@
       gap: 48px;
     }
     .card{
+      background-color: white;
       position: absolute;
       left: 0;
       display: flex;
@@ -459,7 +462,7 @@
         }
         .desc-content-3{
           z-index: 3;
-          left: 780px;
+          left: 740px;
           @media (min-width: 993px) and (max-width: 1440px) {
             left: 710px;
           }
@@ -476,7 +479,7 @@
                 color: rgb(15, 13, 13, 20%);
               }
             }
-            left: 188px;
+            left: 128px;
             width: 800px;
             h3, p{
               width: 586px;
@@ -495,9 +498,9 @@
               h3, p{
                 color: rgb(15, 13, 13, 20%);
               }
-              left: 188px;
+              left: 128px;
             }
-            left: 350px;
+            left: 240px;
             width: 800px;
             h3, p{
               width: 586px;

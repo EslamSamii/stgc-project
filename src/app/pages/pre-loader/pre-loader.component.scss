@@ -10,6 +10,11 @@
   height: 20px;
   top: 50%;
   left: 50%;
+    transition: all 5s 0s ease;
+  -webkit-transition: all 5s 0s ease;
+  -moz-transition: all 5s 0s ease;
+  -ms-transition: all 5s 0s ease;
+  -o-transition: all 5s 0s ease;
   background-color: $primary-color;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -34,12 +39,25 @@
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  p{
+  transition: all 5s 0s ease;
+  -webkit-transition: all 5s 0s ease;
+  -moz-transition: all 5s 0s ease;
+  -ms-transition: all 5s 0s ease;
+  -o-transition: all 5s 0s ease;
+    p
+{
     font-size: 16px;
     text-wrap: nowrap;
     margin: 0;
     font-weight: 600;
   }
+  p, img{
+    transition: all 5s 0s ease;
+    -webkit-transition: all 5s 0s ease;
+    -moz-transition: all 5s 0s ease;
+    -ms-transition: all 5s 0s ease;
+    -o-transition: all 5s 0s ease;
+}
   animation: fade-in-up 1s 1.3s ease-in-out forwards;
   -webkit-animation: fade-in-up 1s 1.3s ease-in-out forwards;
 }

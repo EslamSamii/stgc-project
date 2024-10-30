@@ -55,61 +55,12 @@
   </div>
 </section>
 
-<section style="display: none;" class="sponsors-container">
+<section class="sponsors-container">
   <div #sponsorsContainer appHorizontalScroll class="sponsors">
     <h2 fadeIn>We collaborate with</h2>
     <div class="logos-container">
       <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
     </div>
-  </div>
-  <div class="buttons-group" [style.position]="isScrolledToConfirmationButtonGroup ? 'fixed' : 'absolute' ">
-    <button
-      [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"
-      class="confirm-button green-button"
-      type="button"
-      (click)="navigateToFormSection()"
-    >
-      <span class="top-border"></span>
-      <span class="bottom-border"></span>
-      <span class="line-top-1 line-top"></span>
-      <span class="line-top-2 line-top"></span>
-      <span class="line-top-3 line-top"></span>
-      <span class="line-bottom-1 line-bottom"></span>
-      <span class="line-bottom-2 line-bottom"></span>
-      <span class="line-bottom-3 line-bottom"></span>
-      <div class="borders title">
-        <div class="animate">
-          <span class="animate-slide">Interested in a partnership?</span>
-        </div>
-      </div>
-      <div class="borders icon">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="#2EA47F"/>
-        </svg>
-      </div>
-    </button>
-    <button #confirmationButtonRef1 [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"  class="confirm-button green-button" type="button"
-      (click)="navigateToTop()"
-    >
-      <span class="top-border"></span>
-      <span class="bottom-border"></span>
-      <span class="line-top-1 line-top"></span>
-      <span class="line-top-2 line-top"></span>
-      <span class="line-top-3 line-top"></span>
-      <span class="line-bottom-1 line-bottom"></span>
-      <span class="line-bottom-2 line-bottom"></span>
-      <span class="line-bottom-3 line-bottom"></span>
-      <div class="borders title">
-        <div class="animate">
-          <span class="animate-slide">More about our partnerships</span>
-        </div>
-      </div>
-      <div class="borders icon">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="#2EA47F"/>
-        </svg>
-      </div>
-    </button>
   </div>
 </section>
 

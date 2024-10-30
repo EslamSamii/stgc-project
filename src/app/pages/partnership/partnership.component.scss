@@ -992,3 +992,30 @@ input, textarea {
     -o-transform: scale(1);
   }
 }
+.sponsors-container{
+  position: relative;
+}
+.sponsors{
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  h2{
+    padding: 0 48px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  .logos-container{
+    display: flex;
+    padding: 48px;
+    row-gap: 40px;
+    column-gap: 32px;
+    width: 3460px;
+    min-width: 3460px;
+    flex-wrap: wrap;
+    img{
+      object-fit: contain;
+      max-height: 120px;
+      max-width: 200px;
+    }
+  }
+}
