@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,8 +14,9 @@ export class NavbarComponent {
   public toggleClicked: boolean = false;
   public isAnimating: boolean = false;
   private _destroy$: Subject<void> = new Subject<void>();
-
-  // constructor(private _app){}
+  private lastScroll: number = 0;
+  public  scrollTopDir: boolean = false;
+  constructor(private _AppService: AppService){}
 
   ngOnDestroy(): void {
     this._destroy$.next();
@@ -22,7 +24,12 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
-
+    this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: ()=>{
+        this.scrollTopDir = this.lastScroll < scrollY
+        this.lastScroll = scrollY;
+      }
+    })
   }
 
   public toggleMenu(): void{

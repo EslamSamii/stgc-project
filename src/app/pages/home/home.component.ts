@@ -213,6 +213,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     scrollTo({left:0, top:0});
+    this.hideScrollButton =false;
     this.displaySecondSection =  this.isSmallScreenView ? this.currentSection >= 2 && this.currentSection < 3 : this.currentSection >= 2 && this.currentSection <= 3;
     this.expandCards = window.innerWidth > 1920;
     if(this.isSmallScreenView) this.bgImages.pop();

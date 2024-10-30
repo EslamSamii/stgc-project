@@ -6,7 +6,13 @@ nav{
   background-color: transparent;
   z-index: 99999;
   padding: 21px 48px;
-  &.nav-header{
+  transition: all 0.5s 0s ease;
+  -webkit-transition: all 0.5s 0s ease;
+  -moz-transition: all 0.5s 0s ease;
+  -ms-transition: all 0.5s 0s ease;
+  -o-transition: all 0.5s 0s ease;
+  &.nav-header
+{
     z-index: 999999;
     mix-blend-mode: difference;
     color: white;
@@ -198,4 +204,7 @@ nav{
     -ms-transform: translateY(100%);
     -o-transform: translateY(100%);
 }
+}
+.hide-nav-top{
+  top: -20vh;
 }

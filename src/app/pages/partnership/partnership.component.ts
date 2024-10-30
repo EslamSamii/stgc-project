@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AppService } from 'src/app/shared/services/app.service';
 
@@ -104,13 +105,18 @@ export class PartnershipComponent {
   });
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
 
-  constructor(private _AppService: AppService){}
+  constructor(private _AppService: AppService, private _ActivatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
     })
-    scrollTo({left:0, top:0})
+    if(this._ActivatedRoute.snapshot.fragment)
+      setTimeout(() => {
+          this.navigateToFormSection();
+      },1000);
+    else
+      scrollTo({top:0, left:0})
   }
 
   ngOnDestroy(): void {
