@@ -14,9 +14,15 @@ export class NavbarComponent {
   public isAnimating: boolean = false;
   private _destroy$: Subject<void> = new Subject<void>();
 
+  // constructor(private _app){}
+
   ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
+  }
+
+  ngOnInit(): void {
+
   }
 
   public toggleMenu(): void{

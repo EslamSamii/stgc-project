@@ -94,7 +94,7 @@
       position: absolute;
       left:48px;
       @media (max-width: 992px)  {
-        left:16px;
+        left:-200px;
       }
     }
     .pic-2{
@@ -110,8 +110,7 @@
       position: absolute;
       right:48px;
       @media (max-width: 992px)  {
-      top: 1018px;
-      right:16px;
+      right:-200px;
       }
     }
   }
