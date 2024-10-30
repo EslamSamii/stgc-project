@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { AppService } from 'src/app/shared/services/app.service';
 
 @Component({
   selector: 'app-about-us',
@@ -12,11 +14,8 @@ export class AboutUsComponent implements AfterViewInit {
   @ViewChild('container') containerRef!: ElementRef;
   @ViewChild('scaledImageOne') scaledImageOne!: ElementRef;
   @ViewChild('scaledImageTwo') scaledImageTwo!: ElementRef;
-
-  @HostListener('window:scroll', ['$event'])
-  onScroll() {
-    this._handleScroll();
-  }
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
+  @ViewChild('videoContainer') videoContainer!: ElementRef;
 
   public readonly cardsList: {type: '' | 'card' | 'img', title?: string, caption?: string, img?: string}[] = [
     {
@@ -117,23 +116,58 @@ export class AboutUsComponent implements AfterViewInit {
     else this.isSectionsFixed = true;
     if(this.isSectionsFixed || skip)
       this.scrollHorizontallyRef.nativeElement.style.transform = `translate3d(-${percentage * (this.containerWidth- innerWidth)}px, 0px, 0px)`;
+    let videoPercentage = 1- (this.videoContainer.nativeElement.getBoundingClientRect().top / (this.videoContainer.nativeElement.getBoundingClientRect().height));
+    if(videoPercentage > 1) videoPercentage = 1;
+    // Handle scaling
+    const minScale2 = 1;
+    const maxScale2 = 1.4;
+    const scale2 = maxScale2 - ((videoPercentage) * (maxScale2 - minScale2));
+    this.videoContainer.nativeElement.firstElementChild.style.transform = `scale(${scale2})`;
+    this._AppService.cursorChange$.next('circle')
   }
 
   public get containerWidth(){
     return (this.containerRef?.nativeElement?.getBoundingClientRect()?.width) || 0;
   }
+  private _destroy$: Subject<void> = new Subject<void>();
+
+  constructor(private _AppService: AppService){}
 
   ngOnInit(): void {
     scrollTo({left:0, top:0})
+    this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: ()=> this._handleScroll()
+    })
+  }
+  public get videoContainerTop(){
+    return this.videoContainer.nativeElement.getBoundingClientRect().top;
   }
 
   ngAfterViewInit(): void {
+    this.videoPlayer.nativeElement.muted = true;
     document.querySelector('nav')?.classList.add('custom-nav')
     setTimeout(() => this._handleScroll(true));
   }
 
   ngOnDestroy(): void {
     document.querySelector('nav')?.classList.remove('custom-nav')
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+  public onMouseOver(): void{
+    this._AppService.cursorChange$.next('video')
   }
 
+  public onMouseLeave(): void{
+    this._AppService.cursorChange$.next('circle')
+  }
+
+  public toggleSound(videoElement: HTMLVideoElement) {
+    if (videoElement.muted) {
+      videoElement.muted = false;
+      videoElement.volume = 1.0;
+    } else {
+      videoElement.muted = true;
+    }
+  }
 }

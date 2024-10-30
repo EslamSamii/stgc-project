@@ -1,17 +1,13 @@
-<nav>
-  <div class="nav-content">
+<nav class="nav-header">
+  <div class="header">
     <div>
       <img
         [routerLink]="['/home']"
         class="logo"
         style="transition: transform 0.3s ease;"
-        (mousemove)="onMouseMove($event)"
-        (mouseleave)="onMouseLeave()"
-        [ngStyle]="{'transform': 'translate('+offsetX+'px, '+offsetY+'px)'}"
         width="65" height="30" src="assets/images/STGC.svg">
     </div>
     <div (click)="toggleMenu()" class="menu-btn">
-      <span>{{toggleClicked ? 'Close' : 'Menu'}}</span>
       <svg
         [ngClass]="{'active': toggleClicked}"
         class="menu-icon"
@@ -26,22 +22,26 @@
         <line class="line3" x1="5" y1="21" x2="35" y2="21" stroke="currentColor" stroke-width="2"/>
       </svg>
     </div>
+  </div>
+</nav>
+<nav>
+  <div class="nav-content">
     <div *ngIf="isMenuOpened" class="menu" [ngClass]="{'slide-out': hideFlag}">
       <img src="assets/images/Menu.jpg">
       <div class="links">
-        <a (click)="toggleMenu($event)" [routerLink]="['/home']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu()" [routerLink]="['/home']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Home
         </a>
-        <a (click)="toggleMenu($event)" [routerLink]="['/about']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu()" [routerLink]="['/about']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           About
         </a>
-        <a (click)="toggleMenu($event)" [routerLink]="['/partnership']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu()" [routerLink]="['/partnership']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Partnership
         </a>
-        <a (click)="toggleMenu($event)" [routerLink]="['/contact-us']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu()" [routerLink]="['/contact-us']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Contact us
         </a>

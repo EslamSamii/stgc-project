@@ -5,9 +5,9 @@
         <div class="desc">
           <div class="title">
             <div class="line"></div>
-            <h3>Our Mandate</h3>
+            <h3 fadeIn class="delay-200">Our Mandate</h3>
           </div>
-          <p class="caption">Lead, accelerate, and track the travel and tourism industry's transition to sustainable practices, while driving action to protect nature and support communities</p>
+          <p class="caption delay-800" fadeIn>Lead, accelerate, and track the travel and tourism industry's transition to sustainable practices, while driving action to protect nature and support communities</p>
         </div>
         <div class="image-container">
           <img #scaledImageOne src="assets/images/section1.jpg">
@@ -19,7 +19,7 @@
             <div class="line"></div>
             <h3>Our Vision</h3>
           </div>
-          <p class="caption">To lead the tourism sector in becoming a force for sustainable development and effective in reducing environmental impact, while remaining profitable and sustainable as an industry</p>
+          <p class="caption delay-700" fadeIn >To lead the tourism sector in becoming a force for sustainable development and effective in reducing environmental impact, while remaining profitable and sustainable as an industry</p>
         </div>
         <div class="image-container">
           <img #scaledImageTwo src="assets/images/section2.jpg">
@@ -29,16 +29,16 @@
         <div class="desc">
           <div class="title">
             <div class="line"></div>
-            <h3>Our Mission</h3>
+            <h3 fadeIn>Our Mission</h3>
           </div>
-          <p class="caption">Deliver applied & impact driven research, stakeholder centric services and end-to-end solutions, to enable the industry’s stakeholders to accelerate their transition and achieve the global and the industry sustainability goals</p>
+          <p class="caption delay-700" fadeIn>Deliver applied & impact driven research, stakeholder centric services and end-to-end solutions, to enable the industry’s stakeholders to accelerate their transition and achieve the global and the industry sustainability goals</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 <section class="info-section">
-  <h1>Leading for the<br>Positive Impact</h1>
+  <h1><span fadeIn customClass="underline">Leading for the</span><span customClass="underline" fadeIn>Positive Impact</span></h1>
   <div class="desc">
     <p>
       <span [ngClass]="{'slide-up-animation delay-1': !isSectionsFixed}">
@@ -64,7 +64,7 @@
           <h3>{{card.title}}</h3>
           <p>{{card.caption}}</p>
         </div>
-        <div class="card-img" *ngSwitchCase="'img'">
+        <div class="card-img" *ngSwitchCase="'img'" fadeIn customClass="fill-image" [customOnly]="true">
           <img [src]="card.img">
         </div>
         <div class="card-empty" *ngSwitchDefault></div>
@@ -73,21 +73,29 @@
   </div>
 </section>
 
-<section class="footer">
-  <h2>Supporting a just transition<br>to sustainable tourism, a healthier planet and thriving communities</h2>
+<section class="footer" style="margin-bottom: 150px;">
+  <h2><span customClass="underline" fadeIn>Supporting a just transition</span><span customClass="underline" fadeIn>to sustainable tourism, a healthier</span><span customClass="underline" fadeIn>planet and thriving communities</span></h2>
+</section>
+<section #videoContainer class="video-container">
+  <video class="video-player" #videoPlayer autoplay loop muted playsinline preload="auto" (mouseover)="onMouseOver()" (click)="toggleSound(videoPlayer)"  (mouseleave)="onMouseLeave()">
+    <source src="assets/videos/bg-video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</section>
+<section class="footer" style="padding-top: 48px;">
   <div class="footer-content">
     <div class="nav">
-      <img src="assets/images/STGC-black.svg">
+      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn>
       <div class="links">
-        <a [routerLink]="['/home']">Home</a>
-        <a [routerLink]="['/about']">About</a>
-        <a [routerLink]="['/partnership']">Partnership</a>
-        <a [routerLink]="['/contact-us']">Contact us</a>
+        <a [routerLink]="['/home']" fadeIn>Home</a>
+        <a [routerLink]="['/about']" fadeIn>About</a>
+        <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
+        <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
       </div>
     </div>
     <div class="copy-write">
-      <p>Sustainable Tourism Global Center.© All rights reserved</p>
-      <a>Privacy Policy</a>
+      <p fadeIn>Sustainable Tourism Global Center.© All rights reserved 2030</p>
+      <a fadeIn>Privacy Policy</a>
     </div>
   </div>
 </section>

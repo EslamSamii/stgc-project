@@ -1,55 +1,124 @@
 <section class="header">
-  <div class="content">
-    <h1>Accelerating & Driving<br>Positive Change</h1>
-    <p>A major new hub to support Travel & Tourism's<br>critical journey towards a sustainable future</p>
+  <div [@fadeInOut]="{value: currentSection === 0 ? 'inView' : 'outOfView'}" #headerContentOne class="content">
+    <div class="caption">Sustainable tourism global center</div>
+    <h1 fadeIn><span >Accelerating & Driving</span><br><span >Positive Change</span></h1>
+    <p><span>A major new hub to support Travel & Tourism's</span><br><span>critical journey towards a sustainable future</span></p>
   </div>
-  <div #descOne class="content-2">
+  <div [@fadeInOut]="{value: currentSection === 1 ? 'inView' : 'outOfView'}"  #headerContentTwo class="content-2">
     <p>
       <span>
         Founded in 2021, the Sustainable Tourism Global Center (STGC) is
       </span>
-      <span>
+      <span >
         the world’s first multi-country, multi-stakeholder global coalition
       </span>
       <span>
         that will lead, accelerate and track Travel & Tourism industry’s
-      </span>
-      <span>
+      </span >
+      <span >
         journey to a sustainable future.
       </span>
     </p>
   </div>
+  <div [ngClass]="{'hide-scroll-button': hideScrollButton}" class="scroll-button">
+    <svg width="40" height="60" viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.8">
+      <rect x="1" y="1" width="38" height="58" rx="19" stroke="white" stroke-width="2"/>
+      <path d="M12 32.5L19.6464 40.1464C19.8417 40.3417 20.1583 40.3417 20.3536 40.1464L28 32.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 40.5L19.6464 48.1464C19.8417 48.3417 20.1583 48.3417 20.3536 48.1464L28 40.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+    Scroll down
+  </div>
 </section>
 
 <section class="images-section" [style.height.vh]="isSmallScreenView ? 100 : 200">
-  <div [ngClass]="{'fade-in-title': displaySecondSection}" class="title">
-    <h6>Why now?</h6>
-    <p>A global climate<br>and biodiversity crisis</p>
+  <div [@fadeInOut]="{value: displaySecondSection ? 'inView' : 'outOfView'}" class="title">
+    <h6 fadeIn>Why now?</h6>
+    <p><span fadeIn>A global climate</span><br><span fadeIn>and biodiversity crisis</span></p>
   </div>
   <div class="captions">
-    <p>
+    <p [@slideUp]="{value: currentSection ===2 ? 'inView' : 'outOfView'}">
       Climate change is a global crisis, described as "a code red for humanity" by the UN Secretary General. No place or community is immune, with disadvantaged communities, including Travel & Tourism destinations, being particularly vulnerable.
     </p>
-    <p>
+    <p [@slideUp]="{value: currentSection === 3 ? 'inView' : 'outOfView'}">
       Rising temperatures drive environmental degradation, natural disasters, and food and water insecurity. Sea levels are rising, coral reefs are dying, and biodiversity is declining. Despite global commitments, progress is too slow.
     </p>
   </div>
 </section>
 
-<img *ngFor="let image of bgImages" [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
+<img *ngFor="let image of bgImages" #imagesRef [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
 
-<section appHorizontalScroll #stakeholderGroupsRef class="stakeholder-groups" >
+<section class="sponsors-container">
+  <div #sponsorsContainer appHorizontalScroll class="sponsors">
+    <h2 fadeIn>We collaborate with</h2>
+    <div class="logos-container">
+      <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
+    </div>
+  </div>
+  <div class="buttons-group" [style.position]="isScrolledToConfirmationButtonGroup ? 'fixed' : 'absolute' ">
+    <button
+      [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"
+      class="confirm-button green-button"
+      type="button"
+      [routerLink]="['/partnership']" fragment="contact-us"
+    >
+      <span class="top-border"></span>
+      <span class="bottom-border"></span>
+      <span class="line-top-1 line-top"></span>
+      <span class="line-top-2 line-top"></span>
+      <span class="line-top-3 line-top"></span>
+      <span class="line-bottom-1 line-bottom"></span>
+      <span class="line-bottom-2 line-bottom"></span>
+      <span class="line-bottom-3 line-bottom"></span>
+      <div class="borders title">
+        <div class="animate">
+          <span class="animate-slide">Interested in a partnership?</span>
+        </div>
+      </div>
+      <div class="borders icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="#2EA47F"/>
+        </svg>
+      </div>
+    </button>
+    <button #confirmationButtonRef1 [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"  class="confirm-button green-button" type="button"
+    [routerLink]="['/partnership']">
+      <span class="top-border"></span>
+      <span class="bottom-border"></span>
+      <span class="line-top-1 line-top"></span>
+      <span class="line-top-2 line-top"></span>
+      <span class="line-top-3 line-top"></span>
+      <span class="line-bottom-1 line-bottom"></span>
+      <span class="line-bottom-2 line-bottom"></span>
+      <span class="line-bottom-3 line-bottom"></span>
+      <div class="borders title">
+        <div class="animate">
+          <span class="animate-slide">More about our partnerships</span>
+        </div>
+      </div>
+      <div class="borders icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="#2EA47F"/>
+        </svg>
+      </div>
+    </button>
+  </div>
+</section>
+
+<section  #stakeholderGroupsRef class="stakeholder-groups" >
   <div class="stakeholder-container">
-    <p class="title">Our Stakeholder Groups</p>
+    <p class="title" fadeIn customClass="underline">Our Stakeholder Groups</p>
     <div class="gallery-cards">
       <div
         *ngFor="let card of cards;let index = index"
         class="card-container"
+        fadeIn customClass="slide-up" [customOnly]="true"
         [style.left.px]="expandCards ? index * 334 : index * 120"
         [style.zIndex]="cards.length - index">
         <div class="card">
           <div class="card-front">
-            <img [src]="card.image"/>
+            <img fadeIn customClass="zoom-in" [customOnly]="true" [src]="card.image"/>
           </div>
           <div class="card-back">
             <p class="card-name">{{card.name}}</p>
@@ -59,21 +128,37 @@
       </div>
     </div>
   </div>
+  <svg class="icon-scroll" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.8">
+    <g clip-path="url(#clip0_3220_917)">
+    <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+    <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
+    </g>
+    <defs>
+    <clipPath id="clip0_3220_917">
+    <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
+    </clipPath>
+    </defs>
+  </svg>
 </section>
 
-<section class="areas">
-  <p class="title">Our strategic pillars<br>and Intervention areas</p>
-  <div class="cards">
-    <div *ngFor="let card of areasCards;let cardIndex = index" class="card" [style.top.px]="cardIndex * 513">
-      <div class="image">
-        <img [src]="card.image">
-        <span>{{card.label}}</span>
-      </div>
-      <div class="desc">
-        <div *ngFor="let desc of card.desc; let index = index" class="desc-content-{{card.desc.length - index}}">
-          <h3 style="color: black;">[{{desc.count}}]</h3>
-            <h3>{{desc.title}}</h3>
-            <p>{{desc.content}}</p>
+<section #ares class="areas">
+  <div class="area-container">
+    <div class="title"><span fadeIn customClass="underline">Our strategic pillars</span><span customClass="underline" fadeIn>and Intervention areas</span></div>
+    <div class="cards">
+      <div *ngFor="let card of areasCards;let cardIndex = index" class="card area-card-{{cardIndex}}" [style.top.px]="cardIndex * 436" [style.zIndex]="cardIndex">
+        <div class="image">
+          <img fadeIn customClass="zoom-in" [customOnly]="true" [src]="card.image">
+          <span>{{card.label}}</span>
+        </div>
+        <div class="desc">
+          <div *ngFor="let desc of card.desc; let index = index" class="desc-content-{{card.desc.length - index}}">
+            <h3 style="color: black;">[{{desc.count}}]</h3>
+              <h3 fadeIn>{{desc.title}}</h3>
+              <p fadeIn>{{desc.content}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -82,51 +167,39 @@
 
 <section class="footer">
   <div class="contact-us">
-    <video autoplay loop muted playsinline>
+    <video #videoPlayer fadeIn customClass="zoom-in" [customOnly]="true" autoplay loop muted playsinline>
       <source src="assets/videos/home-contact-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
     <div class="content">
-      <h1>Sustainable Tourism Global Center</h1>
+      <h1 fadeIn customClass="underline" class="underline-white">Sustainable Tourism Global Center</h1>
       <form >
         <label class="input-container" for="address-input">
-          <div class="input-title">
-            <span>1</span>
-            <span>Address</span>
-          </div>
-          <span class="value">
-            PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia          </span>
+          <span class="value" fadeIn customClass="underline">
+            PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia
+          </span>
           <div></div>
         </label>
-        <hr>
         <label class="input-container" for="address-input">
-          <div class="input-title">
-            <span>2</span>
-            <span>Email</span>
-          </div>
-          <span class="value">
+          <span class="value" fadeIn customClass="underline">
             info@stgc.global
           </span>
         </label>
-        <button type="button" [routerLink]="['/contact-us']">
+        <button #confirmationButtonRef [ngClass]="{'full-width-animation': isScrolledToConfirmationButton}" type="button" [routerLink]="['/contact-us']">
+          <span class="top-border"></span>
+          <span class="bottom-border"></span>
+          <span class="line-top-1 line-top"></span>
+          <span class="line-top-2 line-top"></span>
+          <span class="line-top-3 line-top"></span>
+          <span class="line-bottom-1 line-bottom"></span>
+          <span class="line-bottom-2 line-bottom"></span>
+          <span class="line-bottom-3 line-bottom"></span>
           <div class="borders title">
             <div class="animate">
               <span class="animate-slide">Contact us</span>
             </div>
-            <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0V16" stroke="white" stroke-width="2"/>
-              <path d="M0 48V64" stroke="white" stroke-width="2"/>
-            </svg>
-            <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0V16" stroke="white" stroke-width="2"/>
-              <path d="M0 48V64" stroke="white" stroke-width="2"/>
-            </svg>
           </div>
           <div class="borders icon">
-            <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0V16" stroke="white" stroke-width="2"/>
-              <path d="M0 48V64" stroke="white" stroke-width="2"/>
-            </svg>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
             </svg>
@@ -137,17 +210,17 @@
   </div>
   <div class="footer-content">
     <div class="nav">
-      <img src="assets/images/STGC-black.svg">
+      <img [routerLink]="['/home']" fadeIn src="assets/images/STGC-black.svg">
       <div class="links">
-        <a [routerLink]="['/home']">Home</a>
-        <a [routerLink]="['/about']">About</a>
-        <a [routerLink]="['/partnership']">Partnership</a>
-        <a [routerLink]="['/contact-us']">Contact us</a>
+        <a [routerLink]="['/home']" fadeIn>Home</a>
+        <a [routerLink]="['/about']" fadeIn>About</a>
+        <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
+        <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
       </div>
     </div>
     <div class="copy-write">
-      <p>Sustainable Tourism Global Center.© All rights reserved</p>
-      <a>Privacy Policy</a>
+      <p fadeIn>Sustainable Tourism Global Center.© All rights reserved 2030</p>
+      <a fadeIn>Privacy Policy</a>
     </div>
   </div>
 </section>

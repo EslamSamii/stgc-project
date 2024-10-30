@@ -3,11 +3,11 @@
 <section #header class="header">
   <img src="assets/images/partners-bg.jpg">
   <div class="floating-images">
-    <h1>Global<br>Research Center</h1>
+    <p fadeIn>To drive sustainable tourism, STGC is launching a Global Research Center for Climate, Nature & Communities. The Center will hire top researchers and collaborate with leading universities and organizations to provide actionable insights, tools, and solutions.</p>
     <img #picOne class="pic-1" src="assets/images/pic1.jpg">
     <img #picTwo class="pic-2" src="assets/images/pic2.jpg">
     <img #picThree class="pic-3" src="assets/images/pic3.jpg">
-    <p>To drive sustainable tourism, STGC is launching a Global Research Center for Climate, Nature & Communities. The Center will hire top researchers and collaborate with leading universities and organizations to provide actionable insights, tools, and solutions.</p>
+    <h1><span fadeIn>Global</span><br><span fadeIn>Research Center</span></h1>
   </div>
 </section>
 
@@ -17,65 +17,117 @@
       <span>
         The strategy for the Center has been developed
       </span>
-      <span>
+      <span >
         through a collaborative approach and a robust
       </span>
-      <span>
+      <span >
         validation process, with over 300 leaders with
       </span>
-      <span>
+      <span >
         expertise in sustainability and/or Travel & Tourism
       </span>
-      <span>
+      <span >
         from across the world, including governments and
       </span>
-      <span>
+      <span class="underline" >
         leadings international organizations.
       </span>
     </p>
   </div>
   <div #descTwo class="desc">
     <p>
-      <span>
+      <span >
         The Center aims to partner with 100 universities
       </span>
-      <span>
+      <span >
         from diverse regions around the world by 2030 -
       </span>
-      <span>
+      <span >
         North America, Europe, Asia-Pacific, Latin America,
       </span>
-      <span>
+      <span >
         Africa and MENA - and to engage with international
       </span>
-      <span>
+      <span class="underline" >
         organizations and industry associations.
       </span>
     </p>
   </div>
 </section>
 
-<section appHorizontalScroll class="sponsors" >
-  <h2>We collaborate with</h2>
-  <div class="logos-container">
-    <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
+<section style="display: none;" class="sponsors-container">
+  <div #sponsorsContainer appHorizontalScroll class="sponsors">
+    <h2 fadeIn>We collaborate with</h2>
+    <div class="logos-container">
+      <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
+    </div>
+  </div>
+  <div class="buttons-group" [style.position]="isScrolledToConfirmationButtonGroup ? 'fixed' : 'absolute' ">
+    <button
+      [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"
+      class="confirm-button green-button"
+      type="button"
+      (click)="navigateToFormSection()"
+    >
+      <span class="top-border"></span>
+      <span class="bottom-border"></span>
+      <span class="line-top-1 line-top"></span>
+      <span class="line-top-2 line-top"></span>
+      <span class="line-top-3 line-top"></span>
+      <span class="line-bottom-1 line-bottom"></span>
+      <span class="line-bottom-2 line-bottom"></span>
+      <span class="line-bottom-3 line-bottom"></span>
+      <div class="borders title">
+        <div class="animate">
+          <span class="animate-slide">Interested in a partnership?</span>
+        </div>
+      </div>
+      <div class="borders icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="#2EA47F"/>
+        </svg>
+      </div>
+    </button>
+    <button #confirmationButtonRef1 [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"  class="confirm-button green-button" type="button"
+      (click)="navigateToTop()"
+    >
+      <span class="top-border"></span>
+      <span class="bottom-border"></span>
+      <span class="line-top-1 line-top"></span>
+      <span class="line-top-2 line-top"></span>
+      <span class="line-top-3 line-top"></span>
+      <span class="line-bottom-1 line-bottom"></span>
+      <span class="line-bottom-2 line-bottom"></span>
+      <span class="line-bottom-3 line-bottom"></span>
+      <div class="borders title">
+        <div class="animate">
+          <span class="animate-slide">More about our partnerships</span>
+        </div>
+      </div>
+      <div class="borders icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="#2EA47F"/>
+        </svg>
+      </div>
+    </button>
   </div>
 </section>
 
 <section appHorizontalScroll #publications class="publications">
   <div class="publications-container">
-    <h2>Publications</h2>
+    <h2 fadeIn customClass="underline" >Publications</h2>
     <div class="scroll-wrapper">
       <div class="cards">
         <div
           *ngFor="let card of cards;let index = index;let odd = odd"
           class="card-container"
           [style]="odd ? 'align-items: start;' : 'align-items: end;'"
+          fadeIn customClass="slide-up" [customOnly]="true"
         >
         <div class="wrapper">
           <div class="card">
             <div class="card-front">
-              <img [src]="card.image"/>
+              <img fadeIn customClass="zoom-in" [customOnly]="true" [src]="card.image"/>
             </div>
             <div class="card-back">
               <div class="titles">
@@ -100,33 +152,41 @@
 
 <app-modal *ngIf="isDownloadModalOpened" (closeModal)="toggleDownloadModal()">
   <div class="contact-form">
-    <h2>Fill in the form to download publication</h2>
+    <h2 fadeIn>Fill in the form to download publication</h2>
     <form class="publication-form" [formGroup]="downloadFormGroup" #downloadFormGroupRef>
       <div class="input-container">
-        <input required [formControl]="getFromControl('name')" type="text" placeholder="Name">
-        <input required email [formControl]="getFromControl('email')" type="email" placeholder="Email">
-        <input required [formControl]="getFromControl('organization')" type="text" placeholder="Organization">
-        <input required [formControl]="getFromControl('position')" type="text" placeholder="Position">
+        <div class="underline-input">
+          <input required [formControl]="getFromControl('name')" type="text" placeholder="Name">
+          <div class="line-progress"></div>
+        </div>
+        <div class="underline-input">
+          <input required email [formControl]="getFromControl('email')" type="email" placeholder="Email">
+          <div class="line-progress"></div>
+        </div>
+        <div class="underline-input">
+          <input required [formControl]="getFromControl('organization')" type="text" placeholder="Organization">
+          <div class="line-progress"></div>
+        </div>
+        <div class="underline-input">
+          <input required [formControl]="getFromControl('position')" type="text" placeholder="Position">
+          <div class="line-progress"></div>
+        </div>
       </div>
-      <button class="confirm-button" type="button" (click)="submit()">
+      <button class="confirm-button full-width-animation" type="button" (click)="submit()">
+        <span class="top-border"></span>
+        <span class="bottom-border"></span>
+        <span class="line-top-1 line-top"></span>
+        <span class="line-top-2 line-top"></span>
+        <span class="line-top-3 line-top"></span>
+        <span class="line-bottom-1 line-bottom"></span>
+        <span class="line-bottom-2 line-bottom"></span>
+        <span class="line-bottom-3 line-bottom"></span>
         <div class="borders title">
           <div class="animate">
             <span class="animate-slide">Download</span>
           </div>
-          <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0V16" stroke="white" stroke-width="2"/>
-            <path d="M0 48V64" stroke="white" stroke-width="2"/>
-          </svg>
-          <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0V16" stroke="white" stroke-width="2"/>
-            <path d="M0 48V64" stroke="white" stroke-width="2"/>
-          </svg>
         </div>
         <div class="borders icon">
-          <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0V16" stroke="white" stroke-width="2"/>
-            <path d="M0 48V64" stroke="white" stroke-width="2"/>
-          </svg>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
           </svg>
@@ -136,47 +196,44 @@
   </div>
 </app-modal>
 
-<section #videoContainer class="video-container">
-  <video #videoPlayer autoplay loop muted playsinline preload="auto" (mouseover)="onMouseOver()" (click)="toggleSound(videoPlayer)"  (mouseleave)="onMouseLeave()">
-    <source src="assets/videos/bg-video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</section>
-
-<section>
+<section #contactUsForm>
   <div class="container">
     <div class="contact-us">
-      <h2 class="main-title">Interested<br>in partnering?</h2>
-      <div class="line-1"></div>
+      <h2 class="main-title"><span fadeIn>Interested</span><br><span fadeIn customClass="underline" class="underline-white">in partnering?</span></h2>
       <div class="contact-us-container">
         <div class="social">
         </div>
         <div class="contact-form">
           <form [formGroup]="contactForm" #contactFormRef>
             <div class="input-container">
-              <input required [formControl]="getFromControlContactForm('name')" type="text" placeholder="Your Name">
-              <input required [formControl]="getFromControlContactForm('email')" type="email" placeholder="Your Email Address">
-              <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
+              <div class="underline-input">
+                <input required [formControl]="getFromControlContactForm('name')" type="text" placeholder="Your Name">
+                <div class="line-progress"></div>
+              </div>
+              <div class="underline-input">
+                <input required [formControl]="getFromControlContactForm('email')" type="email" placeholder="Your Email Address">
+                <div class="line-progress"></div>
+              </div>
+              <div class="underline-input">
+                <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
+                <div class="line-progress"></div>
+              </div>
             </div>
-            <button class="confirm-button" type="button" (click)="submitContactForm()">
+            <button #confirmationButtonRef [ngClass]="{'full-width-animation': isScrolledToConfirmationButton}" class="confirm-button" type="button" (click)="submitContactForm()">
+              <span class="top-border"></span>
+              <span class="bottom-border"></span>
+              <span class="line-top-1 line-top"></span>
+              <span class="line-top-2 line-top"></span>
+              <span class="line-top-3 line-top"></span>
+              <span class="line-bottom-1 line-bottom"></span>
+              <span class="line-bottom-2 line-bottom"></span>
+              <span class="line-bottom-3 line-bottom"></span>
               <div class="borders title">
                 <div class="animate">
                   <span class="animate-slide">Contact us</span>
                 </div>
-                <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 0V16" stroke="white" stroke-width="2"/>
-                  <path d="M0 48V64" stroke="white" stroke-width="2"/>
-                </svg>
-                <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 0V16" stroke="white" stroke-width="2"/>
-                  <path d="M0 48V64" stroke="white" stroke-width="2"/>
-                </svg>
               </div>
               <div class="borders icon">
-                <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 0V16" stroke="white" stroke-width="2"/>
-                  <path d="M0 48V64" stroke="white" stroke-width="2"/>
-                </svg>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
                 </svg>
@@ -190,17 +247,17 @@
 
     <div class="footer-content">
       <div class="nav">
-        <img src="assets/images/STGC-black.svg">
+        <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn>
         <div class="links">
-          <a [routerLink]="['/home']">Home</a>
-          <a [routerLink]="['/about']">About</a>
-          <a [routerLink]="['/partnership']">Partnership</a>
-          <a [routerLink]="['/contact-us']">Contact us</a>
+          <a [routerLink]="['/home']" fadeIn>Home</a>
+          <a [routerLink]="['/about']" fadeIn>About</a>
+          <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
+          <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
         </div>
       </div>
       <div class="copy-write">
-        <p>Sustainable Tourism Global Center.© All rights reserved</p>
-        <a>Privacy Policy</a>
+        <p fadeIn>Sustainable Tourism Global Center.© All rights reserved 2030</p>
+        <a fadeIn>Privacy Policy</a>
       </div>
     </div>
   </div>
@@ -208,12 +265,12 @@
 
 <app-modal *ngIf="isMessageModalOpen" (closeModal)="isMessageModalOpen= false">
   <div class="message">
-    <p>Thank you {{getFromControlContactForm('name').value}} for showing your interest,<br><br>Our team will be in contact with you</p>
+    <p fadeIn>Thank you {{getFromControlContactForm('name').value}} for showing your interest,<br><br>Our team will be in contact with you</p>
   </div>
 </app-modal>
 
 <app-modal *ngIf="isSuccessMessageModalOpen" (closeModal)="isSuccessMessageModalOpen= false">
   <div class="message">
-    <p>Thank you {{getFromControl('name').value}} for showing your interest.</p>
+    <p fadeIn>Thank you {{getFromControl('name').value}} for showing your interest.</p>
   </div>
 </app-modal>

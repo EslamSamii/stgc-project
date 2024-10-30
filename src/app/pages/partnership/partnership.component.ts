@@ -78,6 +78,10 @@ export class PartnershipComponent {
   })
   public isDownloadModalOpened: boolean = false;
   public isSuccessMessageModalOpen: boolean = false;
+  public isScrolledToConfirmationButton: boolean = false;
+  public isScrolledToConfirmationButton1: boolean = false;
+  public isScrolledToConfirmationButtonGroup: boolean = false;
+  @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
   @ViewChild('header') header!: ElementRef;
   @ViewChild('picOne') picOne!: ElementRef;
   @ViewChild('picTwo') picTwo!: ElementRef;
@@ -87,9 +91,10 @@ export class PartnershipComponent {
   @ViewChild('scrollHorizontallyRef') scrollHorizontallyRef!: ElementRef;
   @ViewChild('containerRef') containerRef!: ElementRef;
   @ViewChild('publications') publications!: ElementRef;
-  @ViewChild('videoContainer') videoContainer!: ElementRef;
   @ViewChild('downloadFormGroupRef') downloadFormGroupRef!: ElementRef;
-  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
+  @ViewChild('confirmationButtonRef1') confirmationButtonRef1!: ElementRef;
+  @ViewChild('contactUsForm') contactUsForm!: ElementRef;
+  @ViewChild('sponsorsContainer') sponsorsContainer!: ElementRef;
   private _destroy$: Subject<void> = new Subject<void>();
   public isMessageModalOpen: boolean = false;
   public contactForm: FormGroup = new FormGroup({
@@ -99,17 +104,13 @@ export class PartnershipComponent {
   });
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
 
-  constructor(private _AppService: AppService, private _ChangeDetectorRef: ChangeDetectorRef){}
+  constructor(private _AppService: AppService){}
 
   ngOnInit(): void {
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
     })
     scrollTo({left:0, top:0})
-  }
-
-  ngAfterViewInit(): void {
-    this.videoPlayer.nativeElement.muted = true;
   }
 
   ngOnDestroy(): void {
@@ -142,19 +143,16 @@ export class PartnershipComponent {
   }
 
   private _handleScroll(): void {
+    if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
+      this.isScrolledToConfirmationButton = true;
+    this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
     let percentage = (window.scrollY / (this.header.nativeElement.getBoundingClientRect().height));
-    const minTransition = 650;
-    const maxTransition = 700;
+    const minTransition = this.isSmallScreenView ? 0 : this.isMediumScreen ? 0 : 0;
+    const maxTransition = this.isSmallScreenView ? 452 : this.isMediumScreen ? 523 : 381;
     const transition = maxTransition - ((percentage) * (maxTransition - minTransition));
-    const minTransitionTwo = 336;
-    const maxTransitionTwo = 376;
-    const transitionTwo = maxTransitionTwo - ((percentage) * (maxTransitionTwo - minTransitionTwo));
-    const maxTransitionThree = this.isSmallScreenView ? 1018 : 700;
-    const minTransitionThree = this.isSmallScreenView ? 970 : 650;
-    const transitionThree = maxTransitionThree - ((percentage) * (maxTransitionThree - minTransitionThree));
     this.picOne.nativeElement.style.top = `${transition}px`  ;
-    this.picTwo.nativeElement.style.top = `${transitionTwo}px`  ;
-    this.picThree.nativeElement.style.top = `${transitionThree}px`  ;
+    this.picTwo.nativeElement.style.top = `${transition}px`  ;
+    this.picThree.nativeElement.style.top = `${transition}px`  ;
     this._AppService.handleFillingText(
       this.descOne.nativeElement,
       320,150
@@ -164,17 +162,8 @@ export class PartnershipComponent {
       320,200
     );
     const minLeft = this.isMediumScreen ? 63 : this.isSmallScreenView ? 73 : 33;
-    const maxLeft = this.isMediumScreen ? 80 : this.isSmallScreenView ? 90 : 50;
+    const maxLeft = this.isMediumScreen ? 80 : this.isSmallScreenView ? 90 : 60;
     this.publications.nativeElement.querySelector('.cards').style.left = `${this.publications?.nativeElement?.getBoundingClientRect()?.top < 0 ? minLeft :  maxLeft}vw`;
-
-    let videoPercentage = 1- (this.videoContainer.nativeElement.getBoundingClientRect().top / (this.videoContainer.nativeElement.getBoundingClientRect().height));
-    if(videoPercentage > 1) videoPercentage = 1;
-    // Handle scaling
-    const minScale = 1.1;
-    const maxScale = 1.6;
-    const scale = maxScale - ((videoPercentage) * (maxScale - minScale));
-    this.videoContainer.nativeElement.firstElementChild.style.transform = `scale(${scale})`;
-    this._AppService.cursorChange$.next('circle')
   }
 
   public toggleDownloadModal(card?: Publication){
@@ -216,24 +205,19 @@ export class PartnershipComponent {
     link.click();
   }
 
-  public get videoContainerTop(){
-    return this.videoContainer.nativeElement.getBoundingClientRect().top;
+  public navigateToFormSection(){
+    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: yPosition,
+      behavior: 'smooth'
+    });
   }
 
-  public onMouseOver(): void{
-    this._AppService.cursorChange$.next('video')
-  }
+  public navigateToTop(){
 
-  public onMouseLeave(): void{
-    this._AppService.cursorChange$.next('circle')
-  }
-
-  public toggleSound(videoElement: HTMLVideoElement) {
-    if (videoElement.muted) {
-      videoElement.muted = false;
-      videoElement.volume = 1.0;
-    } else {
-      videoElement.muted = true;
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }

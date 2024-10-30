@@ -43,4 +43,7 @@ export class ContactUsComponent {
     })
   }
 
+  public isScrolledTo(element: HTMLElement){
+    return element?.getBoundingClientRect().top - innerHeight < 0;
+  }
 }

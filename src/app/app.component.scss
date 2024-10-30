@@ -7,9 +7,10 @@
     position: fixed;
     top: -7px;
     left: -8.5px;
-    background-color: #2dc4946f;
+    background-color: #fff;
     pointer-events: none;
-    z-index: 99999;
+    z-index: 99999999;
+    mix-blend-mode: difference;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -20,8 +21,12 @@
     -moz-transition: transform 0.05s;
     -ms-transition: transform 0.05s;
     -o-transition: transform 0.05s;
+    cursor: none;
   }
 }
+
+
+
 .video-cursor{
   display: block;
   position: fixed;

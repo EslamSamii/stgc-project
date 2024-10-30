@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { AppService } from './shared/services/app.service';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { debounceTime, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { slideInOutAnimation } from './shared/animation';
 
 @Component({
@@ -13,8 +13,8 @@ import { slideInOutAnimation } from './shared/animation';
 export class AppComponent {
   title = 'stgc';
 
-  public cursorPositionX!: number;
-  public cursorPositionY!: number;
+  public cursorPositionX: number = 0;
+  public cursorPositionY: number = 0;
 
   constructor( private _AppService: AppService, private router: Router) {}
 
@@ -27,7 +27,15 @@ export class AppComponent {
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
+
     this._AppService.onScrollChange$.next();
+    const x = this.cursorPositionX + scrollX;
+    const y = this.cursorPositionY + scrollY;
+    const target = document.elementFromPoint(this.cursorPositionX, this.cursorPositionY)
+    if(target?.classList.contains('video-player'))
+      this._AppService.cursorChange$.next('video')
+    else
+      this._AppService.cursorChange$.next('circle')
   }
 
   private _destroy$: Subject<void> = new Subject<void>();

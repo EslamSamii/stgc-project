@@ -12,8 +12,6 @@ export class NavbarComponent {
   public hideFlag: boolean = false;
   public toggleClicked: boolean = false;
   public isAnimating: boolean = false;
-  public offsetX: number = 0;
-  public offsetY: number = 0;
   private _destroy$: Subject<void> = new Subject<void>();
 
   ngOnDestroy(): void {
@@ -21,35 +19,23 @@ export class NavbarComponent {
     this._destroy$.complete();
   }
 
-  public toggleMenu(event?: Event): void{
-    if((event?.target as HTMLElement)?.classList.contains('link-active') || this.isAnimating) return;
+  public toggleMenu(): void{
+    if(this.isAnimating) return;
     this.isAnimating = true;
     this.toggleClicked = !this.toggleClicked
     if(this.isMenuOpened)
       this.hideFlag = true;
-    if(this.hideFlag)
-      setTimeout(() => {
-        this.isMenuOpened = false;
-        this.hideFlag = false
-        document.body.style.overflow= 'auto';
-      }, 1000);
-    else{
+    if(!this.hideFlag){
       this.isMenuOpened = true;
       document.body.style.overflow= 'hidden';
     }
     setTimeout(() => {
+      if(this.hideFlag){
+        this.isMenuOpened = false;
+        this.hideFlag = false
+        document.body.style.overflow= 'auto';
+      }
       this.isAnimating = false
-    }, 1000);
+    }, 700);
   }
-
-  public onMouseMove(event: MouseEvent): void{
-    this.offsetX = event.offsetX - 10;
-    this.offsetY = event.offsetY - 10;
-  }
-
-  public onMouseLeave(): void{
-    this.offsetX = 0;
-    this.offsetY = 0;
-  }
-
 }

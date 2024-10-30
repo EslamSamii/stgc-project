@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HorizontalScrollDirective } from 'src/app/shared/directives/horizontal-scroll.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { FadeInDirective } from 'src/app/shared/directives/fade-in.directive';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     ]),
     HorizontalScrollDirective,
     ReactiveFormsModule,
+    FadeInDirective,
     ModalComponent
   ],
   declarations: [PartnershipComponent]

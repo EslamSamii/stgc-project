@@ -4,46 +4,51 @@
       <div class="line-1"></div>
       <div class="line-2"></div>
       <div class="social">
-        <h3>or contact us through</h3>
+        <h3 fadeIn>or contact us through</h3>
         <p>
-          <span>info@stgc.global</span>
+          <span fadeIn [scrollToEnd]="false" class="delay-700">info@stgc.global</span>
           <br><br>
-          <span>
+          <span fadeIn [scrollToEnd]="false" class="delay-700">
             Sustainable Tourism Global Center Ministry of Tourism
           </span>
           <br><br>
-          <span>
+          <span fadeIn [scrollToEnd]="false" class="delay-700">
             PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia
           </span>
         </p>
       </div>
       <div class="contact-form">
-        <h2>Have a question?<br>please get in touch</h2>
+        <h2 ><span fadeIn>Have a question?</span><br><span fadeIn>please get in touch</span></h2>
         <form [formGroup]="contactForm" #contactFormRef>
           <div class="input-container">
-            <input required [formControl]="getFromControl('name')" type="text" placeholder="Your Name">
-            <input required [formControl]="getFromControl('email')" type="email" placeholder="Your Email Address">
-            <textarea required rows="10" [formControl]="getFromControl('message')" name="message" placeholder="Message"></textarea>
+            <div class="underline-input">
+              <input required [formControl]="getFromControl('name')" type="text" placeholder="Your Name">
+              <div class="line-progress"></div>
+            </div>
+            <div class="underline-input">
+              <input required [formControl]="getFromControl('email')" type="email" placeholder="Your Email Address">
+              <div class="line-progress"></div>
+            </div>
+            <div class="underline-input">
+              <textarea required rows="10" [formControl]="getFromControl('message')" name="message" placeholder="Message"></textarea>
+              <div class="line-progress"></div>
+            </div>
           </div>
-          <button class="confirm-button" type="button" (click)="submit()">
+          <button #button [ngClass]="{'full-width-animation': isScrolledTo(button)}" class="confirm-button" type="button" (click)="submit()">
+            <span class="top-border"></span>
+            <span class="bottom-border"></span>
+            <span class="line-top-1 line-top"></span>
+            <span class="line-top-2 line-top"></span>
+            <span class="line-top-3 line-top"></span>
+            <span class="line-bottom-1 line-bottom"></span>
+            <span class="line-bottom-2 line-bottom"></span>
+            <span class="line-bottom-3 line-bottom"></span>
             <div class="borders title">
               <div class="animate">
                 <span class="animate-slide">Contact us</span>
               </div>
-              <svg class="left-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0V16" stroke="white" stroke-width="2"/>
-                <path d="M0 48V64" stroke="white" stroke-width="2"/>
-              </svg>
-              <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0V16" stroke="white" stroke-width="2"/>
-                <path d="M0 48V64" stroke="white" stroke-width="2"/>
-              </svg>
             </div>
             <div class="borders icon">
-              <svg class="right-border" width="1" height="64" viewBox="0 0 1 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0V16" stroke="white" stroke-width="2"/>
-                <path d="M0 48V64" stroke="white" stroke-width="2"/>
-              </svg>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
               </svg>
@@ -55,17 +60,17 @@
 
     <div class="footer-content">
       <div class="nav">
-        <img src="assets/images/STGC.svg">
+        <img src="assets/images/STGC.svg" [routerLink]="['/home']" fadeIn>
         <div class="links">
-          <a [routerLink]="['/home']">Home</a>
-          <a [routerLink]="['/about']">About</a>
-          <a [routerLink]="['/partnership']">Partnership</a>
-          <a [routerLink]="['/contact-us']">Contact us</a>
+          <a [routerLink]="['/home']" fadeIn>Home</a>
+          <a [routerLink]="['/about']" fadeIn>About</a>
+          <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
+          <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
         </div>
       </div>
       <div class="copy-write">
-        <p>Sustainable Tourism Global Center.© All rights reserved</p>
-        <a>Privacy Policy</a>
+        <p fadeIn>Sustainable Tourism Global Center.© All rights reserved 2030</p>
+        <a fadeIn>Privacy Policy</a>
       </div>
     </div>
   </div>

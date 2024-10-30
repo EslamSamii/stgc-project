@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HorizontalScrollDirective } from 'src/app/shared/directives/horizontal-scroll.directive';
+import { FadeInDirective } from 'src/app/shared/directives/fade-in.directive';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { HorizontalScrollDirective } from 'src/app/shared/directives/horizontal-
     RouterModule.forChild([
       { path: '', component: HomeComponent }
     ]),
-    HorizontalScrollDirective
+    HorizontalScrollDirective,
+    FadeInDirective
   ],
   declarations: [HomeComponent]
 })

@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, Subject, takeUntil, tap } from 'rxjs';
 import { AppService } from 'src/app/shared/services/app.service';
@@ -7,6 +8,53 @@ import { AppService } from 'src/app/shared/services/app.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('inView', style({ clipPath: 'polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%)', transform: 'translateY(0)' })),
+      state('outOfView', style({ clipPath: 'polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%)', transform: 'translateY(20px)' })),
+      transition('outOfView => inView', [
+        animate(
+          '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          keyframes([
+            style({ clipPath: 'polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%)', offset: 0 }),
+            style({ clipPath: 'polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%)', offset: 1 })
+          ])
+        )
+      ],{ params: { delay: 0.4 } }),
+      transition('inView => outOfView', [
+        animate(
+          '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          keyframes([
+            style({ clipPath: 'polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%)', offset: 0 }),
+            style({ clipPath: 'polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%)', offset: 1 })
+          ])
+        )
+      ], { params: { delay: 0 } })
+    ]),
+    trigger('slideUp', [
+      state('inView', style({ transform: 'translateY(0)', opacity:1 })),
+      state('outOfView', style({ transform: 'translateY(100)', opacity:0 })),
+      transition('outOfView => inView', [
+        animate(
+          '0.7s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          keyframes([
+            style({ transform: 'translateY(100vh)', opacity:0, offset: 0 }),
+            style({ transform: 'translateY(0vh)', opacity:1, offset: 1 }),
+          ])
+        )
+      ],{ params: { delay: 0.5 } }),
+      transition('inView => outOfView', [
+        animate(
+          '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          keyframes([
+            style({ opacity: 1, offset: 0 }),
+            style({ opacity: 0, offset: 1}),
+          ])
+        )
+      ], { params: { delay: 0 } })
+    ]),
+
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -132,34 +180,62 @@ export class HomeComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email])
   })
   private _destroy$: Subject<void> = new Subject<void>();
-
+  public isScrolledToConfirmationButton: boolean = false;
   @ViewChild('stakeholderGroupsRef') stakeholderGroupsRef!: ElementRef;
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
-  @ViewChild('descOne')descOne!: ElementRef;
+  @ViewChild('headerContentOne') headerContentOne!: ElementRef;
+  @ViewChild('headerContentTwo') headerContentTwo!: ElementRef;
+  @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
+  @ViewChild('ares') aresRef!: ElementRef;
+  @ViewChildren('imagesRef') imagesRef!: QueryList<ElementRef>;
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
+  @ViewChild('sponsorsContainer') sponsorsContainer!: ElementRef;
+  public hideScrollButton: boolean = false;
+  private _isLoadingPage = true;
+  public isScrolledToConfirmationButtonGroup: boolean = false;
+  public logosNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
 
-  constructor( private _AppService: AppService) {}
+  constructor( private _AppService: AppService, private _ChangeDetectorRef: ChangeDetectorRef) {}
 
   public get currentSection(): number{
-    return Math.round(window.scrollY / window.innerHeight);
+    return this._isLoadingPage ? 0 : Math.round(scrollY / innerHeight);
   }
 
   public get isSmallScreenView(): boolean{
-    return window.innerWidth <= 992;
+    return innerWidth <= 992;
+  }
+
+  ngAfterViewInit(): void {
+    this._areaSectionPositioning();
+    this._isLoadingPage=false;
+    this.videoPlayer.nativeElement.muted = true
   }
 
   ngOnInit() {
-    scrollTo({left:0, top:0})
+    scrollTo({left:0, top:0});
     this.displaySecondSection =  this.isSmallScreenView ? this.currentSection >= 2 && this.currentSection < 3 : this.currentSection >= 2 && this.currentSection <= 3;
     this.expandCards = window.innerWidth > 1920;
     if(this.isSmallScreenView) this.bgImages.pop();
     this._AppService.onScrollChange$.pipe(
       tap(()=>{
-        this.expandCards = this.stakeholderGroupsRef.nativeElement.getBoundingClientRect().top <0
+        this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
+        this.hideScrollButton = true;
+        let percentage = (window.scrollY / (innerHeight * 3));
+        if(percentage > 1) percentage = 1;
+        // Handle scaling
+        const minScale = 1.2;
+        const maxScale = 1;
+        const scale = maxScale - ((percentage) * (maxScale - minScale));
+        this.imagesRef.forEach(imageRef=> imageRef.nativeElement.style.transform = `scale(${scale})`)
+        if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
+          this.isScrolledToConfirmationButton = true;
+        this.expandCards = this.stakeholderGroupsRef.nativeElement.getBoundingClientRect().top - (innerHeight/2) <0
         this._AppService.handleFillingText(
-          this.descOne.nativeElement,
+          this.headerContentTwo.nativeElement,
           120,100
         );
         this.displaySecondSection =  this.isSmallScreenView ? this.currentSection >= 2 && this.currentSection < 3 : this.currentSection >= 2 && this.currentSection <= 3
+        this._areaSectionPositioning();
       }
       ),
       takeUntil(this._destroy$),
@@ -176,6 +252,45 @@ export class HomeComponent implements OnInit {
   ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
+  }
+
+  private _areaSectionPositioning(): void{
+    if(this.isSmallScreenView || this._isLoadingPage) return;
+    const elements = Object.entries(this.aresRef.nativeElement.querySelectorAll('.card'));
+    if(this.aresRef.nativeElement.getBoundingClientRect().top < 0 && this.aresRef.nativeElement.getBoundingClientRect().top > -(this.aresRef.nativeElement.getBoundingClientRect().height - innerHeight)){
+      this.aresRef.nativeElement.querySelector('.area-container').style.position = 'fixed';
+      for(let [key,card] of elements){
+        const element = card as HTMLElement;
+        if(this.aresRef.nativeElement.getBoundingClientRect().top > (element.getBoundingClientRect().height + 25) * (+key * -1) ){
+          element.classList.remove('hide')
+          const top = parseFloat(element.style.top);
+          const maxTop = 26 * +key ;
+          const newTop = top < maxTop ? maxTop : ( (+key * (element.getBoundingClientRect().height + 50)) + this.aresRef.nativeElement.getBoundingClientRect().top)
+          element.style.top =newTop + 'px';
+          const prevElement = elements[+key-1]?.[1] as HTMLElement;
+          const nextElement = elements[+key+1]?.[1] as HTMLElement;
+          if(prevElement && +key >0){
+            prevElement.style.top = (26 * (+key-1)) + 'px';
+            prevElement.classList.add('hide')
+          }
+          if(nextElement){
+            const nextTop = +key+1 === 3 ? newTop + (((+key-1) * 26) + 386 + 25) : newTop + (((+key-1) * 26) + 386 + 50)
+            nextElement.style.top = nextTop+ 'px';
+          }
+          break;
+        }
+      }
+    } else if(this.aresRef.nativeElement.getBoundingClientRect().top < -(this.aresRef.nativeElement.getBoundingClientRect().height - innerHeight)){
+      (elements[3][1] as HTMLElement).style.top = (26 * 3) + 'px';
+      this.aresRef.nativeElement.querySelector('.cards').style.minHeight = '100vh';
+      this.aresRef.nativeElement.style.justifyContent = 'end';
+      this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
+    }else{
+      (elements[0][1] as HTMLElement).classList.remove('hide')
+      this.aresRef.nativeElement.querySelector('.cards').style.minHeight = '';
+      this.aresRef.nativeElement.style.justifyContent = '';
+      this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
+    }
   }
 
   public getFormControl(controlName: string): FormControl{
