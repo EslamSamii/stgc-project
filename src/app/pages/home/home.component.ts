@@ -298,5 +298,8 @@ export class HomeComponent implements OnInit {
   public getFormControl(controlName: string): FormControl{
     return this.contactForm.get(controlName) as FormControl;
   }
-
+  expandCardsFun(){
+    this.expandCards = true;
+    this.stakeholderGroupsRef.nativeElement.scrollTo({left: 700, behavior: 'smooth'})
+  }
 }

@@ -128,7 +128,7 @@
       </div>
     </div>
   </div>
-  <svg class="icon-scroll" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg (click)="expandCardsFun()" class="icon-scroll" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g opacity="0.8">
     <g clip-path="url(#clip0_3220_917)">
     <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
@@ -156,8 +156,8 @@
         <div class="desc">
           <div *ngFor="let desc of card.desc; let index = index" class="desc-content-{{card.desc.length - index}}">
             <h3 style="color: black;">[{{desc.count}}]</h3>
-              <h3 fadeIn>{{desc.title}}</h3>
-              <p fadeIn>{{desc.content}}</p>
+              <h3 style="min-height:66px" fadeIn>{{desc.title}}</h3>
+              <p style="min-height:92px" fadeIn>{{desc.content}}</p>
           </div>
         </div>
       </div>
