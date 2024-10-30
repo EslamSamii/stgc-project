@@ -50,13 +50,30 @@
 <img *ngFor="let image of bgImages" #imagesRef [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
 
 <section class="sponsors-container">
-  <div #sponsorsContainer appHorizontalScroll class="sponsors">
+  <div #sponsorsContainer class="sponsors">
     <h2 fadeIn>We collaborate with</h2>
     <div class="logos-container">
       <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
     </div>
   </div>
-  <div class="buttons-group" [style.position]="isScrolledToConfirmationButtonGroup ? 'fixed' : 'absolute' ">
+  <div class="buttons-group" [style.position]="'absolute'">
+    <div class="icon-scroll-2"  (click)="expandCardsButtons()">
+      Swipe right
+      <svg  width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.8">
+        <g clip-path="url(#clip0_3220_917)">
+        <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_3220_917">
+        <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
+        </clipPath>
+        </defs>
+      </svg>
+    </div>
     <button
       [ngClass]="{'full-width-animation': isScrolledToConfirmationButtonGroup}"
       class="confirm-button green-button"
@@ -128,20 +145,23 @@
       </div>
     </div>
   </div>
-  <svg (click)="expandCardsFun()" class="icon-scroll" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.8">
-    <g clip-path="url(#clip0_3220_917)">
-    <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-    <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-    </g>
-    <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
-    </g>
-    <defs>
-    <clipPath id="clip0_3220_917">
-    <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
-    </clipPath>
-    </defs>
-  </svg>
+  <div class="icon-scroll"  (click)="expandCardsFun()">
+    Swipe right
+    <svg  width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.8">
+      <g clip-path="url(#clip0_3220_917)">
+      <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+      <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_3220_917">
+      <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
+      </clipPath>
+      </defs>
+    </svg>
+  </div>
 </section>
 
 <section #ares class="areas">

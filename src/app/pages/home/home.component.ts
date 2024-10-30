@@ -220,7 +220,7 @@ export class HomeComponent implements OnInit {
     if(this.isSmallScreenView) this.bgImages.pop();
     this._AppService.onScrollChange$.pipe(
       tap(()=>{
-        this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
+        this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top - innerHeight < 0 ;
         this.hideScrollButton = true;
         let percentage = (window.scrollY / (innerHeight * 3));
         if(percentage > 1) percentage = 1;
@@ -301,5 +301,9 @@ export class HomeComponent implements OnInit {
   expandCardsFun(){
     this.expandCards = true;
     this.stakeholderGroupsRef.nativeElement.scrollTo({left: 700, behavior: 'smooth'})
+  }
+  expandCardsButtons(){
+    const left = this.sponsorsContainer.nativeElement.scrollLeft + 700
+    this.sponsorsContainer.nativeElement.scrollTo({left: left, behavior: 'smooth'})
   }
 }

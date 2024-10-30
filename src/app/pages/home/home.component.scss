@@ -896,15 +896,16 @@
   animation-delay: 0.5s !important;
 }
 .buttons-group{
+  align-items: center;
   left: 48px;
   top: 75vh;
   display: flex;
   gap: 24px;
   z-index: 9999;
+  margin-top: 48px;
 }
 .confirm-button{
   overflow: hidden;
-  margin-top: 48px;
   background-color: transparent;
   display: flex;
   width: 100%;
@@ -1043,11 +1044,20 @@
 }
 .sponsors-container{
   position: relative;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 .sponsors{
+  background-color: white;
   position: relative;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
   width: 100vw;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   h2{
     padding: 0 48px;
     font-size: 40px;
@@ -1069,8 +1079,28 @@
   }
 }
 
+.icon-scroll-2{
+  color: #2EA47F;
+  white-space: nowrap;
+  height: fit-content;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
 .icon-scroll{
   position: absolute;
   left: 48px;
   top: 75vh;
+  color: #2EA47F;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
 }
+
