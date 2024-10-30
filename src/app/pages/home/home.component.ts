@@ -208,7 +208,8 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit(): void {
     this._areaSectionPositioning();
     this._isLoadingPage=false;
-    this.videoPlayer.nativeElement.muted = true
+    this.videoPlayer.nativeElement.muted = true;
+    this.videoPlayer.nativeElement.playbackRate = 2;
   }
 
   ngOnInit() {
