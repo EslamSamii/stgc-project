@@ -71,6 +71,10 @@ export class PartnershipComponent {
   ]
   public selectedPublication?: Publication;
   public logosNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
+  public isScrolledToRightEnd: boolean = false;
+  public isScrolledToLeftEnd: boolean = true;
+  public isScrolledToRightEnd2: boolean = false;
+  public isScrolledToLeftEnd2: boolean = true;
   public downloadFormGroup: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -78,7 +82,6 @@ export class PartnershipComponent {
     position: new FormControl('', Validators.required),
   })
   public isDownloadModalOpened: boolean = false;
-  public isSuccessMessageModalOpen: boolean = false;
   public isScrolledToConfirmationButton: boolean = false;
   public hideFloatingIcon: boolean = false;
   public isScrolledToConfirmationButton1: boolean = false;
@@ -88,17 +91,13 @@ export class PartnershipComponent {
   @ViewChild('picOne') picOne!: ElementRef;
   @ViewChild('picTwo') picTwo!: ElementRef;
   @ViewChild('picThree') picThree!: ElementRef;
-  @ViewChild('descOne')descOne!: ElementRef;
-  @ViewChild('descTwo') descTwo!: ElementRef;
   @ViewChild('scrollHorizontallyRef') scrollHorizontallyRef!: ElementRef;
   @ViewChild('containerRef') containerRef!: ElementRef;
-  @ViewChild('publications') publications!: ElementRef;
   @ViewChild('downloadFormGroupRef') downloadFormGroupRef!: ElementRef;
   @ViewChild('confirmationButtonRef1') confirmationButtonRef1!: ElementRef;
   @ViewChild('contactUsForm') contactUsForm!: ElementRef;
   @ViewChild('sponsorsContainer') sponsorsContainer!: ElementRef;
   private _destroy$: Subject<void> = new Subject<void>();
-  public isMessageModalOpen: boolean = false;
   public contactForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -109,6 +108,7 @@ export class PartnershipComponent {
   constructor(private _AppService: AppService, private _ActivatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
+    this._AppService.onNavColorChange$.next({color: 'white'});
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
     })
@@ -133,7 +133,7 @@ export class PartnershipComponent {
     }
     this._AppService.contactUs(this.contactForm.value).subscribe({
       next: ()=>{
-        this.isMessageModalOpen = true;;
+        this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest, Our team will be in contact with you`, success: true})
       },
       error: (error)=>{
         console.log(error)
@@ -150,6 +150,10 @@ export class PartnershipComponent {
   }
 
   private _handleScroll(): void {
+    if(scrollY > ( this.isSmallScreenView ? 991 : this.isMediumScreen ? 1366 :1142))
+      this._AppService.onNavColorChange$.next({color:'black'});
+    else
+      this._AppService.onNavColorChange$.next({color: 'white'});
     this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0;
     if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
@@ -161,17 +165,8 @@ export class PartnershipComponent {
     this.picOne.nativeElement.style.top = `${transition}px`  ;
     this.picTwo.nativeElement.style.top = `${transition}px`  ;
     this.picThree.nativeElement.style.top = `${transition}px`  ;
-    this._AppService.handleFillingText(
-      this.descOne.nativeElement,
-      320,150
-    );
-    this._AppService.handleFillingText(
-      this.descTwo.nativeElement,
-      320,200
-    );
     const minLeft = this.isMediumScreen ? 63 : this.isSmallScreenView ? 73 : 33;
     const maxLeft = this.isMediumScreen ? 80 : this.isSmallScreenView ? 90 : 60;
-    this.publications.nativeElement.querySelector('.cards').style.left = `${this.publications?.nativeElement?.getBoundingClientRect()?.top < 0 ? minLeft :  maxLeft}vw`;
   }
 
   public toggleDownloadModal(card?: Publication){
@@ -195,8 +190,8 @@ export class PartnershipComponent {
     }
     this._AppService.downloadPublicationData(this.downloadFormGroup.value).subscribe({
       next: ()=>{
-        this.isSuccessMessageModalOpen = true;
         this.isDownloadModalOpened =false;
+        this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest`, success: true});
         this._saveFile(this.selectedPublication?.file)
       },
       error: (error)=>{
@@ -227,5 +222,37 @@ export class PartnershipComponent {
       top: 0,
       behavior: 'smooth'
     });
+  }
+
+  scrollLeft(element: HTMLElement, type: 0 | 1){
+    if(type===0)
+      this.isScrolledToRightEnd = false
+    if(type===1)
+      this.isScrolledToRightEnd2 = false
+    let left =element.scrollLeft - 700
+    element.scrollTo({left: left, behavior: 'smooth'})
+    if(left < 0) left = 0;
+    setTimeout(() => {
+      if(type===0)
+        this.isScrolledToLeftEnd = element.scrollLeft === 0;
+    if(type===1)
+      this.isScrolledToLeftEnd2 = element.scrollLeft === 0
+    }, 500)
+  }
+
+  scrollRight(element: HTMLElement, type: 0 | 1){
+    if(type===0)
+      this.isScrolledToLeftEnd = false
+    if(type===1)
+      this.isScrolledToLeftEnd2 = false
+    let left =element.scrollLeft + 700;
+    if(left > element.scrollWidth - innerWidth) left = element.scrollWidth - innerWidth;
+    element.scrollTo({left: left, behavior: 'smooth'})
+    setTimeout(() => {
+      if(type===0)
+        this.isScrolledToRightEnd = element.scrollLeft + element.clientWidth >= element.scrollWidth -30;
+    if(type===1)
+      this.isScrolledToRightEnd2 = element.scrollLeft + element.clientWidth >= element.scrollWidth -30;
+  }, 500);
   }
 }

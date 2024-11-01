@@ -4,21 +4,21 @@
       <div class="line-1"></div>
       <div class="line-2"></div>
       <div class="social">
-        <h3 fadeIn>or contact us through</h3>
+        <h3 fadeIn [noScroll]="true">or contact us through</h3>
         <p>
-          <span fadeIn [scrollToEnd]="false" class="delay-700">info@stgc.global</span>
+          <span fadeIn [noScroll]="true" [scrollToEnd]="false" class="delay-700">info@stgc.global</span>
           <br><br>
-          <span fadeIn [scrollToEnd]="false" class="delay-700">
+          <span fadeIn [noScroll]="true" [scrollToEnd]="false" class="delay-700">
             Sustainable Tourism Global Center Ministry of Tourism
           </span>
           <br><br>
-          <span fadeIn [scrollToEnd]="false" class="delay-700">
+          <span fadeIn [noScroll]="true" [scrollToEnd]="false" class="delay-700">
             PO Box 66680, Riyadh 11586 Kingdom of Saudi Arabia
           </span>
         </p>
       </div>
       <div class="contact-form">
-        <h2 ><span fadeIn>Have a question?</span><br><span fadeIn>please get in touch</span></h2>
+        <h2 ><span fadeIn [noScroll]="true">Have a question?</span><br><span fadeIn [noScroll]="true">please get in touch</span></h2>
         <form [formGroup]="contactForm" #contactFormRef>
           <div class="input-container">
             <div class="underline-input">
@@ -60,12 +60,12 @@
 
     <div class="footer-content">
       <div class="nav">
-        <img src="assets/images/STGC.svg" [routerLink]="['/home']" fadeIn>
+        <img src="assets/images/STGC.svg" [routerLink]="['/home']" style="cursor: pointer;">
         <div class="links">
           <a [routerLink]="['/home']" fadeIn>Home</a>
           <a [routerLink]="['/about']" fadeIn>About</a>
-          <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
-          <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
+          <a [routerLink]="['/partnership']" fadeIn >Partnership</a>
+          <a [routerLink]="['/contact-us']" fadeIn  style="white-space: nowrap;">Contact us</a>
         </div>
       </div>
       <div class="copy-write">
@@ -75,9 +75,3 @@
     </div>
   </div>
 </section>
-
-<app-modal *ngIf="isMessageModalOpen" (closeModal)="isMessageModalOpen= false">
-  <div class="message">
-    <p>Thank you {{getFromControl('name').value}} for showing your interest,<br><br>Our team will be in contact with you</p>
-  </div>
-</app-modal>

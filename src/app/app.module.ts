@@ -11,11 +11,13 @@ import { ContactUsModule } from './pages/contact-us/contact-us.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PartnershipModule } from './pages/partnership/partnership.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ToasterComponent } from './shared/toaster/toaster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PreLoaderComponent,
+    ToasterComponent
 ],
   imports: [
     BrowserModule,

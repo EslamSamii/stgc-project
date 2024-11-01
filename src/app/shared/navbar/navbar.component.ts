@@ -16,6 +16,9 @@ export class NavbarComponent {
   private _destroy$: Subject<void> = new Subject<void>();
   private lastScroll: number = 0;
   public  scrollTopDir: boolean = false;
+  public  color: 'white' | 'black' ='white';
+  public  customClass?: string;
+  public  prevColor: 'white' | 'black' ='white';
   constructor(private _AppService: AppService){}
 
   ngOnDestroy(): void {
@@ -26,8 +29,14 @@ export class NavbarComponent {
   ngOnInit(): void {
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=>{
-        this.scrollTopDir = this.lastScroll < scrollY
-        this.lastScroll = scrollY;
+        this.scrollTopDir = this.lastScroll < scrollY;
+        this.lastScroll = Math.max(scrollY, 0);
+      }
+    })
+    this._AppService.onNavColorChange$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: (res)=>{
+        this.color = res.color;
+        this.customClass = res.class;
       }
     })
   }
@@ -41,7 +50,16 @@ export class NavbarComponent {
     if(!this.hideFlag){
       this.isMenuOpened = true;
       document.body.style.overflow= 'hidden';
+      this.prevColor = this.color;
     }
+    if(!this.hideFlag)
+      setTimeout(() => {
+        this.color = 'white'
+      });
+      else
+      setTimeout(() => {
+        this.color = this.prevColor
+      }, 300);
     setTimeout(() => {
       if(this.hideFlag){
         this.isMenuOpened = false;

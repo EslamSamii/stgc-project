@@ -8,13 +8,14 @@ import { slideInOutAnimation } from './shared/animation';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [slideInOutAnimation]
+  animations: [slideInOutAnimation],
 })
 export class AppComponent {
   title = 'stgc';
 
   public cursorPositionX: number = 0;
   public cursorPositionY: number = 0;
+  public tosterData?: {message: string, success: boolean};
 
   constructor( private _AppService: AppService, private router: Router) {}
 
@@ -23,6 +24,11 @@ export class AppComponent {
   onMouseMove(event: MouseEvent) {
     this.cursorPositionX = event.clientX;
     this.cursorPositionY = event.clientY;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(){
+    this._AppService.onScrollChange$.next();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -44,6 +50,14 @@ export class AppComponent {
     this._AppService.cursorChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next:(res)=>{
         this.cursor = res
+      }
+    })
+    this._AppService.toaster$.pipe(takeUntil(this._destroy$)).subscribe({
+      next:(res)=>{
+        this.tosterData = res;
+        setTimeout(() => {
+          this.tosterData = undefined
+        }, 4000);
       }
     })
   }

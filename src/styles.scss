@@ -42,7 +42,7 @@ body{
 }
 
 .fade-in-up-animation{
-  clip-path: polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%);
+  opacity: 0;
   animation: fade-in-up 0.9s 0.3s cubic-bezier(0.215, 0.61, 0.355, 1)  forwards;
   -webkit-animation: fade-in-up 0.9s 0.3s cubic-bezier(0.215, 0.61, 0.355, 1)  forwards;
 }
@@ -62,12 +62,10 @@ body{
 }
 @keyframes fade-in-up{
   0%{
-  clip-path: polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%);
-
-}
+    opacity: 0;
+  }
   100%{
-  clip-path: polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%);
-
+    opacity: 1;
 }
 }
 
@@ -174,4 +172,15 @@ body{
   100%{
     width: 100%;
   }
+}
+.bg-transparent{
+  background-color: transparent !important;
+  transition: unset;
+  -webkit-transition: unset;
+  -moz-transition: unset;
+  -ms-transition: unset;
+  -o-transition: unset;
+}
+button{
+  cursor: pointer;
 }

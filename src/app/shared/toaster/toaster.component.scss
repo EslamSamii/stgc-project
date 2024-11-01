@@ -1,0 +1,34 @@
+:host{
+  display: block;
+  position: fixed;
+  top: 48px;
+  right: 48px;
+  border: 1px solid #2EA47F;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.071);
+  background-color: #FFF;
+  z-index: 999999999999;
+  min-height: 100px;
+  width: 425px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  svg
+{
+    min-width: 40px;
+    min-height: 40px;
+    color: #2EA47F;
+  }
+  div{
+    font-size: 16px;
+    font-weight: 600;
+    color: #2EA47F;
+  }
+
+}

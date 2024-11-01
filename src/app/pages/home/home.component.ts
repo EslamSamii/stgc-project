@@ -10,14 +10,14 @@ import { AppService } from 'src/app/shared/services/app.service';
   styleUrls: ['./home.component.scss'],
   animations: [
     trigger('fadeInOut', [
-      state('inView', style({ clipPath: 'polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%)', transform: 'translateY(0)' })),
-      state('outOfView', style({ clipPath: 'polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%)', transform: 'translateY(20px)' })),
+      state('inView', style({ opacity: 1})),
+      state('outOfView', style({ opacity: 0})),
       transition('outOfView => inView', [
         animate(
           '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
           keyframes([
-            style({ clipPath: 'polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%)', offset: 0 }),
-            style({ clipPath: 'polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%)', offset: 1 })
+            style({ opacity: 0}),
+            style({ opacity: 1}),
           ])
         )
       ],{ params: { delay: 0.4 } }),
@@ -25,11 +25,11 @@ import { AppService } from 'src/app/shared/services/app.service';
         animate(
           '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
           keyframes([
-            style({ clipPath: 'polygon(-10% 0%, 110% 0%, 110% 110%, -10% 110%)', offset: 0 }),
-            style({ clipPath: 'polygon(-10% -100%, 110% -100%, 110% 0%, -10% 0%)', offset: 1 })
+            style({ opacity: 1}),
+            style({ opacity: 0}),
           ])
         )
-      ], { params: { delay: 0 } })
+      ], { params: { delay:  0} })
     ]),
     trigger('slideUp', [
       state('inView', style({ transform: 'translateY(0)', opacity:1 })),
@@ -194,6 +194,10 @@ export class HomeComponent implements OnInit {
   private _isLoadingPage = true;
   public isScrolledToConfirmationButtonGroup: boolean = false;
   public logosNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
+  public isScrolledToRightEnd: boolean = false;
+  public isScrolledToLeftEnd: boolean = true;
+  public isScrolledToRightEnd2: boolean = false;
+  public isScrolledToLeftEnd2: boolean = true;
 
   constructor( private _AppService: AppService, private _ChangeDetectorRef: ChangeDetectorRef) {}
 
@@ -214,12 +218,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     scrollTo({left:0, top:0});
-    this.hideScrollButton =false;
-    this.displaySecondSection =  this.isSmallScreenView ? this.currentSection >= 2 && this.currentSection < 3 : this.currentSection >= 2 && this.currentSection <= 3;
+    this._AppService.onNavColorChange$.next({color: 'white'});
+    setTimeout(() => {
+      this._AppService.onNavColorChange$.next({color: 'white'});
+      this.hideScrollButton =false;
+
+    }, 100);
+    this.displaySecondSection =  this.currentSection >= 2 && this.currentSection <= 3;
     this.expandCards = window.innerWidth > 1920;
-    if(this.isSmallScreenView) this.bgImages.pop();
     this._AppService.onScrollChange$.pipe(
       tap(()=>{
+        if(scrollY > 4 * innerHeight)
+          this._AppService.onNavColorChange$.next({color:'black'});
+        else
+          this._AppService.onNavColorChange$.next({color: 'white'});
         this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top - innerHeight < 0 ;
         this.hideScrollButton = true;
         let percentage = (window.scrollY / (innerHeight * 3));
@@ -232,78 +244,105 @@ export class HomeComponent implements OnInit {
         if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
           this.isScrolledToConfirmationButton = true;
         this.expandCards = this.stakeholderGroupsRef.nativeElement.getBoundingClientRect().top - (innerHeight/2) <0
-        this._AppService.handleFillingText(
-          this.headerContentTwo.nativeElement,
-          120,100
-        );
-        this.displaySecondSection =  this.isSmallScreenView ? this.currentSection >= 2 && this.currentSection < 3 : this.currentSection >= 2 && this.currentSection <= 3
-        this._areaSectionPositioning();
+        this.displaySecondSection =  this.currentSection >= 2 && this.currentSection <= 3
       }
-      ),
-      takeUntil(this._destroy$),
-      debounceTime(5)
-    ).subscribe({
-      next: ()=>{
-        for(let [index, image] of Object.entries(this.bgImages)){
-          image.isSelected = this.currentSection > 2 ? true : this.currentSection === +index;
+    ),
+    takeUntil(this._destroy$),
+    debounceTime(5)
+  ).subscribe({
+    next: ()=>{
+      this._areaSectionPositioning();
+      for(let [index, image] of Object.entries(this.bgImages)){
+        image.isSelected = this.currentSection > 2 ? true : this.currentSection === +index;
+      }
+    }
+  })
+}
+_areaSectionPositioning(){
+  if(this.isSmallScreenView || this._isLoadingPage) return;
+  const elements = Object.entries(this.aresRef.nativeElement.querySelectorAll('.card'));
+  if(this.aresRef.nativeElement.getBoundingClientRect().top < 0 && this.aresRef.nativeElement.getBoundingClientRect().top > -(this.aresRef.nativeElement.getBoundingClientRect().height - 695)){
+    this.aresRef.nativeElement.querySelector('.area-container').style.position = 'fixed';
+    this.aresRef.nativeElement.classList.remove('after-scroll-down');
+    for(let [key,card] of elements){
+      if(+key ===0) continue;
+      const element = card as HTMLElement;
+      let newTop = Math.max(( (+key * (element.getBoundingClientRect().height + 50)) + this.aresRef.nativeElement.getBoundingClientRect().top), +key * 26);
+      element.style.top = newTop + 'px';
+      const prevElement = elements[+key-1]?.[1] as HTMLElement;
+      if(prevElement){
+        if(+key === 1)
+          prevElement.classList.add('hide');
+        else if(this.aresRef.nativeElement.getBoundingClientRect().top < -400 && +key ===2)
+          prevElement.classList.add('hide');
+        else if(this.aresRef.nativeElement.getBoundingClientRect().top < -800 && +key ===3)
+          prevElement.classList.add('hide');
+        else{
+          prevElement.classList.remove('hide');
         }
       }
-    })
+    }
+  }else if(this.aresRef.nativeElement.getBoundingClientRect().top < -(this.aresRef.nativeElement.getBoundingClientRect().height - 695)){
+    this.aresRef.nativeElement.classList.add('after-scroll-down');
+    this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
+  }else{
+    this.aresRef.nativeElement.classList.remove('after-scroll-down');
+    (elements[0][1] as HTMLElement).classList.remove('hide')
+    this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
   }
+}
 
   ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
   }
 
-  private _areaSectionPositioning(): void{
-    if(this.isSmallScreenView || this._isLoadingPage) return;
-    const elements = Object.entries(this.aresRef.nativeElement.querySelectorAll('.card'));
-    if(this.aresRef.nativeElement.getBoundingClientRect().top < 0 && this.aresRef.nativeElement.getBoundingClientRect().top > -(this.aresRef.nativeElement.getBoundingClientRect().height - innerHeight)){
-      this.aresRef.nativeElement.querySelector('.area-container').style.position = 'fixed';
-      for(let [key,card] of elements){
-        const element = card as HTMLElement;
-        if(this.aresRef.nativeElement.getBoundingClientRect().top > (element.getBoundingClientRect().height + 25) * (+key * -1) ){
-          element.classList.remove('hide')
-          const top = parseFloat(element.style.top);
-          const maxTop = 26 * +key ;
-          const newTop = top < maxTop ? maxTop : ( (+key * (element.getBoundingClientRect().height + 50)) + this.aresRef.nativeElement.getBoundingClientRect().top)
-          element.style.top =newTop + 'px';
-          const prevElement = elements[+key-1]?.[1] as HTMLElement;
-          const nextElement = elements[+key+1]?.[1] as HTMLElement;
-          if(prevElement && +key >0){
-            prevElement.style.top = (26 * (+key-1)) + 'px';
-            prevElement.classList.add('hide')
-          }
-          if(nextElement){
-            const nextTop = +key+1 === 3 ? newTop + (((+key-1) * 26) + 386 + 25) : newTop + (((+key-1) * 26) + 386 + 50)
-            nextElement.style.top = nextTop+ 'px';
-          }
-          break;
-        }
-      }
-    } else if(this.aresRef.nativeElement.getBoundingClientRect().top < -(this.aresRef.nativeElement.getBoundingClientRect().height - innerHeight)){
-      (elements[3][1] as HTMLElement).style.top = (26 * 3) + 'px';
-      this.aresRef.nativeElement.querySelector('.cards').style.minHeight = '100vh';
-      this.aresRef.nativeElement.style.justifyContent = 'end';
-      this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
-    }else{
-      (elements[0][1] as HTMLElement).classList.remove('hide')
-      this.aresRef.nativeElement.querySelector('.cards').style.minHeight = '';
-      this.aresRef.nativeElement.style.justifyContent = '';
-      this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
-    }
-  }
-
   public getFormControl(controlName: string): FormControl{
     return this.contactForm.get(controlName) as FormControl;
   }
+
   expandCardsFun(){
     this.expandCards = true;
-    this.stakeholderGroupsRef.nativeElement.scrollTo({left: 700, behavior: 'smooth'})
   }
+
   expandCardsButtons(){
     const left = this.sponsorsContainer.nativeElement.scrollLeft + 700
     this.sponsorsContainer.nativeElement.scrollTo({left: left, behavior: 'smooth'})
+  }
+
+  scrollLeft(element: HTMLElement, type: 0 | 1){
+    if(type===0)
+      this.isScrolledToRightEnd = false
+    if(type===1)
+      this.isScrolledToRightEnd2 = false
+    let left =element.scrollLeft - 700
+    element.scrollTo({left: left, behavior: 'smooth'})
+    if(left < 0) left = 0;
+    setTimeout(() => {
+      if(type===0)
+        this.isScrolledToLeftEnd = element.scrollLeft === 0;
+    if(type===1)
+      this.isScrolledToLeftEnd2 = element.scrollLeft === 0
+    }, 500)
+  }
+
+  scrollRight(element: HTMLElement, type: 0 | 1){
+    if(type===0)
+      this.isScrolledToLeftEnd = false
+    if(type===1)
+      this.isScrolledToLeftEnd2 = false
+    let left =element.scrollLeft + 700;
+    if(left > element.scrollWidth - innerWidth) left = element.scrollWidth - innerWidth;
+    element.scrollTo({left: left, behavior: 'smooth'})
+    setTimeout(() => {
+      if(type===0)
+        this.isScrolledToRightEnd = element.scrollLeft + element.clientWidth >= element.scrollWidth -30;
+    if(type===1)
+      this.isScrolledToRightEnd2 = element.scrollLeft + element.clientWidth >= element.scrollWidth -30;
+  }, 500);
+  }
+
+  scrollDown(){
+    scrollTo({top: innerHeight, behavior: 'smooth'})
   }
 }

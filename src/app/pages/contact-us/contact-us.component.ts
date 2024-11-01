@@ -9,7 +9,6 @@ import { AppService } from 'src/app/shared/services/app.service';
 })
 export class ContactUsComponent {
 
-  public isMessageModalOpen: boolean = false;
   public contactForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -21,6 +20,7 @@ export class ContactUsComponent {
 
   ngOnInit(): void {
     scrollTo({left:0, top:0})
+    this._AppService.onNavColorChange$.next({color: 'white'});
   }
 
   public getFromControl(controlName: string): FormControl{
@@ -35,7 +35,7 @@ export class ContactUsComponent {
     }
     this._AppService.contactUs(this.contactForm.value).subscribe({
       next: ()=>{
-        this.isMessageModalOpen = true;;
+        this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest, Our team will be in contact with you`, success: true})
       },
       error: (error)=>{
         console.log(error)

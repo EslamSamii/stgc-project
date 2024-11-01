@@ -1,10 +1,10 @@
-<nav class="nav-header" [ngClass]="{'hide-nav-top': scrollTopDir}">
-  <div class="header">
+<nav class="nav-header" [ngClass]="{'hide-nav-top': scrollTopDir, 'black-header' : color === 'black'}">
+  <div class="header {{customClass}}">
     <div>
       <img
         [routerLink]="['/home']"
         class="logo"
-        style="transition: transform 0.3s ease;"
+        style="transition: transform 0.3s ease;cursor: pointer;"
         width="65" height="30" src="assets/images/STGC.svg">
     </div>
     <div (click)="toggleMenu()" class="menu-btn">

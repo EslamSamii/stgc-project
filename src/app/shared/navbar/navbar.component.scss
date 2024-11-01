@@ -5,27 +5,51 @@ nav{
   width: 100vw;
   background-color: transparent;
   z-index: 99999;
-  padding: 21px 48px;
   transition: all 0.5s 0s ease;
   -webkit-transition: all 0.5s 0s ease;
   -moz-transition: all 0.5s 0s ease;
   -ms-transition: all 0.5s 0s ease;
   -o-transition: all 0.5s 0s ease;
+  .logo{
+    transition: all 0.5s 0s ease;
+    -webkit-transition: all 0.5s 0s ease;
+    -moz-transition: all 0.5s 0s ease;
+    -ms-transition: all 0.5s 0s ease;
+    -o-transition: all 0.5s 0s ease;
+  }
+  &.black-header{
+    padding: 0;
+    .menu-icon{
+      color: black !important;
+    }
+    .logo{
+      filter: brightness(0);
+      -webkit-filter: brightness(0);
+}
+    .header {
+      background-color: white;
+    }
+  }
   &.nav-header
 {
     z-index: 999999;
-    mix-blend-mode: difference;
-    color: white;
     width: 100%;
     .header{
+      transition: all 0.5s 0s ease;
+      -webkit-transition: all 0.5s 0s ease;
+      -moz-transition: all 0.5s 0s ease;
+      -ms-transition: all 0.5s 0s ease;
+      -o-transition: all 0.5s 0s ease;
+      padding: 21px 48px;
       display: flex;
       justify-content: space-between;
       width: 100%;
+      @media (max-width: 992px) {
+        padding: 21px 15px;
+      }
     }
   }
-  @media (max-width: 992px) {
-    padding: 21px 15px;
-  }
+
   .nav-content{
     display: flex;
     justify-content: space-between;
@@ -33,45 +57,66 @@ nav{
   .menu-btn{
     display: flex;
     align-items: center;
-    font-size: 16;
     font-weight: 600;
     cursor: pointer;
-    color: white;
     gap: 18px;
+    color: white;
+    transition: all 0.5s 0s ease;
+    -webkit-transition: all 0.5s 0s ease;
+    -moz-transition: all 0.5s 0s ease;
+    -ms-transition: all 0.5s 0s ease;
+    -o-transition: all 0.5s 0s ease;
     .menu-icon {
       color: white;
       cursor: pointer;
-      transition: all 0.3s ease;
-      line{
-        transition: all 0.3s ease;
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        -ms-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-      }
+      transition: transform 0.5s 0s ease;
+      -webkit-transition: transform 0.5s 0s ease;
+      -moz-transition: transform 0.5s 0s ease;
+      -ms-transition: transform 0.5s 0s ease;
+      -o-transition: transform 0.5s 0s ease;
+      line
+{
+        transition: transform 0.5s 0s ease;
+        -webkit-transition: transform 0.5s 0s ease;
+        -moz-transition: transform 0.5s 0s ease;
+        -ms-transition: transform 0.5s 0s ease;
+        -o-transition: transform 0.5s 0s ease;
+}
       &.active{
         .line1 {
           transform-origin: 50% 50%;
-          transition: transform 0.3s ease;
+          transition: transform 0.5s 0s ease;
+          -webkit-transition: transform 0.5s 0s ease;
+          -moz-transition: transform 0.5s 0s ease;
+          -ms-transition: transform 0.5s 0s ease;
+          -o-transition: transform 0.5s 0s ease;
           transform: rotate(45deg) translateY(8px);
           -webkit-transform: rotate(45deg) translateY(8px);
           -moz-transform: rotate(45deg) translateY(8px);
           -ms-transform: rotate(45deg) translateY(8px);
           -o-transform: rotate(45deg) translateY(8px);
-      }
+}
         .line2 {
           opacity: 0;
-          transition: opacity 0.3s ease;
-        }
+          transition: transform 0.5s 0s ease;
+          -webkit-transition: transform 0.5s 0s ease;
+          -moz-transition: transform 0.5s 0s ease;
+          -ms-transition: transform 0.5s 0s ease;
+          -o-transition: transform 0.5s 0s ease;
+}
         .line3 {
           transform-origin: 50% 50%;
-          transition: transform 0.3s ease;
+          transition: transform 0.5s 0s ease;
+          -webkit-transition: transform 0.5s 0s ease;
+          -moz-transition: transform 0.5s 0s ease;
+          -ms-transition: transform 0.5s 0s ease;
+          -o-transition: transform 0.5s 0s ease;
           transform: rotate(-45deg) translateY(-8px);
           -webkit-transform: rotate(-45deg) translateY(-8px);
           -moz-transform: rotate(-45deg) translateY(-8px);
           -ms-transform: rotate(-45deg) translateY(-8px);
           -o-transform: rotate(-45deg) translateY(-8px);
-        }
+}
       }
     }
 
@@ -114,7 +159,8 @@ nav{
       bottom: 48px;
       left: 48px;
       @media (max-width: 992px) {
-        bottom: 110px;
+        left: 16px;
+        bottom: 150px;
       }
       a{
         display: flex;

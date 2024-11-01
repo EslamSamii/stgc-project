@@ -64,7 +64,7 @@
           <h3>{{card.title}}</h3>
           <p>{{card.caption}}</p>
         </div>
-        <div class="card-img" *ngSwitchCase="'img'" fadeIn customClass="fill-image" [customOnly]="true">
+        <div class="card-img" *ngSwitchCase="'img'" fadeIn>
           <img [src]="card.img">
         </div>
         <div class="card-empty" *ngSwitchDefault></div>
@@ -76,21 +76,23 @@
 <section class="footer" style="margin-bottom: 150px;">
   <h2><span customClass="underline" fadeIn>Supporting a just transition</span><span customClass="underline" fadeIn>to sustainable tourism, a healthier</span><span customClass="underline" fadeIn>planet and thriving communities</span></h2>
 </section>
+
 <section #videoContainer class="video-container">
   <video class="video-player" #videoPlayer autoplay loop muted playsinline preload="auto" (mouseover)="onMouseOver()" (click)="toggleSound(videoPlayer)"  (mouseleave)="onMouseLeave()">
     <source src="assets/videos/bg-video.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 </section>
+
 <section class="footer" style="padding-top: 48px;">
   <div class="footer-content">
     <div class="nav">
-      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn>
+      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn style="cursor: pointer;">
       <div class="links">
         <a [routerLink]="['/home']" fadeIn>Home</a>
         <a [routerLink]="['/about']" fadeIn>About</a>
         <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
-        <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
+        <a [routerLink]="['/contact-us']" fadeIn style="white-space: nowrap;">Contact us</a>
       </div>
     </div>
     <div class="copy-write">

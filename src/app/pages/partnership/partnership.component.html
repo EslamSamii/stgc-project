@@ -1,5 +1,5 @@
 
-<div [ngClass]="{'hide-floating': hideFloatingIcon}" (click)="navigateToFormSection()" [routerLink]="['./']" fragment="contact-us" class="floating-button">
+<div [ngClass]="{'hide-floating': hideFloatingIcon}" (click)="navigateToFormSection()" [routerLink]="['./']" fragment="contact-us" class="floating-button" style="cursor: pointer;">
   <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M11.5 17L13.5 19C13.697 19.197 13.9308 19.3532 14.1882 19.4598C14.4456 19.5665 14.7214 19.6213 15 19.6213C15.2786 19.6213 15.5544 19.5665 15.8118 19.4598C16.0692 19.3532 16.303 19.197 16.5 19C16.697 18.803 16.8532 18.5692 16.9598 18.3118C17.0665 18.0544 17.1213 17.7786 17.1213 17.5C17.1213 17.2214 17.0665 16.9456 16.9598 16.6882C16.8532 16.4308 16.697 16.197 16.5 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M14.5002 14L17.0002 16.5C17.3981 16.8978 17.9376 17.1213 18.5002 17.1213C19.0628 17.1213 19.6024 16.8978 20.0002 16.5C20.3981 16.1022 20.6215 15.5626 20.6215 15C20.6215 14.4374 20.3981 13.8978 20.0002 13.5L16.1202 9.62002C15.5577 9.05821 14.7952 8.74265 14.0002 8.74265C13.2052 8.74265 12.4427 9.05821 11.8802 9.62002L11.0002 10.5C10.6024 10.8978 10.0628 11.1213 9.50023 11.1213C8.93762 11.1213 8.39805 10.8978 8.00023 10.5C7.6024 10.1022 7.37891 9.56262 7.37891 9.00002C7.37891 8.43741 7.6024 7.89784 8.00023 7.50002L10.8102 4.69002C11.7225 3.78016 12.9121 3.20057 14.1909 3.04299C15.4696 2.88541 16.7644 3.15885 17.8702 3.82002L18.3402 4.10002C18.766 4.357 19.2723 4.44613 19.7602 4.35002L21.5002 4.00002" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -21,43 +21,43 @@
 </section>
 
 <section class="desc-section">
-  <div #descOne class="desc">
+  <div class="desc">
     <p>
-      <span>
+      <span fadeIn>
         The strategy for the Center has been developed
       </span>
-      <span >
+      <span fadeIn>
         through a collaborative approach and a robust
       </span>
-      <span >
+      <span fadeIn>
         validation process, with over 300 leaders with
       </span>
-      <span >
+      <span fadeIn>
         expertise in sustainability and/or Travel & Tourism
       </span>
-      <span >
+      <span fadeIn>
         from across the world, including governments and
       </span>
-      <span class="underline" >
+      <span class="underline" fadeIn>
         leadings international organizations.
       </span>
     </p>
   </div>
-  <div #descTwo class="desc">
+  <div class="desc">
     <p>
-      <span >
+      <span fadeIn>
         The Center aims to partner with 100 universities
       </span>
-      <span >
+      <span fadeIn>
         from diverse regions around the world by 2030 -
       </span>
-      <span >
+      <span fadeIn>
         North America, Europe, Asia-Pacific, Latin America,
       </span>
-      <span >
+      <span fadeIn>
         Africa and MENA - and to engage with international
       </span>
-      <span class="underline" >
+      <span class="underline" fadeIn>
         organizations and industry associations.
       </span>
     </p>
@@ -65,7 +65,49 @@
 </section>
 
 <section class="sponsors-container">
-  <div #sponsorsContainer appHorizontalScroll class="sponsors">
+  <div class="indicators sponsors-indicators">
+    <svg [style.opacity]="isScrolledToLeftEnd ? 0.4 : 1" (click)="scrollLeft(sponsorsContainer, 0)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <mask id="path-1-inside-1_3368_320" fill="white">
+      <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
+      </mask>
+      <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F"  mask="url(#path-1-inside-1_3368_320)"/>
+      <g opacity="0.4">
+      <path d="M41.8926 20.1426H30.1074" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M36 14.25L30.1074 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      </svg>
+      <svg [style.opacity]="isScrolledToRightEnd ? 0.4 : 1" (click)="scrollRight(sponsorsContainer, 0)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="path-1-inside-1_3368_325" fill="white">
+        <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
+        </mask>
+        <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F" mask="url(#path-1-inside-1_3368_325)"/>
+        <g clip-path="url(#clip0_3368_325)">
+        <path d="M30.1074 20.1426H41.8926" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M36 14.25L41.8926 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_3368_325">
+        <rect width="20" height="20" fill="white" transform="translate(36 6) rotate(45)"/>
+        </clipPath>
+        </defs>
+      </svg>
+      <svg (click)="scrollRight(sponsorsContainer, 0)" class="mobile-indicator" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.8">
+        <g clip-path="url(#clip0_3352_1874)">
+        <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_3352_1874">
+        <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
+        </clipPath>
+        </defs>
+      </svg>
+
+  </div>
+  <div #sponsorsContainer class="sponsors">
     <h2 fadeIn>We collaborate with</h2>
     <div class="logos-container">
       <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
@@ -73,8 +115,49 @@
   </div>
 </section>
 
-<section appHorizontalScroll #publications class="publications">
-  <div class="publications-container">
+<section #publications class="publications">
+  <div class="indicators sponsors-indicators">
+    <svg [style.opacity]="isScrolledToLeftEnd2 ? 0.4 : 1" (click)="scrollLeft(publicationsContainer, 1)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <mask id="path-1-inside-1_3368_320" fill="white">
+      <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
+      </mask>
+      <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F"  mask="url(#path-1-inside-1_3368_320)"/>
+      <g opacity="0.4">
+      <path d="M41.8926 20.1426H30.1074" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M36 14.25L30.1074 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      </svg>
+      <svg [style.opacity]="isScrolledToRightEnd2 ? 0.4 : 1" (click)="scrollRight(publicationsContainer, 1)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="path-1-inside-1_3368_325" fill="white">
+        <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
+        </mask>
+        <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F" mask="url(#path-1-inside-1_3368_325)"/>
+        <g clip-path="url(#clip0_3368_325)">
+        <path d="M30.1074 20.1426H41.8926" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M36 14.25L41.8926 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_3368_325">
+        <rect width="20" height="20" fill="white" transform="translate(36 6) rotate(45)"/>
+        </clipPath>
+        </defs>
+      </svg>
+      <svg (click)="scrollRight(publicationsContainer, 1)" class="mobile-indicator" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.8">
+        <g clip-path="url(#clip0_3352_1874)">
+        <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_3352_1874">
+        <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
+        </clipPath>
+        </defs>
+      </svg>
+  </div>
+  <div #publicationsContainer class="publications-container">
     <h2 fadeIn customClass="underline" >Publications</h2>
     <div class="scroll-wrapper">
       <div class="cards">
@@ -207,12 +290,12 @@
 
     <div class="footer-content">
       <div class="nav">
-        <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn>
+        <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn style="cursor: pointer;">
         <div class="links">
           <a [routerLink]="['/home']" fadeIn>Home</a>
           <a [routerLink]="['/about']" fadeIn>About</a>
           <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
-          <a [routerLink]="['/contact-us']" fadeIn>Contact us</a>
+          <a [routerLink]="['/contact-us']" fadeIn style="white-space: nowrap;">Contact us</a>
         </div>
       </div>
       <div class="copy-write">
@@ -222,15 +305,3 @@
     </div>
   </div>
 </section>
-
-<app-modal *ngIf="isMessageModalOpen" (closeModal)="isMessageModalOpen= false">
-  <div class="message">
-    <p fadeIn>Thank you {{getFromControlContactForm('name').value}} for showing your interest,<br><br>Our team will be in contact with you</p>
-  </div>
-</app-modal>
-
-<app-modal *ngIf="isSuccessMessageModalOpen" (closeModal)="isSuccessMessageModalOpen= false">
-  <div class="message">
-    <p fadeIn>Thank you {{getFromControl('name').value}} for showing your interest.</p>
-  </div>
-</app-modal>

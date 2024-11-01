@@ -103,6 +103,12 @@ export class AboutUsComponent implements AfterViewInit {
   }
 
   private _handleScroll(skip: boolean = false): void {
+    if(scrollY > 8 * innerHeight)
+      this._AppService.onNavColorChange$.next({color: 'black'});
+      else
+    this._AppService.onNavColorChange$.next({color: 'black', class: 'bg-transparent'});
+
+
     let percentage = (window.scrollY / (this.containerWidth-innerHeight));
     if(percentage > 1) percentage = 1;
     // Handle scaling
@@ -122,7 +128,8 @@ export class AboutUsComponent implements AfterViewInit {
     const minScale2 = 1;
     const maxScale2 = 1.4;
     const scale2 = maxScale2 - ((videoPercentage) * (maxScale2 - minScale2));
-    this.videoContainer.nativeElement.firstElementChild.style.transform = `scale(${scale2})`;
+    if(!this.isSmallScreenView)
+      this.videoContainer.nativeElement.firstElementChild.style.transform = `scale(${scale2})`;
     this._AppService.cursorChange$.next('circle')
   }
 
@@ -135,6 +142,9 @@ export class AboutUsComponent implements AfterViewInit {
 
   ngOnInit(): void {
     scrollTo({left:0, top:0})
+    setTimeout(() => {
+      this._AppService.onNavColorChange$.next({color: 'black', class: 'bg-transparent'});
+    }, 100);
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
     })

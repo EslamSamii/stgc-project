@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 export class AppService {
   public cursorChange$: Subject<'video' | 'circle'> = new Subject<'video' | 'circle'>();
   public onScrollChange$: Subject<void> = new Subject<void>();
+  public onNavColorChange$: Subject<{color: 'white' | 'black' , class?: string}> = new Subject<{color: 'white' | 'black' , class?: string}>();
+  public toaster$: Subject<{message: string, success: boolean}> = new Subject<{message: string, success: boolean}>();
 
   constructor(private _HttpClient: HttpClient) { }
 
