@@ -16,8 +16,8 @@
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
-  animation: pre-loader 4s 0.5s cubic-bezier(1, 0, 0.4, 0.6) forwards;
-  -webkit-animation: pre-loader 4s 0.5s cubic-bezier(1, 0, 0.4, 0.6) forwards;
+  animation: pre-loader 3.5s 0.5s cubic-bezier(1, 0, 0.4, 0.6) forwards;
+  -webkit-animation: pre-loader 3.5s 0.5s cubic-bezier(1, 0, 0.4, 0.6) forwards;
   animation-fill-mode: forwards;
   will-change: transform;
   contain: layout;
@@ -48,8 +48,8 @@
     margin: 0;
     font-weight: 600;
   }
-  animation: fade-in-up 2.9s 1.5s ease-in-out forwards;
-  -webkit-animation: fade-in-up 2.9s 1.5s ease-in-out forwards;
+  animation: fade-in-up 2.3s 1.5s ease-in-out forwards;
+  -webkit-animation: fade-in-up 2.3s 1.5s ease-in-out forwards;
 }
 
 .layout{
