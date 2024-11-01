@@ -9,6 +9,7 @@ import { AppService } from 'src/app/shared/services/app.service';
 })
 export class ContactUsComponent {
 
+  public isSaving: boolean = false;
   public contactForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -28,17 +29,21 @@ export class ContactUsComponent {
   }
 
   public submit(): void{
-    if(this.contactForm.invalid){
+    if(this.contactForm.invalid || this.isSaving){
       this.contactForm.markAllAsTouched();
       this.contactFormRef.nativeElement.reportValidity();
       return;
     }
+    this.isSaving = true;
     this._AppService.contactUs(this.contactForm.value).subscribe({
       next: ()=>{
+        this.contactForm.reset();
+        this.isSaving = false;
         this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest, Our team will be in contact with you`, success: true})
       },
       error: (error)=>{
-        console.log(error)
+        console.log(error);
+        this.isSaving = false;
       }
     })
   }

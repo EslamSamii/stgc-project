@@ -104,6 +104,7 @@ export class PartnershipComponent {
     message: new FormControl('', Validators.required),
   });
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
+  public isSaving: boolean = false;
 
   constructor(private _AppService: AppService, private _ActivatedRoute: ActivatedRoute){}
 
@@ -126,16 +127,20 @@ export class PartnershipComponent {
   }
 
   public submitContactForm(): void{
-    if(this.contactForm.invalid){
+    if(this.contactForm.invalid || this.isSaving){
       this.contactForm.markAllAsTouched();
       this.contactFormRef.nativeElement.reportValidity();
       return;
     }
+    this.isSaving = true;
     this._AppService.contactUs(this.contactForm.value).subscribe({
       next: ()=>{
+        this.isSaving = false;
+        this.contactForm.reset();
         this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest, Our team will be in contact with you`, success: true})
       },
       error: (error)=>{
+        this.isSaving = false;
         console.log(error)
       }
     })
@@ -183,18 +188,22 @@ export class PartnershipComponent {
   }
 
   public submit(): void{
-    if(this.downloadFormGroup.invalid){
+    if(this.downloadFormGroup.invalid || this.isSaving){
       this.downloadFormGroup.markAllAsTouched();
       this.downloadFormGroupRef.nativeElement.reportValidity();
       return;
     }
+    this.isSaving = true;
     this._AppService.downloadPublicationData(this.downloadFormGroup.value).subscribe({
       next: ()=>{
+        this.downloadFormGroup.reset();
+        this.isSaving = false;
         this.isDownloadModalOpened =false;
         this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest`, success: true});
         this._saveFile(this.selectedPublication?.file)
       },
       error: (error)=>{
+        this.isSaving = false;
         console.log(error)
       }
     })
