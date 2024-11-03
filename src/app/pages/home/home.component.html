@@ -45,7 +45,7 @@
   </div>
 </section>
 
-<img *ngFor="let image of bgImages" #imagesRef [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
+<img *ngFor="let image of bgImages" #imagesRef [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="getImageSrc(image.src)">
 
 <section class="sponsors-container">
   <h2 fadeIn>We collaborate with</h2>

@@ -180,4 +180,9 @@ export class AboutUsComponent implements AfterViewInit {
       videoElement.muted = true;
     }
   }
+
+  public getImageSrc(url: string): string | undefined {
+    const cachedImage = this._AppService.getImage(url);
+    return cachedImage ? cachedImage.src : undefined;
+  }
 }

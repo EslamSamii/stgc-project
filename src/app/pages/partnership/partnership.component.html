@@ -10,12 +10,12 @@
     <span>Partner<br>with us</span>
 </div>
 <section #header class="header">
-  <img src="assets/images/partners-bg.jpg">
+  <img [src]="getImageSrc('assets/images/partners-bg.jpg')">
   <div class="floating-images">
     <p fadeIn>To lead sustainable tourism, STGC is collaborating with top researchers and leading universities and organizations to deliver actionable insights, tools, and solutions that benefit climate, nature, and communities.</p>
-    <img #picOne class="pic-1" src="assets/images/pic1.jpg">
-    <img #picTwo class="pic-2" src="assets/images/pic2.jpg">
-    <img #picThree class="pic-3" src="assets/images/pic3.jpg">
+    <img #picOne class="pic-1" [src]="getImageSrc('assets/images/pic1.jpg')">
+    <img #picTwo class="pic-2" [src]="getImageSrc('assets/images/pic2.jpg')" >
+    <img #picThree class="pic-3" [src]="getImageSrc('assets/images/pic3.jpg')">
     <h1><span fadeIn>Collaborative initiatives</span></h1>
   </div>
 </section>

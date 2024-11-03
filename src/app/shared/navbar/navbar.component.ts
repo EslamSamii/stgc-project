@@ -69,4 +69,9 @@ export class NavbarComponent {
       this.isAnimating = false
     }, 700);
   }
+
+  public getImageSrc(url: string): string | undefined {
+    const cachedImage = this._AppService.getImage(url);
+    return cachedImage ? cachedImage.src : undefined;
+  }
 }

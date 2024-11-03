@@ -264,4 +264,8 @@ export class PartnershipComponent {
       this.isScrolledToRightEnd2 = element.scrollLeft + element.clientWidth >= element.scrollWidth -30;
   }, 500);
   }
+  public getImageSrc(url: string): string | undefined {
+    const cachedImage = this._AppService.getImage(url);
+    return cachedImage ? cachedImage.src : undefined;
+  }
 }

@@ -60,6 +60,23 @@ export class AppComponent {
         }, 4000);
       }
     })
+    const imagesToPreload = [
+      'assets/images/section1.jpg',
+      'assets/images/section2.jpg',
+      'assets/images/STGC-black.svg',
+      'assets/images/STGC.svg',
+      'assets/images/desc-img1.jpg',
+      'assets/images/desc-img2.jpg',
+      'assets/images/bg-1.jpg',
+      'assets/images/image-1.jpg',
+      'assets/images/image-2.jpg',
+      'assets/images/partners-bg.jpg',
+      'assets/images/pic1.jpg',
+      'assets/images/pic2.jpg',
+      'assets/images/pic3.jpg',
+      'assets/images/Menu.jpg',
+    ];
+    this._AppService.preloadImages(imagesToPreload);
   }
 
   ngOnDestroy(): void {

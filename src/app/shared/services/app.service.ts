@@ -11,7 +11,7 @@ export class AppService {
   public onScrollChange$: Subject<void> = new Subject<void>();
   public onNavColorChange$: Subject<{color: 'white' | 'black' , class?: string}> = new Subject<{color: 'white' | 'black' , class?: string}>();
   public toaster$: Subject<{message: string, success: boolean}> = new Subject<{message: string, success: boolean}>();
-
+  private _imageCache: Map<string, HTMLImageElement> = new Map();
   constructor(private _HttpClient: HttpClient) { }
 
   public contactUs(data:{name: string, address: string, message: string}): Observable<any>{
@@ -65,6 +65,20 @@ export class AppService {
         element.style.backgroundPosition = `${position}% 0`;
       }
     });
+  }
+
+
+  public preloadImages(imageUrls: string[]): void {
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+      this._imageCache.set(url, img);
+      console.log(this._imageCache)
+    });
+  }
+
+  public getImage(url: string): HTMLImageElement | undefined {
+    return this._imageCache.get(url);
   }
 
 }
