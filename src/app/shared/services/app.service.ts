@@ -73,7 +73,6 @@ export class AppService {
       const img = new Image();
       img.src = url;
       this._imageCache.set(url, img);
-      console.log(this._imageCache)
     });
   }
 

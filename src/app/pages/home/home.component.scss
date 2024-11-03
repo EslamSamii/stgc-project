@@ -15,7 +15,7 @@
   .scroll-button{
     cursor: pointer;
     position: fixed;
-    top: 90vh;
+    bottom: 10vh;
     left: 48px;
     display: flex;
     justify-content: center;
@@ -30,6 +30,9 @@
     -moz-transition: all 0.4s 0s ease;
     -ms-transition: all 0.4s 0s ease;
     -o-transition: all 0.4s 0s ease;
+    @media(max-width: 992px){
+      bottom: 100px;
+    }
     & > div{
       display: block;
       border: 2px solid rgb(255, 255, 255, 80%);
@@ -73,6 +76,11 @@
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    transition: all 0.3s 0s;
+    -webkit-transition: all 0.3s 0s;
+    -moz-transition: all 0.3s 0s;
+    -ms-transition: all 0.3s 0s;
+    -o-transition: all 0.3s 0s;
     @media(max-width: 992px){
       font-size: 16px;
     }
@@ -116,6 +124,11 @@
       left: 15px;
     }
     h1{
+      transition: all 0.3s 0s;
+      -webkit-transition: all 0.3s 0s;
+      -moz-transition: all 0.3s 0s;
+      -ms-transition: all 0.3s 0s;
+      -o-transition: all 0.3s 0s;
       color: inherit;
       font-weight: 600;
       font-size: 72px;
@@ -125,6 +138,11 @@
       }
     }
     p{
+      transition: all 0.3s 0s;
+      -webkit-transition: all 0.3s 0s;
+      -moz-transition: all 0.3s 0s;
+      -ms-transition: all 0.3s 0s;
+      -o-transition: all 0.3s 0s;
       color: inherit;
       font-size: 16px;
       font-weight: 600;
@@ -164,11 +182,21 @@
       left: 16px;
     }
     h6{
+      transition: all 0.3s 0s;
+      -webkit-transition: all 0.3s 0s;
+      -moz-transition: all 0.3s 0s;
+      -ms-transition: all 0.3s 0s;
+      -o-transition: all 0.3s 0s;
       font-weight: bold;
       font-size: 16px;
       color: white;
     }
     p{
+      transition: all 0.3s 0s;
+      -webkit-transition: all 0.3s 0s;
+      -moz-transition: all 0.3s 0s;
+      -ms-transition: all 0.3s 0s;
+      -o-transition: all 0.3s 0s;
       margin: 0;
       font-weight: bold;
       font-size: 40px;
@@ -183,6 +211,11 @@
     @media (max-width: 992px) {
     }
     p{
+      transition: all 0.3s 0s;
+      -webkit-transition: all 0.3s 0s;
+      -moz-transition: all 0.3s 0s;
+      -ms-transition: all 0.3s 0s;
+      -o-transition: all 0.3s 0s;
       position: fixed;
       top: calc(50vh - 10px);
       right: 48px;
@@ -1010,7 +1043,7 @@
     align-items: center;
     gap: 24px;
     @media (max-width: 992px) {
-      width: 100vw;
+      width: 100%;
       flex-wrap: wrap;
       flex-direction: column;
     }
