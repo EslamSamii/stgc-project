@@ -17,20 +17,27 @@ export class FadeInDirective {
   constructor(private _elementRef: ElementRef, private _appService: AppService) { }
 
   ngOnInit(): void {
-    if(!this.customOnly) this._elementRef.nativeElement.classList.add('transition-delay-4')
-    if(this._elementRef.nativeElement.getBoundingClientRect().top - (innerHeight/(this.scrollToEnd ? 2 : 1 )) < 0){
-      if(!this.customOnly) this._elementRef.nativeElement.classList.add('opacity-1')
-      if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
-    }
-    if(!this.noScroll)
-      this._appService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
-        next:  ()=>{
-          if(this._elementRef.nativeElement.getBoundingClientRect().top - innerHeight < 0){
-            if(!this.customOnly) this._elementRef.nativeElement.classList.add('opacity-1')
-            if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
-          }
+    setTimeout(() => {
+      if(!this.customOnly) this._elementRef.nativeElement.classList.add('transition-delay-4')
+        if(this._elementRef.nativeElement.getBoundingClientRect().top - (innerHeight) < 0){
+          if(!this.customOnly) this._elementRef.nativeElement.classList.add('opacity-1')
+          if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
         }
-      })
+        if(!this.noScroll)
+          this._appService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
+            next:  ()=>{
+              if(this._elementRef.nativeElement.getBoundingClientRect().top - innerHeight < 0){
+                if(!this.customOnly) this._elementRef.nativeElement.classList.add('opacity-1')
+                  if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
+              }
+            }
+          })
+        else{
+          if(!this.customOnly) this._elementRef.nativeElement.classList.add('opacity-1')
+          if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
+        }
+    }, 500);
+
   }
 
   ngOnDestroy(): void {
