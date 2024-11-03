@@ -167,9 +167,9 @@ export class PartnershipComponent {
     const minTransition = this.isSmallScreenView ? 0 : this.isMediumScreen ? 0 : 0;
     const maxTransition = this.isSmallScreenView ? 500 : this.isMediumScreen ? 650 : 607;
     const transition = maxTransition - ((percentage) * (maxTransition - minTransition));
-    this.picOne.nativeElement.style.top = `${transition}px`  ;
-    this.picTwo.nativeElement.style.top = `${transition}px`  ;
-    this.picThree.nativeElement.style.top = `${transition}px`  ;
+    this.picOne.nativeElement.style.top = `${transition}px`;
+    this.picTwo.nativeElement.style.top = `${transition}px`;
+    this.picThree.nativeElement.style.top = `${transition}px`;
     const minLeft = this.isMediumScreen ? 63 : this.isSmallScreenView ? 73 : 33;
     const maxLeft = this.isMediumScreen ? 80 : this.isSmallScreenView ? 90 : 60;
   }
