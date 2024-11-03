@@ -155,7 +155,7 @@ export class PartnershipComponent {
   }
 
   private _handleScroll(): void {
-    if(scrollY > ( this.isSmallScreenView ? 991 : this.isMediumScreen ? 1366 :1142))
+    if(scrollY > 0)
       this._AppService.onNavColorChange$.next({color:'black'});
     else
       this._AppService.onNavColorChange$.next({color: 'white'});
@@ -165,7 +165,7 @@ export class PartnershipComponent {
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
     let percentage = (window.scrollY / (this.header.nativeElement.getBoundingClientRect().height));
     const minTransition = this.isSmallScreenView ? 0 : this.isMediumScreen ? 0 : 0;
-    const maxTransition = this.isSmallScreenView ? 500 : this.isMediumScreen ? 650 : 607;
+    const maxTransition = this.isSmallScreenView ? 550 : this.isMediumScreen ? 650 : 607;
     const transition = maxTransition - ((percentage) * (maxTransition - minTransition));
     this.picOne.nativeElement.style.top = `${transition}px`;
     this.picTwo.nativeElement.style.top = `${transition}px`;
