@@ -11,6 +11,7 @@
     "serve:ssr": "node dist/stgc/server/main.js",
     "build:ssr": "ng build && ng run stgc:server",
     "prerender": "ng run stgc:prerender"
+
   },
   "private": true,
   "dependencies": {
