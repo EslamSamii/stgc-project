@@ -1,5 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, Subject, takeUntil, tap } from 'rxjs';
 import { AppService } from 'src/app/shared/services/app.service';
@@ -8,53 +7,6 @@ import { AppService } from 'src/app/shared/services/app.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [
-    trigger('fadeInOut', [
-      state('inView', style({ opacity: 1})),
-      state('outOfView', style({ opacity: 0})),
-      transition('outOfView => inView', [
-        animate(
-          '0.3s {{ delay }}s',
-          keyframes([
-            style({ opacity: 0}),
-            style({ opacity: 1}),
-          ])
-        )
-      ],{ params: { delay: 0.1 } }),
-      transition('inView => outOfView', [
-        animate(
-          '0.3s {{ delay }}s',
-          keyframes([
-            style({ opacity: 1}),
-            style({ opacity: 0}),
-          ])
-        )
-      ], { params: { delay:  0} })
-    ]),
-    trigger('slideUp', [
-      state('inView', style({ transform: 'translateY(0)', opacity:1 })),
-      state('outOfView', style({ transform: 'translateY(100)', opacity:0 })),
-      transition('outOfView => inView', [
-        animate(
-          '0.4s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
-          keyframes([
-            style({ transform: 'translateY(100vh)', opacity:0, offset: 0 }),
-            style({ transform: 'translateY(0vh)', opacity:1, offset: 1 }),
-          ])
-        )
-      ],{ params: { delay: 0.2 } }),
-      transition('inView => outOfView', [
-        animate(
-          '0.2s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
-          keyframes([
-            style({ opacity: 1, offset: 0 }),
-            style({ opacity: 0, offset: 1}),
-          ])
-        )
-      ], { params: { delay: 0 } })
-    ]),
-
-  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -228,8 +180,8 @@ export class HomeComponent implements OnInit {
     this._AppService.onScrollChange$.pipe(
       tap(()=>{
         const section = scrollY / innerHeight;
-        this.displayLastImageSection =  section <= 3.2 && section >= 2.5;
-        this.displaySecondSection =  this.currentSection >= 2 && section <= 3.2;
+        this.displayLastImageSection = section <= 3.3 && section >= 2.5;
+        this.displaySecondSection =  this.currentSection >= 2 && section <= 3.3;
         if(scrollY > 4 * innerHeight)
           this._AppService.onNavColorChange$.next({color:'black'});
         else

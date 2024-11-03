@@ -110,11 +110,6 @@
     flex-direction: column;
     gap: 16px;
     color: white;
-    transition: all 0.9s 0s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-transition: all 0.9s 0s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -moz-transition: all 0.9s 0s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -ms-transition: all 0.9s 0s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -o-transition: all 0.9s 0s cubic-bezier(0.215, 0.61, 0.355, 1);
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -208,14 +203,7 @@
   }
   .captions{
     height: 100%;
-    @media (max-width: 992px) {
-    }
     p{
-      transition: all 0.3s 0s;
-      -webkit-transition: all 0.3s 0s;
-      -moz-transition: all 0.3s 0s;
-      -ms-transition: all 0.3s 0s;
-      -o-transition: all 0.3s 0s;
       position: fixed;
       top: calc(50vh - 10px);
       right: 48px;
@@ -1157,7 +1145,7 @@
 .icon-scroll{
   position: absolute;
   left: 0px;
-  top: 75vh;
+  top: 65vh;
   display: flex;
   width: 100vw;
   @media (max-width: 992px) {

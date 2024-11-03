@@ -1,13 +1,13 @@
 <section class="header">
-  <div [@fadeInOut]="{value: currentSection === 0 ? 'inView' : 'outOfView'}" #headerContentOne class="content">
+  <div [ngClass]="{'transition-delay-4 opacity-1': currentSection === 0}"  #headerContentOne class="content transition-4">
     <div class="caption">
       SUSTAINABLE TOURISM GLOBAL CENTER
       <div class="caption-line"></div>
     </div>
-    <h1 fadeIn><span >Accelerating & Driving</span><br><span >Positive Change</span></h1>
+    <h1><span >Accelerating & Driving</span><br><span >Positive Change</span></h1>
     <p><span>A major new hub to support Travel & Tourism's</span><br><span>critical journey towards a sustainable future</span></p>
   </div>
-  <div [@fadeInOut]="{value: currentSection === 1 ? 'inView' : 'outOfView'}"  #headerContentTwo class="content-2">
+  <div [ngClass]="{'transition-delay-4 opacity-1': currentSection === 1}"   #headerContentTwo class="content-2 transition-4">
     <p>
         Founded in 2021, the Sustainable Tourism Global Center (STGC) is
       <br>
@@ -31,15 +31,15 @@
 </section>
 
 <section class="images-section" [style.height.vh]="200">
-  <div [@fadeInOut]="{value: displaySecondSection ? 'inView' : 'outOfView'}" class="title">
-    <h6 fadeIn>Why now?</h6>
-    <p><span fadeIn>A global climate</span><br><span fadeIn>and biodiversity crisis</span></p>
+  <div [ngClass]="{'transition-delay-4 opacity-1': displaySecondSection}" class="transition-4 title">
+    <h6 >Why now?</h6>
+    <p><span >A global climate</span><br><span >and biodiversity crisis</span></p>
   </div>
   <div class="captions">
-    <p [@fadeInOut]="{value: currentSection ===2 ? 'inView' : 'outOfView'}">
+    <p [ngClass]="{'transition-delay-4 opacity-1': currentSection ===2}" class="transition-4">
       Climate change is a global crisis, described as "a code red for humanity" by the UN Secretary General. No place or community is immune, with disadvantaged communities, including Travel & Tourism destinations, being particularly vulnerable.
     </p>
-    <p [@fadeInOut]="{value: displayLastImageSection ? 'inView' : 'outOfView'}">
+    <p [ngClass]="{'transition-delay-4 opacity-1': displayLastImageSection}" class="transition-4">
       Rising temperatures drive environmental degradation, natural disasters, and food and water insecurity. Sea levels are rising, coral reefs are dying, and biodiversity is declining. Despite global commitments, progress is too slow.
     </p>
   </div>
