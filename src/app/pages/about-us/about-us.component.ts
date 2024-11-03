@@ -103,10 +103,14 @@ export class AboutUsComponent implements AfterViewInit {
   }
 
   private _handleScroll(skip: boolean = false): void {
-    if(scrollY > 8 * innerHeight)
+    if(
+      (scrollY > 3 * innerHeight && this.isSmallScreenView) ||
+      (scrollY > 7 * innerHeight && this.isMediumScreenView) ||
+      (scrollY > 8 * innerHeight && !this.isMediumScreenView && !this.isSmallScreenView)
+    )
       this._AppService.onNavColorChange$.next({color: 'black'});
-      else
-    this._AppService.onNavColorChange$.next({color: 'black', class: 'bg-transparent'});
+    else
+      this._AppService.onNavColorChange$.next({color: 'black', class: 'bg-transparent'});
 
 
     let percentage = (window.scrollY / (this.containerWidth-innerHeight));

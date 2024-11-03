@@ -185,6 +185,9 @@
     .card{
       width: 318px;
       height: 318px;
+      @media (max-width: 992px) {
+        height: 350px;
+      }
       & > div{
         width: 100%;
         height: 100%;
