@@ -74,7 +74,7 @@
 </section>
 
 <section class="footer" style="margin-bottom: 150px;">
-  <h2><span customClass="underline" fadeIn>Supporting a just transition</span><span customClass="underline" fadeIn>to sustainable tourism, a healthier</span><span customClass="underline" fadeIn>planet and thriving communities</span></h2>
+  <h2 customClass="underline slide-up-animation" [customOnly]="true" fadeIn><span customClass="underline" [customOnly]="true" fadeIn>Supporting a just transition</span><span customClass="underline" fadeIn [customOnly]="true">to sustainable tourism, a healthier</span><span customClass="underline" fadeIn [customOnly]="true">planet and thriving communities</span></h2>
 </section>
 
 <section #videoContainer class="video-container">
@@ -87,17 +87,17 @@
 <section class="footer" style="padding-top: 48px;">
   <div class="footer-content">
     <div class="nav">
-      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" fadeIn style="cursor: pointer;">
+      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg"  style="cursor: pointer;">
       <div class="links">
-        <a [routerLink]="['/home']" fadeIn>Home</a>
-        <a [routerLink]="['/about']" fadeIn>About</a>
-        <a [routerLink]="['/partnerships']" fadeIn>Partnerships</a>
-        <a [routerLink]="['/contact-us']" fadeIn style="white-space: nowrap;">Contact us</a>
+        <a [routerLink]="['/home']" >Home</a>
+        <a [routerLink]="['/about']" >About</a>
+        <a [routerLink]="['/partnerships']" >Partnerships</a>
+        <a [routerLink]="['/contact-us']"  style="white-space: nowrap;">Contact us</a>
       </div>
     </div>
     <div class="copy-write">
-      <p fadeIn>Sustainable Tourism Global Center.© All rights reserved 2030</p>
-      <a fadeIn href="assets/reports/Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
+      <p >Sustainable Tourism Global Center.© All rights reserved 2030</p>
+      <a  href="assets/reports/Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
     </div>
   </div>
 </section>

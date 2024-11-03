@@ -18,14 +18,14 @@ export class FadeInDirective {
   ngOnInit(): void {
     if(this._elementRef.nativeElement.getBoundingClientRect().top - (innerHeight/(this.scrollToEnd ? 2 : 1 )) < 0){
       if(!this.customOnly) this._elementRef.nativeElement.classList.add('fade-in-up-animation')
-      if(this.customClass) this._elementRef.nativeElement.classList.add(this.customClass);
+      if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
     }
     if(!this.noScroll)
       this._appService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
         next:  ()=>{
           if(this._elementRef.nativeElement.getBoundingClientRect().top - innerHeight < 0){
             if(!this.customOnly) this._elementRef.nativeElement.classList.add('fade-in-up-animation')
-            if(this.customClass) this._elementRef.nativeElement.classList.add(this.customClass);
+            if(this.customClass) this._elementRef.nativeElement.classList.add(...this.customClass.split(' '));
           }
         }
       })

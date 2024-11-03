@@ -159,13 +159,13 @@ export class PartnershipComponent {
       this._AppService.onNavColorChange$.next({color:'black'});
     else
       this._AppService.onNavColorChange$.next({color: 'white'});
-    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || scrollY + innerHeight < 1366;
+    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || scrollY < 400;
     if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
     let percentage = (window.scrollY / (this.header.nativeElement.getBoundingClientRect().height));
     const minTransition = this.isSmallScreenView ? 0 : this.isMediumScreen ? 0 : 0;
-    const maxTransition = this.isSmallScreenView ? 452 : this.isMediumScreen ? 523 : 381;
+    const maxTransition = this.isSmallScreenView ? 500 : this.isMediumScreen ? 650 : 607;
     const transition = maxTransition - ((percentage) * (maxTransition - minTransition));
     this.picOne.nativeElement.style.top = `${transition}px`  ;
     this.picTwo.nativeElement.style.top = `${transition}px`  ;

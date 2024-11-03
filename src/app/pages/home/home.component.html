@@ -81,20 +81,6 @@
           </clipPath>
           </defs>
         </svg>
-        <!-- <svg (click)="scrollRight(sponsorsContainer, 0)" class="mobile-indicator" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.8">
-          <g clip-path="url(#clip0_3352_1874)">
-          <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-          <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
-          </g>
-          <defs>
-          <clipPath id="clip0_3352_1874">
-          <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
-          </clipPath>
-          </defs>
-        </svg> -->
     </div>
     <div class="buttons">
       <button
@@ -166,21 +152,6 @@
           </clipPath>
           </defs>
         </svg>
-        <!-- <svg (click)="scrollRight(stakeholderGroupsRef, 1)"  class="mobile-view" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.8">
-          <g clip-path="url(#clip0_3220_936)">
-          <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-          <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-          </g>
-          <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
-          </g>
-          <defs>
-          <clipPath id="clip0_3220_936">
-          <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
-          </clipPath>
-          </defs>
-        </svg> -->
-
     </div>
   </div>
 </section>
@@ -197,8 +168,8 @@
         <div class="desc">
           <div *ngFor="let desc of card.desc; let index = index" class="desc-content-{{card.desc.length - index}}">
             <h3 style="color: black; margin-bottom: 70px;font-size: 28px;font-weight: 900;">{{desc.count}}.</h3>
-              <h3 fadeIn>{{desc.title}}</h3>
-              <p fadeIn>{{desc.content}}</p>
+              <h3 fadeIn customClass="slide-up-animation" [customOnly]="true">{{desc.title}}</h3>
+              <p fadeIn customClass="slide-up-animation" [customOnly]="true">{{desc.content}}</p>
           </div>
         </div>
       </div>
@@ -251,17 +222,17 @@
   </div>
   <div class="footer-content">
     <div class="nav">
-      <img [routerLink]="['/home']" fadeIn src="assets/images/STGC-black.svg" style="cursor: pointer;">
+      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" style="cursor: pointer;">
       <div class="links">
-        <a [routerLink]="['/home']" fadeIn>Home</a>
-        <a [routerLink]="['/about']" fadeIn>About</a>
-        <a [routerLink]="['/partnerships']" fadeIn>Partnerships</a>
-        <a [routerLink]="['/contact-us']" fadeIn style="white-space: nowrap;">Contact us</a>
+        <a [routerLink]="['/home']" >Home</a>
+        <a [routerLink]="['/about']" >About</a>
+        <a [routerLink]="['/partnerships']" >Partnerships</a>
+        <a [routerLink]="['/contact-us']" style="white-space: nowrap;">Contact us</a>
       </div>
     </div>
     <div class="copy-write">
-      <p fadeIn>Sustainable Tourism Global Center.© All rights reserved 2030</p>
-      <a fadeIn href="assets/reports/Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
+      <p >Sustainable Tourism Global Center.© All rights reserved 2030</p>
+      <a  href="assets/reports/Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
     </div>
   </div>
 </section>

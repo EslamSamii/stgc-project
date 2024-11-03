@@ -57,7 +57,7 @@
       font-weight: bold;
       color: white;
       position: absolute;
-      bottom: 135px;
+      top: 330px;
       left: 50%;
       transform: translateX(-50%);
       -webkit-transform: translateX(-50%);
@@ -65,13 +65,13 @@
       -ms-transform: translateX(-50%);
       -o-transform: translateX(-50%);
       @media (max-width: 992px)  {
+        top: 275px;
         font-size: 16px;
-        bottom: 88px;
         width: 340px;
       }
     }
     .pic-1, .pic-2, .pic-3{
-      top: 381px;
+      top: 607px;
       transition: all 0.4s;
       -webkit-transition: all 0.4s;
       -moz-transition: all 0.4s;
@@ -80,12 +80,12 @@
       width:319px;
       height: 400px;
       @media (min-width: 993px) and (max-width: 1439px) {
-        top: 523px;
+        top: 650px;
         width: 255px;
         height: 320px;
       }
       @media (max-width: 992px)  {
-        top: 452px;
+        top: 500px;
         width: 223px;
         height: 280px;
       }
@@ -123,9 +123,10 @@
   .desc{
     display: flex;
     padding: 48px;
+    padding-top: 225px;
     justify-content: end;
     align-items: center;
-    height: 900px;
+    height: 525px;
     p{
       margin: 0;
       font-size: 40px;
@@ -151,7 +152,7 @@
 .sponsors-container{
   position: relative;
   background-color: white;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -167,13 +168,13 @@
   .indicators{
     display: flex;
     padding: 10px 48px;
-    justify-content: center;
     gap: 32px;
     @media(max-width: 992px){
+      justify-content: center;
       padding: 10px 16px;
-      display: none;
     }
     svg{
+      cursor: pointer;
       border-radius: 20px;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
@@ -191,9 +192,6 @@
         background-color: #2EA47F;
         fill: #2EA47F;
 }
-      @media (max-width: 992px) {
-        display: none;
-      }
     }
 
     .mobile-indicator{
@@ -246,46 +244,35 @@
   justify-content: center;
   width: 100vw;
   @media (max-width: 992px) {
-    justify-content: start;
-    left: 16px;
+    top: 60vh;
   }
   .indicators{
     display: flex;
     z-index: 2;
     gap: 32px;
-
-  }
-  svg{
-    @media (max-width: 992px) {
-      display: none;
-    }
-  }
-  .mobile-view{
-    display: none;
-    @media (max-width: 992px) {
-      display: block;
-    }
   }
 }
 
 .publications{
   position: relative;
   width: 100vw;
-  gap: 40px;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   .indicators{
+    margin-bottom: 60px;
     display: flex;
     padding: 10px 48px;
-    justify-content: center;
     gap: 32px;
     @media(max-width: 992px){
-      padding: 10px 16px;
-      display: none;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 0px;
+      padding: 50px 16px;
     }
     svg{
+      cursor: pointer;
       border-radius: 20px;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
@@ -303,17 +290,9 @@
         background-color: #2EA47F;
         fill: #2EA47F;
 }
-      @media (max-width: 992px) {
-        display: none;
-      }
+
     }
 
-    .mobile-indicator{
-      display: none;
-      @media (max-width: 992px) {
-        display: block;
-      }
-    }
   }
   .publications-container{
     position: relative;

@@ -298,8 +298,6 @@
       font-weight: 600;
       @media (max-width: 992px) {
         font-size: 48px;
-        width: 70vw;
-        text-wrap: unset;
       }
     }
     .gallery-cards{
@@ -1022,9 +1020,8 @@
   animation-delay: 0.5s !important;
 }
 .buttons-group{
-  right: 48px;
   top: 80vh;
-  min-width: calc(50vw + 40px);
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1097,11 +1094,10 @@
 .indicators{
   display: flex;
   padding: 10px 48px;
-  justify-content: end;
   gap: 32px;
   @media(max-width: 992px){
+    justify-content: center;
     padding: 10px 16px;
-    display: none;
   }
   svg{
     border-radius: 20px;
@@ -1121,17 +1117,9 @@
       background-color: #2EA47F;
       fill: #2EA47F;
     }
-    @media (max-width: 992px) {
-      display: none;
-    }
+
   }
 
-  .mobile-indicator{
-    display: none;
-    @media (max-width: 992px) {
-      display: block;
-    }
-  }
 }
 .sponsors{
   z-index: 1;
@@ -1168,30 +1156,18 @@
 }
 .icon-scroll{
   position: absolute;
-  left: 48px;
+  left: 0px;
   top: 75vh;
   display: flex;
-  justify-content: center;
   width: 100vw;
   @media (max-width: 992px) {
-    justify-content: start;
-    left: 16px;
+    justify-content: center;
+    top: 60vh;
   }
   .indicators{
     display: flex;
     z-index: 2;
     gap: 32px;
-  }
-  svg{
-    @media (max-width: 992px) {
-      display: none;
-    }
-  }
-  .mobile-view{
-    display: none;
-    @media (max-width: 992px) {
-      display: block;
-    }
   }
 }
 

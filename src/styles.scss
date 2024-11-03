@@ -187,7 +187,29 @@ body{
 button{
   cursor: pointer;
 }
-.opacity-0{
+
+.slide-up-animation{
   opacity: 0;
-  z-index: -1;
+  display: block;
+  animation: slide-up-animation forwards 1s;
+  -webkit-animation: slide-up-animation forwards 1s;
+}
+
+@keyframes slide-up-animation{
+  0%{
+    opacity: 0;
+    transform: translateY(100px);
+    -webkit-transform: translateY(100px);
+    -moz-transform: translateY(100px);
+    -ms-transform: translateY(100px);
+    -o-transform: translateY(100px);
+}
+100%{
+  opacity: 1;
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+}
 }
