@@ -159,8 +159,11 @@ export class PartnershipComponent {
       this._AppService.onNavColorChange$.next({color:'black'});
     else
       this._AppService.onNavColorChange$.next({color: 'white'});
-    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || scrollY < 400;
-    if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
+    setTimeout(() => {
+      const viewportHeight = window.visualViewport ? window.visualViewport.height : innerHeight;
+      this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - viewportHeight < 0 || scrollY < 400;
+    }, 500);
+      if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
     let percentage = (window.scrollY / (this.header.nativeElement.getBoundingClientRect().height));
