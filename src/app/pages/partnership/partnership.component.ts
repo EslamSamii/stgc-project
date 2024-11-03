@@ -164,7 +164,7 @@ export class PartnershipComponent {
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
     let percentage = (window.scrollY / (this.header.nativeElement.getBoundingClientRect().height));
-    const minTransition = this.isSmallScreenView ? 0 : this.isMediumScreen ? 0 : 0;
+    const minTransition = this.isSmallScreenView ? 250 : this.isMediumScreen ? 350 : 300;
     const maxTransition = this.isSmallScreenView ? 550 : this.isMediumScreen ? 650 : 607;
     const transition = maxTransition - ((percentage) * (maxTransition - minTransition));
     this.picOne.nativeElement.style.top = `${transition}px`;

@@ -72,6 +72,7 @@
     }
     .pic-1, .pic-2, .pic-3{
       top: 607px;
+      z-index: 1;
       transition: all 0.4s;
       -webkit-transition: all 0.4s;
       -moz-transition: all 0.4s;
@@ -126,7 +127,7 @@
     padding-top: 225px;
     justify-content: end;
     align-items: center;
-    height: 525px;
+    min-height: 525px;
     p{
       margin: 0;
       font-size: 40px;
