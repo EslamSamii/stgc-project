@@ -1,21 +1,21 @@
 <nav class="nav-header" [ngClass]="{'hide-nav-top': scrollTopDir, 'black-header' : color === 'black'}">
-  <div class="header {{customClass}}">
+  <div class="header {{isMenuOpened ? '' : customClass}}">
     <div>
       <img
-        [routerLink]="['/home']"
-        class="logo"
-        style="transition: transform 0.3s ease;cursor: pointer;"
-        width="65" height="30" src="assets/images/STGC.svg">
+      [routerLink]="['/home']"
+      class="logo"
+      style="transition: transform 0.3s ease;cursor: pointer;"
+      width="65" height="30" src="assets/images/STGC.svg">
     </div>
     <div (click)="toggleMenu()" class="menu-btn">
       <svg
-        [ngClass]="{'active': toggleClicked}"
-        class="menu-icon"
-        width="40"
-        height="30"
-        viewBox="0 0 40 25"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      [ngClass]="{'active': toggleClicked}"
+      class="menu-icon"
+      width="40"
+      height="30"
+      viewBox="0 0 40 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       >
         <line class="line1" x1="5" y1="5" x2="35" y2="5" stroke="currentColor" stroke-width="2"/>
         <line class="line2" x1="5" y1="13" x2="35" y2="13" stroke="currentColor" stroke-width="2"/>
@@ -29,19 +29,19 @@
     <div *ngIf="isMenuOpened" class="menu" [ngClass]="{'slide-out': hideFlag}">
       <img src="assets/images/Menu.jpg">
       <div class="links">
-        <a (click)="toggleMenu()" [routerLink]="['/home']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu(true)" [routerLink]="['/home']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Home
         </a>
-        <a (click)="toggleMenu()" [routerLink]="['/about']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu(true)" [routerLink]="['/about']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
-          About
+          About us
         </a>
-        <a (click)="toggleMenu()" [routerLink]="['/partnership']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu(true)" [routerLink]="['/partnerships']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
-          Partnership
+          Partnerships
         </a>
-        <a (click)="toggleMenu()" [routerLink]="['/contact-us']" routerLinkActive="link-active" >
+        <a (click)="toggleMenu(true)" [routerLink]="['/contact-us']" routerLinkActive="link-active" >
           <svg xmlns="http://www.w3.org/2000/svg" height="60px" viewBox="0 -960 960 960" width="60px" fill="#AFE9D7"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
           Contact us
         </a>

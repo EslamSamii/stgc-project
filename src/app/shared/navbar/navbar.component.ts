@@ -36,12 +36,12 @@ export class NavbarComponent {
     this._AppService.onNavColorChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: (res)=>{
         this.color = res.color;
-        this.customClass = res.class;
+        this.customClass = res.class || '';
       }
     })
   }
 
-  public toggleMenu(): void{
+  public toggleMenu(navigate: boolean = false): void{
     if(this.isAnimating) return;
     this.isAnimating = true;
     this.toggleClicked = !this.toggleClicked
@@ -56,7 +56,7 @@ export class NavbarComponent {
       setTimeout(() => {
         this.color = 'white'
       });
-      else
+    else if(!navigate)
       setTimeout(() => {
         this.color = this.prevColor
       }, 300);

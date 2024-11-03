@@ -1,7 +1,7 @@
 <section class="header">
   <div [@fadeInOut]="{value: currentSection === 0 ? 'inView' : 'outOfView'}" #headerContentOne class="content">
     <div class="caption">
-      Sustainable tourism global center
+      SUSTAINABLE TOURISM GLOBAL CENTER
       <div class="caption-line"></div>
     </div>
     <h1 fadeIn><span >Accelerating & Driving</span><br><span >Positive Change</span></h1>
@@ -9,18 +9,14 @@
   </div>
   <div [@fadeInOut]="{value: currentSection === 1 ? 'inView' : 'outOfView'}"  #headerContentTwo class="content-2">
     <p>
-      <span>
         Founded in 2021, the Sustainable Tourism Global Center (STGC) is
-      </span>
-      <span >
-        the world’s first multi-country, multi-stakeholder global coalition
-      </span>
-      <span>
-        that will lead, accelerate and track Travel & Tourism industry’s
-      </span >
-      <span >
-        journey to a sustainable future.
-      </span>
+      <br>
+      the world’s first multi-country, multi-stakeholder global coalition
+      <br>
+      that will lead, accelerate and track Travel & Tourism industry’s
+      <br>
+      journey to a sustainable future.
+      <br>
     </p>
   </div>
   <div (click)="scrollDown()" [ngClass]="{'hide-scroll-button': hideScrollButton}" class="scroll-button">
@@ -40,10 +36,10 @@
     <p><span fadeIn>A global climate</span><br><span fadeIn>and biodiversity crisis</span></p>
   </div>
   <div class="captions">
-    <p [@slideUp]="{value: currentSection ===2 ? 'inView' : 'outOfView'}">
+    <p [@fadeInOut]="{value: currentSection ===2 ? 'inView' : 'outOfView'}">
       Climate change is a global crisis, described as "a code red for humanity" by the UN Secretary General. No place or community is immune, with disadvantaged communities, including Travel & Tourism destinations, being particularly vulnerable.
     </p>
-    <p [@slideUp]="{value: currentSection === 3 ? 'inView' : 'outOfView'}">
+    <p [@fadeInOut]="{value: displayLastImageSection ? 'inView' : 'outOfView'}">
       Rising temperatures drive environmental degradation, natural disasters, and food and water insecurity. Sea levels are rising, coral reefs are dying, and biodiversity is declining. Despite global commitments, progress is too slow.
     </p>
   </div>
@@ -52,69 +48,70 @@
 <img *ngFor="let image of bgImages" #imagesRef [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="image.src">
 
 <section class="sponsors-container">
-  <div class="indicators sponsors-indicators">
-    <svg [style.opacity]="isScrolledToLeftEnd ? 0.4 : 1" (click)="scrollLeft(sponsorsContainer, 0)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <mask id="path-1-inside-1_3368_320" fill="white">
-      <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
-      </mask>
-      <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F"  mask="url(#path-1-inside-1_3368_320)"/>
-      <g opacity="0.4">
-      <path d="M41.8926 20.1426H30.1074" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M36 14.25L30.1074 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
-      </svg>
-      <svg [style.opacity]="isScrolledToRightEnd ? 0.4 : 1" (click)="scrollRight(sponsorsContainer, 0)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <mask id="path-1-inside-1_3368_325" fill="white">
-        <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
-        </mask>
-        <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F" mask="url(#path-1-inside-1_3368_325)"/>
-        <g clip-path="url(#clip0_3368_325)">
-        <path d="M30.1074 20.1426H41.8926" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M36 14.25L41.8926 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-        <defs>
-        <clipPath id="clip0_3368_325">
-        <rect width="20" height="20" fill="white" transform="translate(36 6) rotate(45)"/>
-        </clipPath>
-        </defs>
-      </svg>
-      <svg (click)="scrollRight(sponsorsContainer, 0)" class="mobile-indicator" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g opacity="0.8">
-        <g clip-path="url(#clip0_3352_1874)">
-        <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-        <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-        </g>
-        <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
-        </g>
-        <defs>
-        <clipPath id="clip0_3352_1874">
-        <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
-        </clipPath>
-        </defs>
-      </svg>
-
-  </div>
+  <h2 fadeIn>We collaborate with</h2>
   <div #sponsorsContainer class="sponsors">
-    <h2 fadeIn>We collaborate with</h2>
     <div class="logos-container">
       <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
     </div>
   </div>
-  <div butt class="buttons-group" [style.position]="  'absolute'">
-    <button
+  <div class="buttons-group" [style.position]="  'absolute'">
+    <div class="indicators sponsors-indicators">
+      <svg [style.opacity]="isScrolledToLeftEnd ? 0.4 : 1" [ngClass]="{'disabled': isScrolledToLeftEnd}" (click)="scrollLeft(sponsorsContainer, 0)" width="72" height="40" viewBox="0 0 72 40" xmlns="http://www.w3.org/2000/svg">
+        <mask id="path-1-inside-1_3368_320" fill="currentFill">
+        <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
+        </mask>
+        <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="currentColor"  mask="url(#path-1-inside-1_3368_320)"/>
+        <g >
+        <path d="M41.8926 20.1426H30.1074" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M36 14.25L30.1074 20.1426L36 26.0351" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        </svg>
+        <svg [style.opacity]="isScrolledToRightEnd ? 0.4 : 1" [ngClass]="{'disabled': isScrolledToRightEnd}"  (click)="scrollRight(sponsorsContainer, 0)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="path-1-inside-1_3368_325" fill="currentFill">
+          <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
+          </mask>
+          <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="currentColor" mask="url(#path-1-inside-1_3368_325)"/>
+          <g clip-path="url(#clip0_3368_325)">
+          <path d="M30.1074 20.1426H41.8926" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M36 14.25L41.8926 20.1426L36 26.0351" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_3368_325">
+          <rect width="20" height="20" fill="currentFill" transform="translate(36 6) rotate(45)"/>
+          </clipPath>
+          </defs>
+        </svg>
+        <!-- <svg (click)="scrollRight(sponsorsContainer, 0)" class="mobile-indicator" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.8">
+          <g clip-path="url(#clip0_3352_1874)">
+          <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+          <path d="M40.5 28L48.1464 20.3536C48.3417 20.1583 48.3417 19.8417 48.1464 19.6464L40.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <rect x="1" y="39" width="38" height="58" rx="19" transform="rotate(-90 1 39)" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_3352_1874">
+          <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg> -->
+    </div>
+    <div class="buttons">
+      <button
       class="confirm-button"
       type="button"
-      [routerLink]="['/partnership']" fragment="contact-us"
+      [routerLink]="['/partnerships']" fragment="contact-us"
     >
       Interested in a partnership?
     </button>
     <button
       class="confirm-button"
       type="button"
-      [routerLink]="['/partnership']"
+      [routerLink]="['/partnerships']"
     >
     More about our partnerships
     </button>
+    </div>
   </div>
 </section>
 
@@ -144,32 +141,32 @@
   </div>
   <div class="icon-scroll"  (click)="expandCardsFun()">
     <div class="indicators">
-      <svg [style.opacity]="isScrolledToLeftEnd2 ? 0.4 : 1" (click)="scrollLeft(stakeholderGroupsRef, 1)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <mask id="path-1-inside-1_3368_320" fill="white">
+      <svg [style.opacity]="isScrolledToLeftEnd2 ? 0.4 : 1" [ngClass]="{'disabled': isScrolledToLeftEnd2}" (click)="scrollLeft(stakeholderGroupsRef, 1)"  width="72" height="40" viewBox="0 0 72 40" xmlns="http://www.w3.org/2000/svg">
+        <mask id="path-1-inside-1_3368_320" fill="currentFill">
         <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
         </mask>
-        <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F"  mask="url(#path-1-inside-1_3368_320)"/>
-        <g opacity="0.4">
-        <path d="M41.8926 20.1426H30.1074" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M36 14.25L30.1074 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="currentColor"  mask="url(#path-1-inside-1_3368_320)"/>
+        <g >
+        <path d="M41.8926 20.1426H30.1074" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M36 14.25L30.1074 20.1426L36 26.0351" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </g>
         </svg>
-        <svg [style.opacity]="isScrolledToRightEnd2 ? 0.4 : 1" (click)="scrollRight(stakeholderGroupsRef, 1)" width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <mask id="path-1-inside-1_3368_325" fill="white">
+        <svg [style.opacity]="isScrolledToRightEnd2 ? 0.4 : 1" [ngClass]="{'disabled': isScrolledToRightEnd2}" (click)="scrollRight(stakeholderGroupsRef, 1)"  width="72" height="40" viewBox="0 0 72 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="path-1-inside-1_3368_325" fill="currentFill">
           <path d="M0 20C0 8.95431 8.95431 0 20 0H52C63.0457 0 72 8.95431 72 20C72 31.0457 63.0457 40 52 40H20C8.95431 40 0 31.0457 0 20Z"/>
           </mask>
-          <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="#2EA47F" mask="url(#path-1-inside-1_3368_325)"/>
+          <path d="M0 0H72H0ZM72 40H0H72ZM19 40C7.95431 40 -1 31.0457 -1 20C-1 8.9543 7.95431 0 19 0H20C9.50659 0 1 8.9543 1 20C1 31.0457 9.50659 40 20 40H19ZM53 0C64.0457 0 73 8.9543 73 20C73 31.0457 64.0457 40 53 40H52C62.4934 40 71 31.0457 71 20C71 8.9543 62.4934 0 52 0H53Z" fill="currentColor" mask="url(#path-1-inside-1_3368_325)"/>
           <g clip-path="url(#clip0_3368_325)">
-          <path d="M30.1074 20.1426H41.8926" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M36 14.25L41.8926 20.1426L36 26.0351" stroke="#2EA47F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30.1074 20.1426H41.8926" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M36 14.25L41.8926 20.1426L36 26.0351" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </g>
           <defs>
           <clipPath id="clip0_3368_325">
-          <rect width="20" height="20" fill="white" transform="translate(36 6) rotate(45)"/>
+          <rect width="20" height="20" fill="currentFill" transform="translate(36 6) rotate(45)"/>
           </clipPath>
           </defs>
-          </svg>
-        <svg (click)="scrollRight(stakeholderGroupsRef, 1)"  class="mobile-view" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+        <!-- <svg (click)="scrollRight(stakeholderGroupsRef, 1)"  class="mobile-view" width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
           <g clip-path="url(#clip0_3220_936)">
           <path d="M32.5 28L40.1464 20.3536C40.3417 20.1583 40.3417 19.8417 40.1464 19.6464L32.5 12" stroke="#2EA47F" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
@@ -182,7 +179,7 @@
           <rect y="40" width="40" height="60" rx="20" transform="rotate(-90 0 40)" fill="white"/>
           </clipPath>
           </defs>
-        </svg>
+        </svg> -->
 
     </div>
   </div>
@@ -199,7 +196,7 @@
         </div>
         <div class="desc">
           <div *ngFor="let desc of card.desc; let index = index" class="desc-content-{{card.desc.length - index}}">
-            <h3 style="color: black; margin-bottom: 50px;">[{{desc.count}}]</h3>
+            <h3 style="color: black; margin-bottom: 70px;font-size: 28px;font-weight: 900;">{{desc.count}}.</h3>
               <h3 fadeIn>{{desc.title}}</h3>
               <p fadeIn>{{desc.content}}</p>
           </div>
@@ -258,7 +255,7 @@
       <div class="links">
         <a [routerLink]="['/home']" fadeIn>Home</a>
         <a [routerLink]="['/about']" fadeIn>About</a>
-        <a [routerLink]="['/partnership']" fadeIn>Partnership</a>
+        <a [routerLink]="['/partnerships']" fadeIn>Partnership</a>
         <a [routerLink]="['/contact-us']" fadeIn style="white-space: nowrap;">Contact us</a>
       </div>
     </div>

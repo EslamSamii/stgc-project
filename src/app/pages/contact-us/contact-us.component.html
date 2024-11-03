@@ -26,7 +26,7 @@
               <div class="line-progress"></div>
             </div>
             <div class="underline-input">
-              <input required [formControl]="getFromControl('email')" type="email" placeholder="Your Email Address">
+              <input required email [formControl]="getFromControl('email')" type="email" placeholder="Your Email Address">
               <div class="line-progress"></div>
             </div>
             <div class="underline-input">
@@ -64,7 +64,7 @@
         <div class="links">
           <a [routerLink]="['/home']" fadeIn>Home</a>
           <a [routerLink]="['/about']" fadeIn>About</a>
-          <a [routerLink]="['/partnership']" fadeIn >Partnership</a>
+          <a [routerLink]="['/partnerships']" fadeIn >Partnership</a>
           <a [routerLink]="['/contact-us']" fadeIn  style="white-space: nowrap;">Contact us</a>
         </div>
       </div>

@@ -45,7 +45,7 @@
       -ms-transform: translateX(-50%);
       -o-transform: translateX(-50%);
       @media (max-width: 992px)  {
-      font-size: 40px;
+        font-size: 40px;
       }
     }
     p{
@@ -94,7 +94,7 @@
       position: absolute;
       left:48px;
       @media (max-width: 992px)  {
-        left:-200px;
+        left:-175px;
       }
     }
     .pic-2{
@@ -110,7 +110,7 @@
       position: absolute;
       right:48px;
       @media (max-width: 992px)  {
-      right:-200px;
+      right:-175px;
       }
     }
   }
@@ -153,26 +153,44 @@
   background-color: white;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h2{
+    padding: 0 48px;
+    font-size: 40px;
+    font-weight: 600;
+    @media (max-width: 992px) {
+      font-size: 24px;
+      padding: 0 16px;
+    }
+  }
   .indicators{
-    position: absolute;
-    top: 50%;
-    height: 430px;
-    right: 0;
     display: flex;
     padding: 10px 48px;
-    justify-content: end;
-    z-index: 2;
+    justify-content: center;
     gap: 32px;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
     @media(max-width: 992px){
-        padding: 10px 16px;
-      }
+      padding: 10px 16px;
+      display: none;
+    }
     svg{
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px;
+      color: #2EA47F;
+      fill: white;
+      transition: all 0.4s 0s ease;
+      -webkit-transition: all 0.4s 0s ease;
+      -moz-transition: all 0.4s 0s ease;
+      -ms-transition: all 0.4s 0s ease;
+      -o-transition: all 0.4s 0s ease;
+      &:not(.disabled):hover{
+        color: #ffffff;
+        background-color: #2EA47F;
+        fill: #2EA47F;
+}
       @media (max-width: 992px) {
         display: none;
       }
@@ -201,15 +219,7 @@
   &::-webkit-scrollbar {
     display: none;
   }
-  h2{
-    padding: 0 48px;
-    font-size: 40px;
-    font-weight: 600;
-    @media (max-width: 992px) {
-      font-size: 24px;
-      padding: 0 16px;
-    }
-  }
+
   .logos-container{
     display: flex;
     padding: 48px;
@@ -261,29 +271,38 @@
 .publications{
   position: relative;
   width: 100vw;
+  gap: 40px;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-
+  justify-content: center;
+  flex-direction: column;
   .indicators{
-    position: absolute;
-    top: 50%;
-    height: 900px;
-    right: 0;
     display: flex;
     padding: 10px 48px;
-    justify-content: end;
-    z-index: 3;
+    justify-content: center;
     gap: 32px;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
     @media(max-width: 992px){
-        padding: 10px 16px;
-      }
+      padding: 10px 16px;
+      display: none;
+    }
     svg{
+      border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      -ms-border-radius: 20px;
+      -o-border-radius: 20px;
+      color: #2EA47F;
+      fill: white;
+      transition: all 0.4s 0s ease;
+      -webkit-transition: all 0.4s 0s ease;
+      -moz-transition: all 0.4s 0s ease;
+      -ms-transition: all 0.4s 0s ease;
+      -o-transition: all 0.4s 0s ease;
+      &:not(.disabled):hover{
+        color: #ffffff;
+        background-color: #2EA47F;
+        fill: #2EA47F;
+}
       @media (max-width: 992px) {
         display: none;
       }
@@ -299,7 +318,7 @@
   .publications-container{
     position: relative;
     display: flex;
-    height: 1042px;
+    height: 650px;
     align-items: center;
     width: 100vw;
     overflow-y: hidden;
@@ -330,7 +349,7 @@
     align-items: center;
     position: absolute;
     z-index: 2;
-    height: 1042px;
+    height: 650px;
     top: 0;
     transition: all 0.6s ease-in-out;
     -webkit-transition: all 0.6s ease-in-out;
@@ -401,6 +420,9 @@
                 font-weight: bold;
                 font-size: 32px;
                 color: #FFF;
+                @media (max-width: 992px)  {
+                  font-size: 28px;
+                }
               }
               .card-desc{
                 margin: 0;
@@ -445,6 +467,8 @@
   padding: 48px;
   @media (max-width: 992px)  {
     padding: 16px;
+    margin: 16px;
+    max-width: 90vw;
   }
   h2{
     color: white;

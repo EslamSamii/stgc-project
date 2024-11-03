@@ -14,16 +14,16 @@ import { AppService } from 'src/app/shared/services/app.service';
       state('outOfView', style({ opacity: 0})),
       transition('outOfView => inView', [
         animate(
-          '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          '0.3s {{ delay }}s',
           keyframes([
             style({ opacity: 0}),
             style({ opacity: 1}),
           ])
         )
-      ],{ params: { delay: 0.4 } }),
+      ],{ params: { delay: 0.1 } }),
       transition('inView => outOfView', [
         animate(
-          '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          '0.3s {{ delay }}s',
           keyframes([
             style({ opacity: 1}),
             style({ opacity: 0}),
@@ -36,16 +36,16 @@ import { AppService } from 'src/app/shared/services/app.service';
       state('outOfView', style({ transform: 'translateY(100)', opacity:0 })),
       transition('outOfView => inView', [
         animate(
-          '0.7s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          '0.4s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
           keyframes([
             style({ transform: 'translateY(100vh)', opacity:0, offset: 0 }),
             style({ transform: 'translateY(0vh)', opacity:1, offset: 1 }),
           ])
         )
-      ],{ params: { delay: 0.5 } }),
+      ],{ params: { delay: 0.2 } }),
       transition('inView => outOfView', [
         animate(
-          '0.5s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
+          '0.2s {{ delay }}s cubic-bezier(0.215, 0.61, 0.355, 1)',
           keyframes([
             style({ opacity: 1, offset: 0 }),
             style({ opacity: 0, offset: 1}),
@@ -198,6 +198,7 @@ export class HomeComponent implements OnInit {
   public isScrolledToLeftEnd: boolean = true;
   public isScrolledToRightEnd2: boolean = false;
   public isScrolledToLeftEnd2: boolean = true;
+  public displayLastImageSection: boolean = false;
 
   constructor( private _AppService: AppService, private _ChangeDetectorRef: ChangeDetectorRef) {}
 
@@ -218,22 +219,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     scrollTo({left:0, top:0});
-    this._AppService.onNavColorChange$.next({color: 'white'});
     setTimeout(() => {
       this._AppService.onNavColorChange$.next({color: 'white'});
       this.hideScrollButton =false;
-
     }, 100);
     this.displaySecondSection =  this.currentSection >= 2 && this.currentSection <= 3;
     this.expandCards = window.innerWidth > 1920;
     this._AppService.onScrollChange$.pipe(
       tap(()=>{
+        const section = scrollY / innerHeight;
+        this.displayLastImageSection =  section <= 3.2 && section >= 2.5;
+        this.displaySecondSection =  this.currentSection >= 2 && section <= 3.2;
         if(scrollY > 4 * innerHeight)
           this._AppService.onNavColorChange$.next({color:'black'});
         else
           this._AppService.onNavColorChange$.next({color: 'white'});
         this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top - innerHeight < 0 ;
-        this.hideScrollButton = true;
+        this.hideScrollButton = scrollY > 0;
         let percentage = (window.scrollY / (innerHeight * 3));
         if(percentage > 1) percentage = 1;
         // Handle scaling
@@ -244,7 +246,6 @@ export class HomeComponent implements OnInit {
         if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
           this.isScrolledToConfirmationButton = true;
         this.expandCards = this.stakeholderGroupsRef.nativeElement.getBoundingClientRect().top - (innerHeight/2) <0
-        this.displaySecondSection =  this.currentSection >= 2 && this.currentSection <= 3
       }
     ),
     takeUntil(this._destroy$),

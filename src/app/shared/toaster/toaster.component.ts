@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./toaster.component.scss']
 })
 export class ToasterComponent implements OnInit {
-
+  public closeToaster = false;
   @Input('tosterData') tosterData?: {message: string, success: boolean};
   constructor() { }
 

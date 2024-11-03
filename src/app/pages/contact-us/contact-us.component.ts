@@ -21,7 +21,7 @@ export class ContactUsComponent {
 
   ngOnInit(): void {
     scrollTo({left:0, top:0})
-    this._AppService.onNavColorChange$.next({color: 'white'});
+    this._AppService.onNavColorChange$.next({color: 'white', class: 'bg-green'});
   }
 
   public getFromControl(controlName: string): FormControl{
@@ -37,9 +37,9 @@ export class ContactUsComponent {
     this.isSaving = true;
     this._AppService.contactUs(this.contactForm.value).subscribe({
       next: ()=>{
-        this.contactForm.reset();
         this.isSaving = false;
         this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest, Our team will be in contact with you`, success: true})
+        this.contactForm.reset();
       },
       error: (error)=>{
         console.log(error);

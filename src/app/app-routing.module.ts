@@ -16,10 +16,10 @@ const routes: Routes = [
 
   },
   {
-    path: 'partnership',
+    path: 'partnerships',
     loadChildren: () =>
       import('./pages/partnership/partnership.module').then((m) => m.PartnershipModule),
-    data: { animation: 'partnership' }
+    data: { animation: 'partnerships' }
 
   },
   {

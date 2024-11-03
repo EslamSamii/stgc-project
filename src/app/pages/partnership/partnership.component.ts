@@ -83,7 +83,7 @@ export class PartnershipComponent {
   })
   public isDownloadModalOpened: boolean = false;
   public isScrolledToConfirmationButton: boolean = false;
-  public hideFloatingIcon: boolean = false;
+  public hideFloatingIcon: boolean = true;
   public isScrolledToConfirmationButton1: boolean = false;
   public isScrolledToConfirmationButtonGroup: boolean = false;
   @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
@@ -136,8 +136,8 @@ export class PartnershipComponent {
     this._AppService.contactUs(this.contactForm.value).subscribe({
       next: ()=>{
         this.isSaving = false;
+        this._AppService.toaster$.next({message:`Thank you ${this.getFromControlContactForm('name').value} for showing your interest, Our team will be in contact with you`, success: true})
         this.contactForm.reset();
-        this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest, Our team will be in contact with you`, success: true})
       },
       error: (error)=>{
         this.isSaving = false;
@@ -159,7 +159,7 @@ export class PartnershipComponent {
       this._AppService.onNavColorChange$.next({color:'black'});
     else
       this._AppService.onNavColorChange$.next({color: 'white'});
-    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0;
+    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || scrollY + innerHeight < 1366;
     if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
@@ -196,11 +196,11 @@ export class PartnershipComponent {
     this.isSaving = true;
     this._AppService.downloadPublicationData(this.downloadFormGroup.value).subscribe({
       next: ()=>{
-        this.downloadFormGroup.reset();
         this.isSaving = false;
         this.isDownloadModalOpened =false;
         this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest`, success: true});
         this._saveFile(this.selectedPublication?.file)
+        this.downloadFormGroup.reset();
       },
       error: (error)=>{
         this.isSaving = false;
