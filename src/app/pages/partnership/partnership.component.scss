@@ -5,6 +5,7 @@
   overflow-x: hidden;
   background-color: white;
 }
+
 .header{
   position: relative;
   height: 1142px;
@@ -348,6 +349,7 @@
         height: 536px;
         width: 400px;
         @media (max-width: 992px)  {
+          height: 455.6px;
           width: 340px;
         }
         &:hover{
@@ -358,7 +360,7 @@
 }
         }
         .card{
-          height: 536px;
+          height:inherit;
           width:inherit;
           position: relative;
           .card-front,.card-back{
@@ -401,7 +403,7 @@
                 font-size: 32px;
                 color: #FFF;
                 @media (max-width: 992px)  {
-                  font-size: 28px;
+                  font-size: 24px;
                 }
               }
               .card-desc{
@@ -434,7 +436,7 @@
   }
 }
 
-.contact-form{
+.download-form{
   backdrop-filter: blur(20px);
   border:1px solid #ffffff1f;
   flex: 1;
@@ -447,7 +449,6 @@
   padding: 48px;
   @media (max-width: 992px)  {
     padding: 16px;
-    margin: 16px 0;
     max-width: 90vw;
   }
   h2{
@@ -718,37 +719,55 @@
   background-color: #2EA47F;
   display: flex;
   position: relative;
-  flex-direction: column;
   @media (max-width: 992px)  {
-  padding: 16px;
+  padding: 128px 16px 16px 16px;
+  flex-direction: column-reverse;
 }
-  .line-1{
+  .line-1, .line-2{
     position: absolute;
-    top: 223px;
-    z-index: 2;
-    left: 0;
-    width: 100%;
+    top: 325px;
+    left: 50%;
+    width: 0vw;
     height: 1px;
     background-color: rgb(255, 255, 255, 10%);
-    @media (min-width: 993px) and (max-width: 1439px) {
-    top: 171px;
-  }
-  @media (max-width: 992px)  {
-      top: 95px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    @media(min-width:993px) and (max-width: 1439px)
+    {
+      top: 302px;
     }
-  }
-  .contact-us-container{
-    display: flex;
     @media (max-width: 992px)  {
-      flex-direction: column-reverse;
+      top: 162px;
+    }
+    animation: width-full-2 0.8s 0.7s linear forwards;
+    -webkit-animation: width-full-2 0.8s 0.7s linear forwards;
+}
+  .line-2{
+    top: 424px;
+    @media (min-width: 993px) and (max-width: 1439px) {
+    top: 371px;
+    }
+    @media (max-width: 992px)  {
+      top: 206px;
     }
   }
   .social{
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap:69px;
+    padding-top: 150px;
+    gap:50px;
+    @media (min-width: 993px) and (max-width: 1439px) {
+      padding-top: 97px;
+      top: 384px;
+      gap:50px;
+    }
     @media (max-width: 992px)  {
+      padding-top: 50px;
+      padding-bottom: 50px;
       gap:24px;
     }
     h3{
@@ -766,32 +785,22 @@
       font-weight: 600;
     }
   }
-  .main-title{
-    color: white;
-    font-size: 72px;
-    font-weight: 600;
-    width: 100%;
-    @media (min-width: 993px) and (max-width: 1439px) {
-      font-size: 51px;
-    }
-    @media (max-width: 992px)  {
-      font-size: 32px;
-    }
-  }
   .contact-form{
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 64px;
-    height: auto;
-    border: unset;
-    padding-top: 113px;
-    min-width: 650px;
-    @media (max-width: 992px)  {
-    min-width: 329px;
-    padding: 0;
-    padding-top: 155px;
-    width: 100%;
+
+    h2{
+      color: white;
+      font-size: 72px;
+      font-weight: 600;
+      @media (min-width: 993px) and (max-width: 1439px) {
+        font-size: 51px;
+      }
+      @media (max-width: 992px)  {
+        font-size: 32px;
+      }
     }
     .input-container{
       display: flex;
@@ -823,7 +832,6 @@ input, textarea {
   }
 }
 .confirm-button{
-  overflow: hidden;
   margin-top: 48px;
   background-color: transparent;
   display: flex;
@@ -831,8 +839,8 @@ input, textarea {
   border: unset;
   outline: unset;
   box-shadow: unset;
-  position: relative;
   transition: all 0.4s 0s ease;
+  position: relative;
   -webkit-transition: all 0.4s 0s ease;
   -moz-transition: all 0.4s 0s ease;
   -ms-transition: all 0.4s 0s ease;
@@ -853,12 +861,14 @@ input, textarea {
   }
   &:hover{
     .title .animate-slide{
+      animation: scale 0.5s 0s forwards;
+      -webkit-animation: scale 0.5s 0s forwards;
       transform: scale(1.08);
       -webkit-transform: scale(1.08);
       -moz-transform: scale(1.08);
       -ms-transform: scale(1.08);
       -o-transform: scale(1.08);
-    }
+}
   }
   .line-top, .line-bottom{
     height: 0px;
@@ -947,7 +957,7 @@ input, textarea {
       -moz-transform: scale(1);
       -ms-transform: scale(1);
       -o-transform: scale(1);
-    }
+}
 }
   .icon{
     width: 64px;
@@ -1142,26 +1152,30 @@ input, textarea {
 .floating-button{
   position: fixed;
   bottom: 100px;
-  right: 0;
-  width: 146px;
-  height: 100px;
+  right: 29px;
+  width: 161px;
+  height: 48px;
   background-color: #2EA47F;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   z-index: 999;
-  gap: 8px;
+  gap: 10px;
   opacity: 1;
   transition: all 0.5s 0s ease;
   -webkit-transition: all 0.5s 0s ease;
   -moz-transition: all 0.5s 0s ease;
   -ms-transition: all 0.5s 0s ease;
   -o-transition: all 0.5s 0s ease;
+  @media (max-width: 992px) {
+    right: 16px;
+  }
   span
 {
     color: white;
     text-align: center;
+    font-size: 12px;
+    font-weight: 600;
   }
   &.hide-floating{
     opacity: 0;

@@ -6,8 +6,8 @@
     <path d="M21.5 3L22.5 14H20.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M3.5 3L2.5 14L9 20.5C9.39782 20.8978 9.93739 21.1213 10.5 21.1213C11.0626 21.1213 11.6022 20.8978 12 20.5C12.3978 20.1022 12.6213 19.5626 12.6213 19C12.6213 18.4374 12.3978 17.8978 12 17.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M3.5 4H11.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span>Partner<br>with us</span>
+  </svg>
+    <span>Partner with us</span>
 </div>
 <section #header class="header">
   <img [src]="getImageSrc('assets/images/partners-bg.jpg')">
@@ -123,7 +123,7 @@
                 <p class="card-desc">{{card.desc}}</p>
               </div>
               <button (click)="toggleDownloadModal(card)">
-                Read more
+                Download
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18 8L22 12L18 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M2 12H22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -166,7 +166,7 @@
 </section>
 
 <app-modal *ngIf="isDownloadModalOpened" (closeModal)="toggleDownloadModal()">
-  <div class="contact-form">
+  <div class="download-form">
     <h2 fadeIn>Fill in this form to download the publication</h2>
     <form class="publication-form" [formGroup]="downloadFormGroup" #downloadFormGroupRef>
       <div class="input-container">
@@ -214,50 +214,53 @@
 <section #contactUsForm>
   <div class="container">
     <div class="contact-us">
-      <h2 class="main-title"><span fadeIn>Interested</span><br><span fadeIn customClass="underline" class="underline-white">in partnering?</span></h2>
-      <div class="contact-us-container">
-        <div class="social">
-        </div>
-        <div class="contact-form">
-          <form [formGroup]="contactForm" #contactFormRef>
-            <div class="input-container">
-              <div class="underline-input">
-                <input required [formControl]="getFromControlContactForm('name')" type="text" placeholder="Your Name">
-                <div class="line-progress"></div>
-              </div>
-              <div class="underline-input">
-                <input required email [formControl]="getFromControlContactForm('email')" type="email" placeholder="Your Email Address">
-                <div class="line-progress"></div>
-              </div>
-              <div class="underline-input">
-                <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
-                <div class="line-progress"></div>
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="social">
+        <h3 fadeIn [noScroll]="true">or contact us through</h3>
+        <p>
+          <span fadeIn [noScroll]="true" class="delay-700">partnerships@stgc.global</span>
+        </p>
+      </div>
+      <div class="contact-form">
+        <h2 class="main-title"><span fadeIn>Interested</span><br><span fadeIn customClass="underline" class="underline-white">in partnering?</span></h2>
+        <form [formGroup]="contactForm" #contactFormRef>
+          <div class="input-container">
+            <div class="underline-input">
+              <input required [formControl]="getFromControlContactForm('name')" type="text" placeholder="Your Name">
+              <div class="line-progress"></div>
+            </div>
+            <div class="underline-input">
+              <input required email [formControl]="getFromControlContactForm('email')" type="email" placeholder="Your Email Address">
+              <div class="line-progress"></div>
+            </div>
+            <div class="underline-input">
+              <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
+              <div class="line-progress"></div>
+            </div>
+          </div>
+          <button #confirmationButtonRef [ngClass]="{'full-width-animation': isScrolledToConfirmationButton}" class="confirm-button" type="button" (click)="submitContactForm()">
+            <span class="top-border"></span>
+            <span class="bottom-border"></span>
+            <span class="line-top-1 line-top"></span>
+            <span class="line-top-2 line-top"></span>
+            <span class="line-top-3 line-top"></span>
+            <span class="line-bottom-1 line-bottom"></span>
+            <span class="line-bottom-2 line-bottom"></span>
+            <span class="line-bottom-3 line-bottom"></span>
+            <div class="borders title">
+              <div class="animate">
+                <span class="animate-slide">Contact us</span>
               </div>
             </div>
-            <button #confirmationButtonRef [ngClass]="{'full-width-animation': isScrolledToConfirmationButton}" class="confirm-button" type="button" (click)="submitContactForm()">
-              <span class="top-border"></span>
-              <span class="bottom-border"></span>
-              <span class="line-top-1 line-top"></span>
-              <span class="line-top-2 line-top"></span>
-              <span class="line-top-3 line-top"></span>
-              <span class="line-bottom-1 line-bottom"></span>
-              <span class="line-bottom-2 line-bottom"></span>
-              <span class="line-bottom-3 line-bottom"></span>
-              <div class="borders title">
-                <div class="animate">
-                  <span class="animate-slide">Contact us</span>
-                </div>
-              </div>
-              <div class="borders icon">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
-                </svg>
-              </div>
-            </button>
-          </form>
-        </div>
+            <div class="borders icon">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 13L13 1M13 1V9.66667M13 1H3.66667" stroke="white"/>
+              </svg>
+            </div>
+          </button>
+        </form>
       </div>
-
     </div>
 
     <div class="footer-content">

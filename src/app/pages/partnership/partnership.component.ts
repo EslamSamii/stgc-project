@@ -241,7 +241,7 @@ export class PartnershipComponent {
       this.isScrolledToRightEnd = false
     if(type===1)
       this.isScrolledToRightEnd2 = false
-    let left =element.scrollLeft - 700
+    let left =element.scrollLeft - 450
     element.scrollTo({left: left, behavior: 'smooth'})
     if(left < 0) left = 0;
     setTimeout(() => {
@@ -257,7 +257,7 @@ export class PartnershipComponent {
       this.isScrolledToLeftEnd = false
     if(type===1)
       this.isScrolledToLeftEnd2 = false
-    let left =element.scrollLeft + 700;
+    let left =element.scrollLeft + 450;
     if(left > element.scrollWidth - innerWidth) left = element.scrollWidth - innerWidth;
     element.scrollTo({left: left, behavior: 'smooth'})
     setTimeout(() => {

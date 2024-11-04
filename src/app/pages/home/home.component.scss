@@ -31,7 +31,7 @@
     -ms-transition: all 0.4s 0s ease;
     -o-transition: all 0.4s 0s ease;
     @media(max-width: 992px){
-      bottom: 100px;
+      bottom: 14.3vh;
     }
     & > div{
       display: block;
@@ -104,11 +104,11 @@
   .content{
     top: calc(50vh - 130px);
     @media(max-width: 992px){
-      top: calc(50vh - 90px);
+      top: calc(50vh - 120px);
     }
   }
   .content-2{
-    top: calc(50vh - 80px);
+    top: calc(50vh - 120px);
   }
   .content, .content-2{
     opacity: 0;
@@ -169,13 +169,8 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 50%;
+    top: calc(50vh - 90px);
     left: 48px;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
     @media (max-width: 992px) {
       left: 16px;
     }
@@ -222,7 +217,7 @@
       -ms-transform: translateY(-50%);
       -o-transform: translateY(-50%);
       @media (max-width: 992px) {
-        top: calc(50vh + 150px);
+        top: calc(50vh + 130px);
         right: unset;
         width: 340px;
         left: 16px;
