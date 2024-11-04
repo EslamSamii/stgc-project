@@ -4,14 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && ng run stgc:server",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run stgc:serve-ssr",
     "serve:ssr": "node dist/stgc/server/main.js",
     "build:ssr": "ng build && ng run stgc:server",
     "prerender": "ng run stgc:prerender"
-
   },
   "private": true,
   "dependencies": {

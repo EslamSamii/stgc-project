@@ -201,7 +201,7 @@ export class PartnershipComponent {
       next: ()=>{
         this.isSaving = false;
         this.isDownloadModalOpened =false;
-        this._AppService.toaster$.next({message:`Thank you ${this.getFromControl('name').value} for showing your interest`, success: true});
+        this._AppService.toaster$.next({message:`Thank you for downloading, happy reading!`, success: true});
         this._saveFile(this.selectedPublication?.file)
         this.downloadFormGroup.reset();
       },
