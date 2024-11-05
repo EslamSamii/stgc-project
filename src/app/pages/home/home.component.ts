@@ -215,7 +215,7 @@ _areaSectionPositioning(){
   if(this.isSmallScreenView || this._isLoadingPage) return;
   const elements = Object.entries(this.aresRef.nativeElement.querySelectorAll('.card'));
   if(this.aresRef.nativeElement.getBoundingClientRect().top < 0 && this.aresRef.nativeElement.getBoundingClientRect().top > -(this.aresRef.nativeElement.getBoundingClientRect().height - 695)){
-    this.aresRef.nativeElement.querySelector('.area-container').style.position = 'fixed';
+    this.aresRef.nativeElement.querySelector('.area-container').classList.add('fixed-area');
     this.aresRef.nativeElement.classList.remove('after-scroll-down');
     for(let [key,card] of elements){
       if(+key ===0) continue;
@@ -237,11 +237,13 @@ _areaSectionPositioning(){
     }
   }else if(this.aresRef.nativeElement.getBoundingClientRect().top < -(this.aresRef.nativeElement.getBoundingClientRect().height - 695)){
     this.aresRef.nativeElement.classList.add('after-scroll-down');
-    this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
+    this.aresRef.nativeElement.querySelector('.area-container').classList.remove('fixed-area');
+
   }else{
     this.aresRef.nativeElement.classList.remove('after-scroll-down');
     (elements[0][1] as HTMLElement).classList.remove('hide')
-    this.aresRef.nativeElement.querySelector('.area-container').style.position = 'static'
+    this.aresRef.nativeElement.querySelector('.area-container').classList.remove('fixed-area');
+
   }
 }
 

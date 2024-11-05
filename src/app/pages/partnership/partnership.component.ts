@@ -159,16 +159,13 @@ export class PartnershipComponent {
       this._AppService.onNavColorChange$.next({color:'black'});
     else
       this._AppService.onNavColorChange$.next({color: 'white'});
-    setTimeout(() => {
-      const viewportHeight = window.visualViewport ? window.visualViewport.height : innerHeight;
-      this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - viewportHeight < 0 || scrollY < 400;
-    }, 500);
+    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || window.scrollY < 400;
       if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
     let percentage = (window.scrollY / (this.header.nativeElement.getBoundingClientRect().height));
-    const minTransition = this.isSmallScreenView ? 250 : this.isMediumScreen ? 350 : 300;
-    const maxTransition = this.isSmallScreenView ? 550 : this.isMediumScreen ? 650 : 607;
+    const minTransition = this.isSmallScreenView ? 350 : this.isMediumScreen ? 450 : 400;
+    const maxTransition = this.isSmallScreenView ? 600 : this.isMediumScreen ? 700 : 650;
     const transition = maxTransition - ((percentage) * (maxTransition - minTransition));
     this.picOne.nativeElement.style.top = `${transition}px`;
     this.picTwo.nativeElement.style.top = `${transition}px`;

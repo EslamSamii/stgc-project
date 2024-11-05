@@ -5,6 +5,9 @@
   overflow-x: hidden;
   background-color: white;
 }
+section{
+  position: relative;
+}
 
 .header{
   position: relative;
@@ -72,7 +75,7 @@
       }
     }
     .pic-1, .pic-2, .pic-3{
-      top: 607px;
+      top: 650px;
       z-index: 1;
       transition: all 0.4s;
       -webkit-transition: all 0.4s;
@@ -82,12 +85,12 @@
       width:319px;
       height: 400px;
       @media (min-width: 993px) and (max-width: 1439px) {
-        top: 650px;
+        top: 700px;
         width: 255px;
         height: 320px;
       }
       @media (max-width: 992px)  {
-        top: 550px;
+        top: 600px;
         width: 223px;
         height: 280px;
       }
@@ -170,6 +173,7 @@
   .indicators{
     display: flex;
     padding: 10px 48px;
+    justify-content: center;
     gap: 32px;
     @media(max-width: 992px){
       justify-content: center;
@@ -264,6 +268,7 @@
   flex-direction: column;
   .indicators{
     margin-bottom: 60px;
+    justify-content: center;
     display: flex;
     padding: 10px 48px;
     gap: 32px;
@@ -309,7 +314,8 @@
     }
   }
   h2{
-    font-size: 120px;
+    font-size: 100px;
+    white-space: nowrap;
     font-weight: 600;
     position: relative;
     width: 100%;
@@ -438,6 +444,7 @@
 
 .download-form{
   backdrop-filter: blur(20px);
+  background-color: transparent;
   border:1px solid #ffffff1f;
   flex: 1;
   display: flex;
@@ -469,6 +476,7 @@
     outline: unset;
     color: white;
     box-shadow: none;
+    font-size: 16px;
     &::placeholder{
     transition: all 0.2s 0s ease-in;
     -webkit-transition: all 0.2s 0s ease-in;
@@ -1151,7 +1159,7 @@ input, textarea {
 }
 .floating-button{
   position: fixed;
-  bottom: 100px;
+  top: 80vh;
   right: 29px;
   width: 161px;
   height: 48px;

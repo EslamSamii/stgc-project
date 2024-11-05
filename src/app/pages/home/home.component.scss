@@ -3,6 +3,10 @@
   width: 100vw;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: white;
+}
+section{
+  position: relative;
 }
 .header{
   width: 100vw;
@@ -82,7 +86,7 @@
     -ms-transition: all 0.3s 0s;
     -o-transition: all 0.3s 0s;
     @media(max-width: 992px){
-      font-size: 16px;
+      font-size: 17px;
     }
     .caption-line{
       height: 1px;
@@ -230,7 +234,6 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  z-index: -1;
   opacity: 0;
   left: 0;
   object-fit: cover;
@@ -250,11 +253,13 @@
 }
 .stakeholder{
   position: relative;
-  height: 100vh;
+  min-height: 700px;
   width: 100vw;
+  display: flex;
+  align-items: center;
   background-color: white;
   @media (max-width: 992px) {
-    height: 80vh;
+    min-height: 590px;
   }
   .stakeholder-groups{
     padding-bottom: 150px;
@@ -396,16 +401,25 @@
     }
   }
   .area-container{
+    position: static;
     max-width: 1440px;
     display: flex;
     flex-direction: column;
     gap: 50px;
     top: 0;
-    left: 0;
     height: 100vh;
     width: 100vw;
     background-color: #fff;
     padding: 0px 48px 48px 48px;
+    &.fixed-area{
+      left: 50%;
+      position: fixed;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+    }
     @media (max-width: 992px) {
     height: auto;
     padding: 0;
@@ -509,7 +523,7 @@
             position: static;
             width: auto;
             padding: 16px;
-            height: 425px;
+            height: 370px;
             justify-content: start;
             overflow: initial;
           }
@@ -1010,7 +1024,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   gap: 24px;
   padding: 0 16px;
   z-index: 9999;
@@ -1062,7 +1076,7 @@
 .sponsors-container{
   position: relative;
   background-color: white;
-  min-height: 100vh;
+  min-height: 700px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -1142,13 +1156,13 @@
 }
 .icon-scroll{
   position: absolute;
-  left: 0px;
-  top: 65vh;
+  left: calc(50vw - 122px);
+  top: 54vh;
   display: flex;
   width: 100vw;
   @media (max-width: 992px) {
+    left: 0px;
     justify-content: center;
-    top: 60vh;
   }
   .indicators{
     display: flex;
