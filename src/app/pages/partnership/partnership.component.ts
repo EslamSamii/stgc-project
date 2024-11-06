@@ -83,7 +83,7 @@ export class PartnershipComponent {
   })
   public isDownloadModalOpened: boolean = false;
   public isScrolledToConfirmationButton: boolean = false;
-  public hideFloatingIcon: boolean = true;
+  public showFloatingIcon: boolean = true;
   public isScrolledToConfirmationButton1: boolean = false;
   public isScrolledToConfirmationButtonGroup: boolean = false;
   @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
@@ -105,7 +105,7 @@ export class PartnershipComponent {
   });
   @ViewChild('contactFormRef') contactFormRef!: ElementRef;
   public isSaving: boolean = false;
-
+  public targetOffsetTop!: number;
   constructor(private _AppService: AppService, private _ActivatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -116,8 +116,9 @@ export class PartnershipComponent {
   }
 
   ngAfterViewInit(): void {
-    if(this._ActivatedRoute.snapshot.fragment === 'contact-us')
-      setTimeout(() => {
+    setTimeout(() => {
+      this.targetOffsetTop = this.contactUsForm.nativeElement.getBoundingClientRect().top + scrollY - innerHeight;
+      if(this._ActivatedRoute.snapshot.fragment === 'contact-us')
         this.navigateToFormSection();
     },1000);
   }
@@ -158,11 +159,10 @@ export class PartnershipComponent {
   private _handleScroll(): void {
     if(scrollY > 0)
       this._AppService.onNavColorChange$.next({color:'black'});
-    else
+    else{
       this._AppService.onNavColorChange$.next({color: 'white'});
-    console.log(this.contactUsForm.nativeElement.getBoundingClientRect().top)
-    console.log(this.contactUsForm.nativeElement.getBoundingClientRect().top + scrollY)
-    this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || window.scrollY < 400;
+    }
+    this.showFloatingIcon = scrollY > 450 && scrollY < this.targetOffsetTop;
       if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
     this.isScrolledToConfirmationButtonGroup = this.sponsorsContainer.nativeElement.getBoundingClientRect().top < 0 && this.sponsorsContainer.nativeElement.querySelector('.logos-container').getBoundingClientRect().width- innerWidth + this.sponsorsContainer.nativeElement.getBoundingClientRect().top > 0 ;
@@ -221,7 +221,7 @@ export class PartnershipComponent {
   }
 
   public navigateToFormSection(){
-    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top +scrollY;
+    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top + scrollY;
     window.scrollTo({
       top: yPosition,
       behavior: 'smooth'
