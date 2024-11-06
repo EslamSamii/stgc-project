@@ -27,8 +27,8 @@
     ogImage.setAttribute("content", `${window.location.origin}/assets/images/bg-1.jpg`);
   }
   const ogUrl = document.querySelector('meta[property="og:url"]');
-  if (ogImage) {
-    ogImage.setAttribute("content", window.location.origin);
+  if (ogUrl) {
+    ogUrl.setAttribute("content", window.location.origin);
   }
 });
 </script>
