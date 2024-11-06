@@ -28,7 +28,7 @@
   }
   const ogUrl = document.querySelector('meta[property="og:url"]');
   if (ogUrl) {
-    ogUrl.setAttribute("content", window.location.origin);
+    ogUrl.setAttribute("content", `${window.location.origin}/`);
   }
 });
 </script>
