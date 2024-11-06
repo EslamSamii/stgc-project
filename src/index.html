@@ -8,7 +8,18 @@
   <meta name="description" content="Lead, accelerate and track Travel & Tourism industry’s journey to a sustainable future.">
   <meta property="og:image" />
   <meta property="og:url"/>
-  <meta property="og:type" content="website" />
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) {
+      ogImage.setAttribute("content", `${window.location.origin}/assets/images/bg-1.jpg`);
+    }
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute("content", `${window.location.origin}/`);
+    }
+  });
+  </script>
   <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,15 +29,4 @@
   <app-root></app-root>
 </body>
 </html>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-  const ogImage = document.querySelector('meta[property="og:image"]');
-  if (ogImage) {
-    ogImage.setAttribute("content", `${window.location.origin}/assets/images/bg-1.jpg`);
-  }
-  const ogUrl = document.querySelector('meta[property="og:url"]');
-  if (ogUrl) {
-    ogUrl.setAttribute("content", `${window.location.origin}/`);
-  }
-});
-</script>
+
