@@ -1,7 +1,8 @@
-<nav class="nav-header" [ngClass]="{'hide-nav-top': scrollTopDir, 'black-header' : color === 'black'}">
+<nav class="nav-header" [ngClass]="{'hide-nav-top': scrollTopDir, 'black-header' : color === 'black', 'black-header-no-bg' : color === 'black-no-bg'}">
   <div class="header {{isMenuOpened ? '' : customClass}}">
     <div>
       <img
+      (click)="navigateToTop()"
       [routerLink]="['/home']"
       class="logo"
       style="transition: transform 0.3s ease;cursor: pointer;"

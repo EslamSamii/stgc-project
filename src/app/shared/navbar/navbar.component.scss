@@ -30,6 +30,19 @@ nav{
       background-color: white;
     }
   }
+  &.black-header-no-bg{
+    padding: 0;
+    .menu-icon{
+      color: black !important;
+    }
+    .logo{
+      filter: brightness(0);
+      -webkit-filter: brightness(0);
+}
+    .header {
+      background-color: transparent;
+    }
+  }
   &.nav-header
 {
     z-index: 999999;

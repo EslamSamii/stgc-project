@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { AppService } from 'src/app/shared/services/app.service';
 
 type Publication ={ file: string,image: string, name: string, desc: string}
@@ -113,12 +113,13 @@ export class PartnershipComponent {
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
     })
-    if(this._ActivatedRoute.snapshot.fragment)
+  }
+
+  ngAfterViewInit(): void {
+    if(this._ActivatedRoute.snapshot.fragment === 'contact-us')
       setTimeout(() => {
-          this.navigateToFormSection();
-      },1000);
-    else
-      scrollTo({top:0, left:0})
+        this.navigateToFormSection();
+    },1000);
   }
 
   ngOnDestroy(): void {
@@ -159,6 +160,8 @@ export class PartnershipComponent {
       this._AppService.onNavColorChange$.next({color:'black'});
     else
       this._AppService.onNavColorChange$.next({color: 'white'});
+    console.log(this.contactUsForm.nativeElement.getBoundingClientRect().top)
+    console.log(this.contactUsForm.nativeElement.getBoundingClientRect().top + scrollY)
     this.hideFloatingIcon = this.contactUsForm.nativeElement.getBoundingClientRect().top - innerHeight < 0 || window.scrollY < 400;
       if(this.confirmationButtonRef.nativeElement.getBoundingClientRect().top - innerHeight < 0)
       this.isScrolledToConfirmationButton = true;
@@ -218,17 +221,9 @@ export class PartnershipComponent {
   }
 
   public navigateToFormSection(){
-    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top + innerHeight +scrollY;
+    const yPosition = this.contactUsForm.nativeElement.getBoundingClientRect().top +scrollY;
     window.scrollTo({
       top: yPosition,
-      behavior: 'smooth'
-    });
-  }
-
-  public navigateToTop(){
-
-    window.scrollTo({
-      top: 0,
       behavior: 'smooth'
     });
   }
@@ -267,5 +262,9 @@ export class PartnershipComponent {
   public getImageSrc(url: string): string | undefined {
     const cachedImage = this._AppService.getImage(url);
     return cachedImage ? cachedImage.src : undefined;
+  }
+
+  navigateToTop(){
+    this._AppService.navigateToTop();
   }
 }

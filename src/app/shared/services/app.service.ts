@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class AppService {
   public cursorChange$: Subject<'video' | 'circle'> = new Subject<'video' | 'circle'>();
   public onScrollChange$: Subject<void> = new Subject<void>();
-  public onNavColorChange$: Subject<{color: 'white' | 'black' , class?: string}> = new Subject<{color: 'white' | 'black' , class?: string}>();
+  public onNavColorChange$: Subject<{color: 'white' | 'black' | 'black-no-bg' , class?: string}> = new Subject<{color: 'white' | 'black' | 'black-no-bg' , class?: string}>();
   public toaster$: Subject<{message: string, success: boolean}> = new Subject<{message: string, success: boolean}>();
   private _imageCache: Map<string, HTMLImageElement> = new Map();
   constructor(private _HttpClient: HttpClient) { }
@@ -78,6 +78,10 @@ export class AppService {
 
   public getImage(url: string): HTMLImageElement | undefined {
     return this._imageCache.get(url);
+  }
+
+  public navigateToTop(): void {
+    scrollTo({top:0, left:0})
   }
 
 }

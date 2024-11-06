@@ -138,7 +138,6 @@ export class HomeComponent implements OnInit {
   @ViewChild('headerContentOne') headerContentOne!: ElementRef;
   @ViewChild('headerContentTwo') headerContentTwo!: ElementRef;
   @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
-  @ViewChild('ares') aresRef!: ElementRef;
   @ViewChildren('imagesRef') imagesRef!: QueryList<ElementRef>;
   @ViewChild('videoPlayer') videoPlayer!: ElementRef;
   @ViewChild('sponsorsContainer') sponsorsContainer!: ElementRef;
@@ -152,7 +151,7 @@ export class HomeComponent implements OnInit {
   public isScrolledToLeftEnd2: boolean = true;
   public displayLastImageSection: boolean = false;
 
-  constructor( private _AppService: AppService, private _ChangeDetectorRef: ChangeDetectorRef) {}
+  constructor( private _AppService: AppService) {}
 
   public get currentSection(): number{
     return this._isLoadingPage ? 0 : Math.round(scrollY / innerHeight);
@@ -163,14 +162,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this._areaSectionPositioning();
     this._isLoadingPage=false;
     this.videoPlayer.nativeElement.muted = true;
     this.videoPlayer.nativeElement.playbackRate = 2;
   }
 
   ngOnInit() {
-    scrollTo({left:0, top:0});
     setTimeout(() => {
       this._AppService.onNavColorChange$.next({color: 'white'});
       this.hideScrollButton =false;
@@ -204,47 +201,11 @@ export class HomeComponent implements OnInit {
     debounceTime(5)
   ).subscribe({
     next: ()=>{
-      this._areaSectionPositioning();
       for(let [index, image] of Object.entries(this.bgImages)){
         image.isSelected = this.currentSection > 2 ? true : this.currentSection === +index;
       }
     }
   })
-}
-_areaSectionPositioning(){
-  if(this.isSmallScreenView || this._isLoadingPage) return;
-  const elements = Object.entries(this.aresRef.nativeElement.querySelectorAll('.card'));
-  if(this.aresRef.nativeElement.getBoundingClientRect().top < 0 && this.aresRef.nativeElement.getBoundingClientRect().top > -(this.aresRef.nativeElement.getBoundingClientRect().height - 695)){
-    this.aresRef.nativeElement.querySelector('.area-container').classList.add('fixed-area');
-    this.aresRef.nativeElement.classList.remove('after-scroll-down');
-    for(let [key,card] of elements){
-      if(+key ===0) continue;
-      const element = card as HTMLElement;
-      let newTop = Math.max(( (+key * (element.getBoundingClientRect().height + 50)) + this.aresRef.nativeElement.getBoundingClientRect().top), +key * 26);
-      element.style.top = newTop + 'px';
-      const prevElement = elements[+key-1]?.[1] as HTMLElement;
-      if(prevElement){
-        if(+key === 1)
-          prevElement.classList.add('hide');
-        else if(this.aresRef.nativeElement.getBoundingClientRect().top < -400 && +key ===2)
-          prevElement.classList.add('hide');
-        else if(this.aresRef.nativeElement.getBoundingClientRect().top < -800 && +key ===3)
-          prevElement.classList.add('hide');
-        else{
-          prevElement.classList.remove('hide');
-        }
-      }
-    }
-  }else if(this.aresRef.nativeElement.getBoundingClientRect().top < -(this.aresRef.nativeElement.getBoundingClientRect().height - 695)){
-    this.aresRef.nativeElement.classList.add('after-scroll-down');
-    this.aresRef.nativeElement.querySelector('.area-container').classList.remove('fixed-area');
-
-  }else{
-    this.aresRef.nativeElement.classList.remove('after-scroll-down');
-    (elements[0][1] as HTMLElement).classList.remove('hide')
-    this.aresRef.nativeElement.querySelector('.area-container').classList.remove('fixed-area');
-
-  }
 }
 
   ngOnDestroy(): void {
@@ -300,4 +261,9 @@ _areaSectionPositioning(){
     const cachedImage = this._AppService.getImage(url);
     return cachedImage ? cachedImage.src : undefined;
   }
+
+  navigateToTop(){
+    this._AppService.navigateToTop();
+  }
+
 }

@@ -20,7 +20,6 @@ export class ContactUsComponent {
   constructor(private _AppService: AppService){}
 
   ngOnInit(): void {
-    scrollTo({left:0, top:0})
     this._AppService.onNavColorChange$.next({color: 'white', class: 'bg-green'});
   }
 
@@ -50,5 +49,8 @@ export class ContactUsComponent {
 
   public isScrolledTo(element: HTMLElement){
     return element?.getBoundingClientRect().top - innerHeight < 0;
+  }
+  navigateToTop(){
+    this._AppService.navigateToTop();
   }
 }

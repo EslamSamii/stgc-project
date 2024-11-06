@@ -12,8 +12,6 @@ export class AboutUsComponent implements AfterViewInit {
   public isSectionsFixed: boolean = true;
   @ViewChild('scrollHorizontallyRef') scrollHorizontallyRef!: ElementRef;
   @ViewChild('container') containerRef!: ElementRef;
-  @ViewChild('scaledImageOne') scaledImageOne!: ElementRef;
-  @ViewChild('scaledImageTwo') scaledImageTwo!: ElementRef;
   @ViewChild('videoPlayer') videoPlayer!: ElementRef;
   @ViewChild('videoContainer') videoContainer!: ElementRef;
 
@@ -110,17 +108,11 @@ export class AboutUsComponent implements AfterViewInit {
     )
       this._AppService.onNavColorChange$.next({color: 'black'});
     else
-      this._AppService.onNavColorChange$.next({color: 'black', class: 'bg-transparent'});
+      this._AppService.onNavColorChange$.next({color: 'black-no-bg'});
 
 
     let percentage = (window.scrollY / (this.containerWidth-innerHeight));
     if(percentage > 1) percentage = 1;
-    // Handle scaling
-    const minScale = 1;
-    const maxScale = 1.5;
-    const scale = maxScale - ((percentage) * (maxScale - minScale));
-    this.scaledImageOne.nativeElement.style.transform = `scale(${scale})`;
-    this.scaledImageTwo.nativeElement.style.transform = `scale(${scale})`;
     if(percentage >= 1)
       this.isSectionsFixed = false;
     else this.isSectionsFixed = true;
@@ -145,9 +137,8 @@ export class AboutUsComponent implements AfterViewInit {
   constructor(private _AppService: AppService){}
 
   ngOnInit(): void {
-    scrollTo({left:0, top:0})
     setTimeout(() => {
-      this._AppService.onNavColorChange$.next({color: 'black', class: 'bg-transparent'});
+      this._AppService.onNavColorChange$.next({color: 'black-no-bg'});
     }, 100);
     this._AppService.onScrollChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next: ()=> this._handleScroll()
@@ -188,5 +179,9 @@ export class AboutUsComponent implements AfterViewInit {
   public getImageSrc(url: string): string | undefined {
     const cachedImage = this._AppService.getImage(url);
     return cachedImage ? cachedImage.src : undefined;
+  }
+
+  navigateToTop(){
+    this._AppService.navigateToTop();
   }
 }

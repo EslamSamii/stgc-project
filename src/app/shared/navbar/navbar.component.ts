@@ -16,9 +16,9 @@ export class NavbarComponent {
   private _destroy$: Subject<void> = new Subject<void>();
   private lastScroll: number = 0;
   public  scrollTopDir: boolean = false;
-  public  color: 'white' | 'black' ='white';
+  public  color: 'white' | 'black' | 'black-no-bg' ='white';
   public  customClass?: string;
-  public  prevColor: 'white' | 'black' ='white';
+  public  prevColor: 'white' | 'black'| 'black-no-bg'  ='white';
   constructor(private _AppService: AppService){}
 
   ngOnDestroy(): void {
@@ -67,11 +67,16 @@ export class NavbarComponent {
         document.body.style.overflow= 'auto';
       }
       this.isAnimating = false
+      this._AppService.navigateToTop();
     }, 700);
   }
 
   public getImageSrc(url: string): string | undefined {
     const cachedImage = this._AppService.getImage(url);
     return cachedImage ? cachedImage.src : undefined;
+  }
+
+  navigateToTop(){
+    this._AppService.navigateToTop();
   }
 }

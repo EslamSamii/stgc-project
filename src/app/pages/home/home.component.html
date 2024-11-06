@@ -87,11 +87,13 @@
         <button
         class="confirm-button"
         type="button"
+        (click)="navigateToTop()"
         [routerLink]="['/partnerships']" fragment="contact-us"
       >
       Interested in partnering?
-      </button>
-      <button
+    </button>
+    <button
+        (click)="navigateToTop()"
         class="confirm-button"
         type="button"
         [routerLink]="['/partnerships']"
@@ -160,7 +162,7 @@
   </div>
 </section>
 
-<section #ares class="areas">
+<section class="areas">
   <div class="container-lg">
     <div class="area-container">
       <div class="title"><span fadeIn customClass="underline">Our strategic pillars</span><span customClass="underline" fadeIn>and Intervention areas</span></div>
@@ -228,12 +230,12 @@
   </div>
   <div class="footer-content">
     <div class="nav">
-      <img [routerLink]="['/home']" src="assets/images/STGC-black.svg" style="cursor: pointer;">
+      <img [routerLink]="['/home']" (click)="navigateToTop()" src="assets/images/STGC-black.svg" style="cursor: pointer;">
       <div class="links">
-        <a [routerLink]="['/home']" >Home</a>
-        <a [routerLink]="['/about']" style="white-space: nowrap;">About us</a>
-        <a [routerLink]="['/partnerships']" >Partnerships</a>
-        <a [routerLink]="['/contact-us']" style="white-space: nowrap;">Contact us</a>
+        <a [routerLink]="['/home']" (click)="navigateToTop()">Home</a>
+        <a [routerLink]="['/about']" (click)="navigateToTop()" style="white-space: nowrap;">About us</a>
+        <a [routerLink]="['/partnerships']" (click)="navigateToTop()" >Partnerships</a>
+        <a [routerLink]="['/contact-us']" (click)="navigateToTop()" style="white-space: nowrap;">Contact us</a>
       </div>
     </div>
     <div class="copy-write">
