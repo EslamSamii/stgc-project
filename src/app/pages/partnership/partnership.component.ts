@@ -83,7 +83,7 @@ export class PartnershipComponent {
   })
   public isDownloadModalOpened: boolean = false;
   public isScrolledToConfirmationButton: boolean = false;
-  public showFloatingIcon: boolean = true;
+  public showFloatingIcon: boolean = false;
   public isScrolledToConfirmationButton1: boolean = false;
   public isScrolledToConfirmationButtonGroup: boolean = false;
   @ViewChild('confirmationButtonRef') confirmationButtonRef!: ElementRef;
