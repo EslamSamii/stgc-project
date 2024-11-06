@@ -6,7 +6,7 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,user-scalable=no" />
   <meta name="description" content="Lead, accelerate and track Travel & Tourism industry’s journey to a sustainable future.">
-  <meta property="og:image" content="assets/images/bg-1.jpg" />
+  <meta property="og:image" />
   <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,3 +16,11 @@
   <app-root></app-root>
 </body>
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  if (ogImage) {
+    ogImage.setAttribute("content", `${window.location.origin}/assets/images/bg-1.jpg`);
+  }
+});
+</script>
