@@ -166,8 +166,11 @@ export class HomeComponent implements OnInit {
     this.videoPlayer.nativeElement.muted = true;
     this.videoPlayer.nativeElement.playbackRate = 2;
   }
+  showLoader = true;
+
 
   ngOnInit() {
+
     setTimeout(() => {
       this._AppService.onNavColorChange$.next({color: 'white'});
       this.hideScrollButton =false;

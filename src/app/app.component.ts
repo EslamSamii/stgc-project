@@ -45,8 +45,11 @@ export class AppComponent {
   }
 
   private _destroy$: Subject<void> = new Subject<void>();
-
+  showLoader = true;
   ngOnInit(): void {
+    setTimeout(() => {
+      this.showLoader = false
+    }, 5000);
     this._AppService.cursorChange$.pipe(takeUntil(this._destroy$)).subscribe({
       next:(res)=>{
         this.cursor = res
