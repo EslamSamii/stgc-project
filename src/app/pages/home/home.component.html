@@ -48,11 +48,11 @@
 <img *ngFor="let image of bgImages" #imagesRef [ngClass]="{'active-image': image.isSelected}" class="changing-img" [src]="getImageSrc(image.src)">
 
 <section class="sponsors-container">
-  <div class="container-lg">
+  <div class="container-lg" style="width: 100%;">
     <h2 fadeIn>We collaborate with</h2>
     <div #sponsorsContainer class="sponsors">
       <div class="logos-container">
-        <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
+        <img *ngFor="let logo of logosNumbers;" [style]="logo === 15 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo_'+logo +'.png' ">
       </div>
     </div>
     <div class="buttons-group">

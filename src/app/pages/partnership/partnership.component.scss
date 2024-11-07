@@ -229,8 +229,8 @@ section{
     padding: 48px;
     row-gap: 40px;
     column-gap: 32px;
-    width: 3460px;
-    min-width: 3460px;
+    width: 3750px;
+    min-width: 3750px;
     flex-wrap: wrap;
     @media (max-width: 992px) {
       padding: 16px;
@@ -297,7 +297,6 @@ section{
         background-color: #2EA47F;
         fill: #2EA47F;
 }
-
     }
 
   }
@@ -444,6 +443,8 @@ section{
 }
 
 .download-form{
+  overflow: hidden;
+  margin-top: -130px;
   backdrop-filter: blur(20px);
   background-color: transparent;
   border:1px solid #ffffff1f;
@@ -455,7 +456,12 @@ section{
   max-width: 487px;
   height: 547px;
   padding: 48px;
-  @media (max-width: 992px)  {
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  @media(max-width: 992px){
     padding: 16px;
     max-width: 90vw;
   }
@@ -1092,7 +1098,7 @@ input, textarea {
       gap: 40px;
       flex-wrap: nowrap;
       @media (max-width: 992px) {
-      gap: 32px;
+        gap: 22px;
       }
       a{
         font-weight: 600;
@@ -1101,7 +1107,7 @@ input, textarea {
         font-size: 16px;
         @media (max-width: 992px) {
           text-align: center;
-        font-size: 14px;
+          font-size: 12px;
         }
       }
     }

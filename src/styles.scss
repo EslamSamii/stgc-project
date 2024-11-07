@@ -254,3 +254,10 @@ input, textarea{
     font-size: 16px !important;
   }
 }
+.scroll-horizontally{
+  transition: all 0.1s 0s linear;
+  -webkit-transition: all 0.1s 0s linear;
+  -moz-transition: all 0.1s 0s linear;
+  -ms-transition: all 0.1s 0s linear;
+  -o-transition: all 0.1s 0s linear;
+}

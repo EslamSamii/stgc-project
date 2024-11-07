@@ -133,7 +133,7 @@ export class AboutUsComponent implements AfterViewInit {
     return (this.containerRef?.nativeElement?.getBoundingClientRect()?.width) || 0;
   }
   private _destroy$: Subject<void> = new Subject<void>();
-
+  isPlaying = false;
   constructor(private _AppService: AppService){}
 
   ngOnInit(): void {
@@ -149,7 +149,9 @@ export class AboutUsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.videoPlayer.nativeElement.muted = true;
+    setTimeout(() => {
+      this.videoPlayer.nativeElement.muted = true;
+    }, 500);
     document.querySelector('nav')?.classList.add('custom-nav')
     setTimeout(() => this._handleScroll(true));
   }
@@ -159,26 +161,27 @@ export class AboutUsComponent implements AfterViewInit {
     this._destroy$.next();
     this._destroy$.complete();
   }
-  public onMouseOver(): void{
+  public onMouseOver(videoElement: HTMLVideoElement): void{
+    videoElement.muted = false;
     this._AppService.cursorChange$.next('video')
   }
 
-  public onMouseLeave(): void{
+  public onMouseLeave(videoElement: HTMLVideoElement): void{
+    videoElement.muted = true;
     this._AppService.cursorChange$.next('circle')
   }
 
-  public toggleSound(videoElement: HTMLVideoElement) {
-    if (videoElement.muted) {
-      videoElement.muted = false;
-      videoElement.volume = 1.0;
-    } else {
-      videoElement.muted = true;
-    }
+  public toggleVideo(videoElement: HTMLVideoElement) {
+    this.isPlaying = !this.isPlaying
+    if(this.isPlaying)
+      videoElement.play();
+    else
+      videoElement.pause();
   }
 
   public getImageSrc(url: string): string | undefined {
     const cachedImage = this._AppService.getImage(url);
-    return cachedImage ? cachedImage.src : undefined;
+    return cachedImage?.src || url;
   }
 
   navigateToTop(){

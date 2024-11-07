@@ -399,7 +399,7 @@ input, textarea {
       gap: 40px;
       flex-wrap: nowrap;
       @media (max-width: 992px) {
-      gap: 32px;
+        gap: 22px;
       }
       a{
         font-weight: 600;
@@ -407,8 +407,8 @@ input, textarea {
         color: white;
         font-size: 16px;
         @media (max-width: 992px) {
+          font-size: 12px;
           text-align: center;
-        font-size: 14px;
         }
       }
     }

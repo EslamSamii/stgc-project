@@ -73,7 +73,7 @@ export class NavbarComponent {
 
   public getImageSrc(url: string): string | undefined {
     const cachedImage = this._AppService.getImage(url);
-    return cachedImage ? cachedImage.src : undefined;
+    return cachedImage?.src || url;
   }
 
   navigateToTop(){

@@ -158,7 +158,7 @@ section{
     font-size: 18px;
     @media (max-width: 992px) {
       left: 15px;
-      width: 350px;
+      width: 330px;
     }
     span{
       background: linear-gradient(to right,  #fff 45%, #c6c6c6 55%);
@@ -225,7 +225,7 @@ section{
       @media (max-width: 992px) {
         top: calc(50vh + 130px);
         right: unset;
-        width: 340px;
+        width: 330px;
         left: 16px;
       }
 }
@@ -266,13 +266,12 @@ section{
   .stakeholder-groups{
     position: relative;
     background-color: white;
-    width: 100vw;
     height: inherit;
     overflow: auto;
     display: flex;
     align-items: center;
+    padding-top: 50px;
     padding-bottom: 50px;
-
     .stakeholder-container{
       display: flex;
       align-items: center;
@@ -874,7 +873,7 @@ section{
         gap: 40px;
         flex-wrap: nowrap;
         @media (max-width: 992px) {
-        gap: 32px;
+          gap: 22px;
         }
         a{
           font-weight: 600;
@@ -883,7 +882,7 @@ section{
           font-size: 16px;
           @media (max-width: 992px) {
             text-align: center;
-          font-size: 14px;
+          font-size: 12px;
           }
         }
       }
@@ -1114,9 +1113,9 @@ section{
   overflow-x: auto;
   display: flex;
   flex-direction: column;
-  width: 100vw;
   @media (max-width: 992px) {
     gap: 60px;
+    width: 100vw;
   }
   &::-webkit-scrollbar {
     display: none;
@@ -1126,8 +1125,8 @@ section{
     padding: 48px;
     row-gap: 40px;
     column-gap: 32px;
-    width: 3460px;
-    min-width: 3460px;
+    width: 3750px;
+    min-width: 3750px;
     flex-wrap: wrap;
     @media (max-width: 992px) {
       padding: 16px;

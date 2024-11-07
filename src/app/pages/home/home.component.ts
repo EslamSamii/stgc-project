@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
   public hideScrollButton: boolean = false;
   private _isLoadingPage = true;
   public isScrolledToConfirmationButtonGroup: boolean = false;
-  public logosNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
+  public logosNumbers = [1,'02',2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,'017',17,18,20,21,22,24,25,26,27,28,29,30,31,32];
   public isScrolledToRightEnd: boolean = false;
   public isScrolledToLeftEnd: boolean = true;
   public isScrolledToRightEnd2: boolean = false;
@@ -243,7 +243,7 @@ export class HomeComponent implements OnInit {
     if(type===1)
       this.isScrolledToLeftEnd2 = false
     let left =element.scrollLeft + 450;
-    if(left > element.scrollWidth - innerWidth) left = element.scrollWidth - innerWidth;
+    // if(left > element.scrollWidth - innerWidth) left = element.scrollWidth - innerWidth;
     element.scrollTo({left: left, behavior: 'smooth'})
     setTimeout(() => {
       if(type===0)
@@ -259,7 +259,7 @@ export class HomeComponent implements OnInit {
 
   public getImageSrc(url: string): string | undefined {
     const cachedImage = this._AppService.getImage(url);
-    return cachedImage ? cachedImage.src : undefined;
+    return cachedImage?.src || url;
   }
 
   navigateToTop(){

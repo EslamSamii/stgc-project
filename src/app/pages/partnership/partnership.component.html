@@ -68,7 +68,7 @@
   <h2 fadeIn>We collaborate with</h2>
   <div #sponsorsContainer class="sponsors">
     <div class="logos-container">
-      <img *ngFor="let logo of logosNumbers;" [style]="logo === 14 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo'+logo +'.png' ">
+      <img *ngFor="let logo of logosNumbers;" [style]="logo === 15 ? 'max-width:295px;width:295px' : ''" [src]=" 'assets/images/logos/logo_'+logo +'.png' ">
     </div>
   </div>
   <div class="indicators sponsors-indicators">
@@ -235,7 +235,7 @@
               <div class="line-progress"></div>
             </div>
             <div class="underline-input">
-              <textarea required rows="10" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
+              <textarea required rows="6" [formControl]="getFromControlContactForm('message')" name="message" placeholder="Message"></textarea>
               <div class="line-progress"></div>
             </div>
           </div>
@@ -279,4 +279,5 @@
       </div>
     </div>
   </div>
+
 </section>
