@@ -30,7 +30,7 @@
   z-index: 9999999999999;
   top: 50%;
   left: 50%;
-  opacity: 0;
+  visibility: 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -127,27 +127,22 @@
 
 @keyframes fade-in-up{
   0%{
-    opacity: 0;
+    visibility: 0;
 
   }
   10%{
-    opacity: 1;
+    visibility: 1;
   }
   90%{
-    opacity: 1;
+    visibility: 1;
   }
 
   100%{
-    opacity: 0;
+    visibility: 0;
 
   }
 }
 
-@keyframes fade-out{
-  100%{
-    display: none;
-  }
-}
 @keyframes pre-loader{
   0%{
     width: 20px;
@@ -186,9 +181,4 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-}
-
-.fade-out{
-  animation: fade-out 0.1s 5s forwards;
-  -webkit-animation: fade-out 0.1s 5s forwards;
 }
