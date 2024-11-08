@@ -1,24 +1,12 @@
 {
   "version": 2,
-  "name": "stgc",
   "public": true,
-  "builds": [
-    {
-      "src": "dist/stgc/server/main.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "angular.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/stgc/browser"
-      }
+  "name": "stgc",
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/stgc/browser/**"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/stgc/server/main.js"
-    }
-  ]
+  }
 }
+
