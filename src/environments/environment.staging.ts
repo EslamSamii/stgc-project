@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   air_table_base_id: "appVPIHtWC5YHfgO1",
   air_table_contact_us_table_id: "tblSoFFbavhF0IuSZ",
   air_table_publication_table_id: "tblqIcg9aOZXFzCCQ",
